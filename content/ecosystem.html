@@ -1,0 +1,132 @@
+<h2>18. DeFi (탈중앙 금융)</h2>
+
+<p>은행·증권사·거래소가 하던 일을 스마트 컨트랙트로 옮긴 것입니다. <strong>2026년 DeFi 총 예치금(TVL)은 1,500억 달러를 넘었습니다.</strong> Web3에서 실제로 가장 많은 돈이 움직이는 영역입니다.</p>
+
+<table>
+<tr><th>분야</th><th>하는 일</th><th>대표 프로토콜</th><th>핵심 메커니즘</th></tr>
+<tr><td><strong>DEX</strong></td><td>중개자 없는 토큰 교환</td><td>Uniswap, Curve, PancakeSwap</td><td>AMM — 오더북 대신 <code>x·y=k</code> 수식으로 가격 결정</td></tr>
+<tr><td><strong>렌딩</strong></td><td>담보 맡기고 대출 / 예치해서 이자</td><td>Aave (TVL 약 339억 달러), Morpho, Compound, Sky</td><td>과담보 대출. 담보 가치가 떨어지면 <strong>자동 청산</strong></td></tr>
+<tr><td><strong>리퀴드 스테이킹</strong></td><td>ETH를 스테이킹하면서 유동성 유지</td><td><strong>Lido</strong> (TVL 1위), Rocket Pool</td><td>스테이킹한 ETH를 stETH 토큰으로 받아 다른 곳에 또 활용</td></tr>
+<tr><td><strong>리스테이킹</strong></td><td>스테이킹된 자산을 다른 서비스 보안에 재활용</td><td>EigenLayer</td><td>보안의 재사용. 수익도 리스크도 겹침</td></tr>
+<tr><td><strong>파생상품</strong></td><td>선물·옵션·영구계약</td><td>dYdX, GMX, Hyperliquid</td><td>레버리지 거래</td></tr>
+<tr><td><strong>수익 애그리게이터</strong></td><td>여러 프로토콜의 이자를 자동 최적화</td><td>Yearn, Morpho Vaults</td><td>ERC-4626 볼트 표준</td></tr>
+</table>
+
+<h3>AMM(자동화된 시장 조성자)의 원리</h3>
+<p>기존 거래소는 매수·매도 호가를 매칭합니다. 유니스왑은 다릅니다. <strong>ETH와 USDC가 든 풀</strong>을 만들고, 두 자산 수량의 곱이 항상 일정하게(<code>x × y = k</code>) 유지되도록 가격을 자동 결정합니다.</p>
+<ul>
+<li>풀에 ETH 100개, USDC 250,000개가 있다면 <code>k = 25,000,000</code>. ETH 가격은 2,500 USDC</li>
+<li>누가 ETH 1개를 사가면 풀의 ETH가 줄어 남은 ETH의 가격이 <strong>자동으로</strong> 오릅니다</li>
+<li>풀에 자산을 넣는 사람(LP, 유동성 공급자)은 거래 수수료를 나눠 갖습니다</li>
+<li>대신 <strong>비영구적 손실(Impermanent Loss)</strong> — 가격이 크게 변하면 그냥 들고 있는 것보다 손해일 수 있습니다</li>
+</ul>
+
+<div class="card warn">
+<h4>⚠️ DeFi의 진짜 리스크</h4>
+<ul style="margin:0;font-size:14.5px">
+<li><strong>스마트 컨트랙트 버그</strong> — 감사를 받아도 사고가 납니다</li>
+<li><strong>오라클 조작</strong> — 가격 피드를 속여 부당 청산·차익 탈취</li>
+<li><strong>청산</strong> — 담보 가치 하락 시 자동 매각. 변동성 큰 날 연쇄 청산 발생</li>
+<li><strong>레고 리스크</strong> — A가 B 위에, B가 C 위에 쌓여 있어 하나가 무너지면 연쇄 붕괴. 2026년 4월 2억 9천만 달러 해킹이 DeFi 전반에 전염 충격을 준 사례가 있습니다</li>
+<li><strong>"연 수익률 300%"</strong> — 지속 불가능한 토큰 인플레이션이거나 사기입니다</li>
+</ul>
+</div>
+
+<hr>
+<h2>NFT: 거품 이후에 남은 것</h2>
+<p>NFT는 <strong>고유한 ID를 가진 토큰</strong>입니다. "원숭이 그림"은 그 기술의 한 가지 (과열된) 응용이었을 뿐입니다.</p>
+
+<h3>NFT의 실제 작동 방식 — 오해 정정</h3>
+<p>NFT 컨트랙트가 저장하는 것은 놀랄 만큼 단순합니다.</p>
+<pre><code>mapping(uint256 tokenId =&gt; address owner)   <span class="cm">// 누가 몇 번 토큰의 주인인가</span>
+function tokenURI(uint256 id) returns (string)  <span class="cm">// 메타데이터가 어디 있는가</span></code></pre>
+<p><strong>이미지는 온체인에 없습니다.</strong> <code>tokenURI</code>가 가리키는 JSON(보통 IPFS)에 이미지 주소가 적혀 있을 뿐입니다. 그래서:</p>
+<ul>
+<li>IPFS 핀이 풀리거나 중앙 서버가 내려가면 <strong>이미지가 사라집니다</strong> (실제로 자주 발생)</li>
+<li>NFT를 산다는 것은 그림의 <em>저작권</em>을 사는 게 아니라 <strong>대장에 이름이 올라가는 것</strong>입니다. 저작권은 별도 계약이 있어야 이전됩니다</li>
+</ul>
+
+<h3>시장 현황 (냉정하게)</h3>
+<div class="grid g3">
+<div class="stat"><div class="n" style="color:var(--bad)">-37%</div><div class="l">2025년 NFT 거래액 55억 달러, 전년 대비 감소</div></div>
+<div class="stat"><div class="n" style="color:var(--bad)">-72%</div><div class="l">2025년 12월 NFT 총 시총 25억 달러, 1월 정점 대비</div></div>
+<div class="stat"><div class="n" style="color:var(--acc2)">+80%</div><div class="l">동시에 실사용자 참여는 전년 대비 증가</div></div>
+</div>
+<p>즉 <strong>투기 자산으로서의 NFT는 붕괴했지만, 기술로서의 NFT는 인프라 쪽으로 이동했습니다.</strong> 2026년의 실제 쓰임새는 이렇습니다.</p>
+<ul>
+<li><strong>ENS 도메인</strong> — <code>vitalik.eth</code>는 사실 NFT입니다. 42자 주소를 대체하는 실용적 용도</li>
+<li><strong>티켓·멤버십</strong> — 위조 불가 입장권, 커뮤니티 접근권</li>
+<li><strong>게임 아이템</strong> — 게임 서비스 종료 후에도 남는 자산</li>
+<li><strong>RWA 소유권 증서</strong> — 부동산 지분, 채권의 온체인 표현</li>
+<li><strong>온체인 자격증명</strong> — 졸업장, 자격증 (SBT, 양도 불가 토큰)</li>
+<li><strong>DeFi 포지션</strong> — 유니스왑 V3의 유동성 포지션은 NFT로 표현됩니다</li>
+</ul>
+
+<hr>
+<h2>DAO (탈중앙 자율 조직)</h2>
+<p>정관을 스마트 컨트랙트로 쓴 조직입니다. 토큰 보유자가 제안하고 투표하며, 통과되면 <strong>코드가 자동으로 자금을 집행</strong>합니다.</p>
+
+<div class="flow">
+<div class="n">① 제안(Proposal)<br><span style="color:var(--muted)">"트레저리에서 10만 달러 지출"</span></div><span class="a">▶</span>
+<div class="n">② 투표 기간<br><span style="color:var(--muted)">토큰 1개 = 1표</span></div><span class="a">▶</span>
+<div class="n">③ 정족수·과반 충족<br><span style="color:var(--muted)">온체인 집계</span></div><span class="a">▶</span>
+<div class="n">④ 타임락 후 자동 실행<br><span style="color:var(--muted)">이의 제기 유예</span></div>
+</div>
+
+<h4>실제 사례</h4>
+<ul>
+<li><strong>Uniswap DAO / Arbitrum DAO</strong> — 프로토콜 파라미터, 수수료, 그랜트 결정</li>
+<li><strong>MakerDAO(현 Sky)</strong> — 스테이블코인 DAI의 담보 종류와 이자율 결정</li>
+<li><strong>ConstitutionDAO</strong> (2021) — 미국 헌법 초판 경매에 참여하려 3일 만에 4천만 달러 모금(낙찰 실패 후 환불). DAO의 가능성과 한계를 동시에 보여준 사건</li>
+</ul>
+
+<div class="card warn">
+<h4>⚠️ DAO의 현실적 문제</h4>
+<ul style="margin:0;font-size:14.5px">
+<li><strong>투표율이 처참합니다</strong> — 많은 DAO에서 유효 투표율이 한 자릿수 %</li>
+<li><strong>고래 지배</strong> — 토큰 1개 1표는 결국 자본 비례 투표. VC와 초기 투자자가 사실상 결정</li>
+<li><strong>투표권 매수</strong> — 거버넌스 토큰을 빌려 투표하고 되갚는 공격이 실재합니다</li>
+<li><strong>법적 지위 불명확</strong> — 일부 관할권에서 DAO 참여자가 무한책임 파트너로 간주될 위험</li>
+<li><strong>실질적 중앙화</strong> — "커뮤니티가 결정한다"지만 실제 코드 배포 권한은 핵심 개발팀 소수에게 있는 경우가 대부분</li>
+</ul>
+</div>
+
+<hr>
+<h2>스테이블코인과 RWA — 2026년의 진짜 킬러 앱</h2>
+<p>암호화폐의 가격 변동성은 결제 수단으로서 치명적입니다. <strong>스테이블코인</strong>은 1달러에 가치를 고정한 토큰으로, 이 문제를 해결합니다. 그리고 2026년 현재, <strong>Web3에서 가장 명확한 제품-시장 적합성을 달성한 영역입니다.</strong></p>
+
+<div class="grid g3">
+<div class="stat"><div class="n">$322.6B</div><div class="l">스테이블코인 총 시총 (2026년 5월)</div></div>
+<div class="stat"><div class="n">$78B</div><div class="l">USDC 발행량 (2026년 Q1, 규제 준수 수요로 증가)</div></div>
+<div class="stat"><div class="n">~$31B</div><div class="l">토큰화 실물자산(RWA), 2026년 7월 · 2025년 초 대비 400%+ 성장</div></div>
+</div>
+
+<h3>스테이블코인의 세 가지 유형</h3>
+<table>
+<tr><th>유형</th><th>담보</th><th>예시</th><th>리스크</th></tr>
+<tr><td><strong>법정화폐 담보</strong></td><td>은행에 실제 달러·국채 예치</td><td>USDC(Circle), USDT(Tether)</td><td>발행사 신뢰 필요. 준비금 실재 여부, 동결 권한 보유</td></tr>
+<tr><td><strong>암호자산 담보</strong></td><td>ETH 등을 과담보로 잠금</td><td>DAI / USDS (Sky)</td><td>담보 급락 시 연쇄 청산</td></tr>
+<tr><td><strong>알고리즘</strong></td><td>담보 없이 알고리즘으로 유지</td><td><s>UST (Terra)</s></td><td><strong class="badge r">2022년 400억 달러 붕괴</strong> — 사실상 사망한 모델</td></tr>
+</table>
+
+<h3>규제: GENIUS Act (2025년 7월 18일 발효)</h3>
+<p>미국이 스테이블코인 규제 프레임워크를 법으로 확정했습니다. Web3 역사상 가장 큰 제도적 변화입니다.</p>
+<ul>
+<li><strong>이자 지급 금지</strong> — 발행사가 보유자에게 수익을 줄 수 없음. 투자상품과 결제수단을 분리하려는 의도</li>
+<li><strong>감독 분담</strong> — OCC가 발행 인가, FDIC가 상환·보험, FinCEN이 자금세탁 방지</li>
+<li><strong>지속적 준비금 증명</strong> — 분기 보고가 아니라 상시 입증 의무</li>
+</ul>
+<p>결과: 2026년 1분기 Tether의 USDT는 2022년 이후 처음으로 약 30억 달러 감소한 반면, 규제 친화적인 Circle의 USDC는 약 20억 달러 증가했습니다. <strong>규제가 시장 점유율을 재편하고 있습니다.</strong> 유럽은 MiCA를 시행 중이고, 아시아는 라이선스 체제를 도입하고 있습니다.</p>
+
+<h3>RWA (실물자산 토큰화)</h3>
+<p>국채·회사채·사모대출·부동산·원자재를 온체인 토큰으로 표현하는 것입니다. 2026년 7월 기준 퍼블릭 체인 위 RWA는 약 <strong>310억 달러</strong>, 167개 플랫폼에 약 96만 명의 보유자가 있습니다.</p>
+<ul>
+<li><strong>이더리움이 토큰화 가치의 약 65%</strong>를 차지합니다</li>
+<li>블랙록의 <strong>BUIDL</strong> 펀드가 약 25억 달러로 단일 상품 최대</li>
+<li>사모대출, 원자재, 미국 국채, 회사채, 비미국 국채, 기관 펀드 — 여섯 개 카테고리가 각각 10억 달러를 넘었습니다</li>
+</ul>
+
+<div class="card tip">
+<h4>💡 이 두 영역이 중요한 이유</h4>
+<p style="margin:0">NFT나 밈코인과 달리, 스테이블코인과 RWA는 <strong>블록체인이 기존 방식보다 명백히 나은</strong> 일을 합니다. 국경 간 송금은 SWIFT보다 빠르고 싸며, 24시간 돌아가고, 프로그래밍 가능합니다. 블랙록·JP모건 같은 기관이 진지하게 참여하는 이유이기도 합니다. <strong>Web3 개발자로 커리어를 생각한다면, 투기성 영역보다 이쪽의 수요가 훨씬 안정적입니다.</strong></p>
+</div>

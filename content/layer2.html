@@ -1,0 +1,97 @@
+<p>이더리움 L1은 초당 약 15~20건을 처리합니다. Visa는 수만 건입니다. 2021년 NFT 광풍 때 스왑 한 번에 100달러가 넘게 든 이유입니다.</p>
+<p>해결책은 두 갈래였습니다. <strong>(A) 블록을 더 크게 만든다</strong> → 노드 운영 비용이 올라가 탈중앙화가 무너짐. <strong>(B) 실행을 바깥으로 옮기고 결과만 L1에 정산한다</strong> → 이더리움이 택한 <strong>롤업 중심 로드맵</strong>입니다.</p>
+
+<h3>롤업의 원리</h3>
+<div class="flow">
+<div class="n">① 사용자가 L2에 거래 전송<br><span style="color:var(--muted)">수수료 몇 원</span></div>
+<span class="a">▶</span>
+<div class="n">② 시퀀서가 수천 건을 모아 실행<br><span style="color:var(--muted)">L2에서 즉시 확정감</span></div>
+<span class="a">▶</span>
+<div class="n">③ 압축해서 L1에 게시<br><span style="color:var(--muted)">블롭(blob) 사용</span></div>
+<span class="a">▶</span>
+<div class="n">④ L1이 최종 정산<br><span style="color:var(--muted)">이더리움 보안 상속</span></div>
+</div>
+<p>핵심은 <strong>"수천 명의 비용을 한 번의 L1 트랜잭션에 분담"</strong>시키는 것입니다. 그리고 데이터가 L1에 올라가 있으니, L2가 망해도 누구나 데이터를 받아 상태를 재구성해 자금을 인출할 수 있습니다. 이것이 사이드체인과 롤업을 가르는 결정적 차이입니다.</p>
+
+<h3>두 종류의 롤업</h3>
+<div class="grid g2">
+<div class="card">
+<h4>🔵 옵티미스틱 롤업 (Optimistic)</h4>
+<p style="font-size:14.5px"><strong>"일단 맞다고 믿고, 틀리면 신고받는다"</strong></p>
+<p style="font-size:14.5px">결과를 L1에 그냥 올립니다. 대신 <strong>분쟁 기간(보통 7일)</strong> 동안 누구나 "이거 틀렸다"며 사기 증명(fraud proof)을 제출할 수 있습니다. 틀린 게 확인되면 게시자의 담보가 몰수됩니다.</p>
+<ul style="font-size:14px">
+<li>대표: <strong>Arbitrum, Base, Optimism</strong></li>
+<li>장점: EVM 완전 호환이 쉬움, 성숙</li>
+<li>단점: <strong>L1으로 출금에 7일</strong> (브리지 서비스로 우회 가능하나 수수료 발생)</li>
+</ul>
+</div>
+<div class="card">
+<h4>🟣 ZK 롤업 (Zero-Knowledge / Validity)</h4>
+<p style="font-size:14.5px"><strong>"수학적으로 맞다는 증명을 첨부한다"</strong></p>
+<p style="font-size:14.5px">영지식 증명(SNARK/STARK)으로 "이 배치를 규칙대로 실행했다"는 <strong>타당성 증명</strong>을 함께 올립니다. L1 컨트랙트가 증명을 검증하면 즉시 확정입니다.</p>
+<ul style="font-size:14px">
+<li>대표: <strong>zkSync, Starknet, Linea, Scroll, Polygon zkEVM</strong></li>
+<li>장점: 대기 없는 출금, 이론적으로 더 강한 보안</li>
+<li>단점: 증명 생성 연산이 무거움, EVM 완전 호환이 기술적으로 어려움(빠르게 개선 중)</li>
+</ul>
+</div>
+</div>
+
+<div class="card tip">
+<h4>💡 "영지식 증명"의 직관</h4>
+<p style="margin:0"><em>월리를 찾아라</em>에서 월리 위치를 안다는 걸 증명하고 싶은데 위치는 알려주기 싫다면? 커다란 검은 판지 가운데 작은 구멍을 뚫고 그 구멍으로 월리만 보여주면 됩니다. 상대는 "이 사람이 월리를 안다"는 사실만 확인하고 위치는 모릅니다. 롤업에서는 프라이버시보다 <strong>"검증이 실행보다 훨씬 싸다"</strong>는 압축 성질을 주로 활용합니다.</p>
+</div>
+
+<h3>블롭(Blob): L2 수수료가 폭락한 이유</h3>
+<p>2024년 3월 Dencun 업그레이드의 EIP-4844는 <strong>블롭</strong>이라는 새 데이터 공간을 만들었습니다. 블롭은 (a) 일반 트랜잭션과 <strong>별도의 수수료 시장</strong>을 갖고, (b) 약 18일 후 삭제되며(영구 저장 불필요), (c) EVM이 직접 읽지 않습니다. 롤업은 이 저렴한 차선만 쓰면 되므로 L2 수수료가 10~100배 떨어졌습니다.</p>
+<p>2025년 12월 Fusaka의 <strong>PeerDAS</strong>는 검증자가 블롭 전체를 받지 않고 <em>샘플링</em>만 해도 데이터 가용성을 보장하게 했습니다. 덕분에 블록당 블롭 수를 크게 늘려도 네트워크가 버팁니다.</p>
+
+<h3>비교표</h3>
+<table>
+<tr><th></th><th>이더리움 L1</th><th>옵티미스틱 롤업</th><th>ZK 롤업</th><th>사이드체인</th><th>앱체인</th></tr>
+<tr><td>보안 출처</td><td>자체</td><td>이더리움 (사기증명)</td><td>이더리움 (타당성증명)</td><td><strong>자체 검증자</strong> ⚠️</td><td>다양</td></tr>
+<tr><td>수수료</td><td>수 센트</td><td>1센트 미만</td><td>1센트 미만</td><td>매우 저렴</td><td>거의 0</td></tr>
+<tr><td>출금 지연</td><td>—</td><td>~7일</td><td>수십 분~수 시간</td><td>브리지 신뢰 필요</td><td>다양</td></tr>
+<tr><td>예시</td><td>Ethereum</td><td>Arbitrum, Base, OP</td><td>zkSync, Starknet, Scroll</td><td>Polygon PoS, BNB Chain</td><td>dYdX, Ronin</td></tr>
+</table>
+
+<div class="card warn">
+<h4>⚠️ 브리지 = 가장 위험한 곳</h4>
+<p style="margin:0">체인 간 자산 이동은 "옮기는" 게 아니라 <strong>A체인에 잠그고 B체인에서 발행</strong>하는 것입니다. 그 잠긴 자금 풀이 거대한 표적이 됩니다. 역대 브리지 익스플로잇 누적 피해는 <strong>약 29억 달러</strong>이고, 2026년에도 브리지 공격이 DeFi 사고의 상당 부분을 차지합니다. 4월 19일 Kelp DAO의 LayerZero 브리지에서 <strong>2억 9,200만 달러</strong>가 유출된 사건이 대표적입니다.</p>
+</div>
+
+<hr>
+<h2>체인 지형도 (2026년 기준)</h2>
+<div class="grid g4">
+<div class="stat"><div class="n">$150B+</div><div class="l">DeFi 총 예치금(TVL), 2026년</div></div>
+<div class="stat"><div class="n">~95%</div><div class="l">롤업이 처리하는 이더리움 트랜잭션 비중</div></div>
+<div class="stat"><div class="n">$322.6B</div><div class="l">스테이블코인 시총 (2026년 5월)</div></div>
+<div class="stat"><div class="n">~$31B</div><div class="l">토큰화된 실물자산(RWA), 2026년 7월</div></div>
+</div>
+
+<table>
+<tr><th>체인</th><th>유형</th><th>포지션</th><th>프론트엔드 관점</th></tr>
+<tr><td><strong>Bitcoin</strong></td><td>L1 / PoW</td><td>디지털 금. 스마트 컨트랙트는 제한적</td><td>EVM 아님. 개발 스택이 완전히 다름</td></tr>
+<tr><td><strong>Ethereum</strong></td><td>L1 / PoS</td><td>정산 계층, 유동성 허브, 개발자 기반. 대부분의 표준이 여기서 태어남</td><td><strong>여기부터 시작하세요.</strong> 자료·도구·커뮤니티가 압도적</td></tr>
+<tr><td><strong>Base</strong></td><td>OP 롤업</td><td>코인베이스가 운영. 2026년 사용자·수수료 수익 상위권. 소비자 앱·소셜이 강함</td><td>EVM 동일. <code>chainId</code>만 바꾸면 됨. 온보딩이 쉬움</td></tr>
+<tr><td><strong>Arbitrum</strong></td><td>OP 롤업</td><td>DeFi TVL 최상위 L2. 성숙한 생태계</td><td>EVM 동일</td></tr>
+<tr><td><strong>Optimism</strong></td><td>OP 롤업</td><td>OP Stack으로 "Superchain" 표준 제공 (Base도 이 위에)</td><td>EVM 동일</td></tr>
+<tr><td><strong>zkSync / Starknet / Scroll / Linea</strong></td><td>ZK 롤업</td><td>2026년 zkSync가 회복세. 증명 기술 성숙</td><td>대부분 EVM 호환. Starknet은 Cairo 언어로 별도</td></tr>
+<tr><td><strong>Solana</strong></td><td>L1 / PoS+PoH</td><td>고성능 단일 체인. 밈코인·소비자 앱·결제. 이더리움의 최대 경쟁자</td><td><strong>EVM 아님.</strong> Rust/Anchor, <code>@solana/web3.js</code>, Phantom 지갑. 별도 학습 필요</td></tr>
+<tr><td><strong>BNB Chain</strong></td><td>L1</td><td>바이낸스 생태계. 거래량 많음, 탈중앙화는 낮음</td><td>EVM 호환</td></tr>
+<tr><td><strong>Polygon</strong></td><td>사이드체인 + zkEVM</td><td>기업 파트너십 다수</td><td>EVM 호환</td></tr>
+</table>
+
+<h3>2026년 L2 시장의 상태: 승자독식으로 수렴 중</h3>
+<p>2026년 L2 체인의 <em>수</em>는 사상 최대지만, <em>실제로 살아있는</em> 체인은 오히려 줄었습니다. Base·Arbitrum·zkSync 소수가 수수료 수익과 사용자 활동의 대부분을 가져가고, 나머지는 사실상 유령 체인이 됐습니다. 시장은 <strong>허브 앤 스포크 모델</strong>로 수렴하고 있습니다 — 소수의 범용 고성능 체인 + 공유 시퀀서 위에 얹힌 앱 전용 롤업들.</p>
+<p>L2 TVL은 2023년 약 40억 달러에서 2025년 10월 약 <strong>470억 달러</strong>로 성장했습니다.</p>
+
+<div class="card fe">
+<h4>💜 실무 결론: 어느 체인에서 시작할까</h4>
+<ul style="margin:0;font-size:14.5px">
+<li><strong>학습 목적</strong> → 이더리움 <strong>Sepolia 테스트넷</strong>. 무료 테스트 ETH를 포싯에서 받아 씀</li>
+<li><strong>실제 서비스 · 소비자 앱</strong> → <strong>Base</strong> 또는 <strong>Arbitrum</strong>. 수수료가 거의 0이고 EVM이 동일해 코드 변경이 없음</li>
+<li><strong>고액 자산 · 최대 조합성</strong> → 이더리움 메인넷. 2026년엔 더 이상 "비싸서 못 쓴다"가 기본 전제가 아님</li>
+<li><strong>EVM 밖</strong>(Solana 등)은 <em>나중에</em>. 개념은 통하지만 도구와 언어가 전부 다릅니다</li>
+</ul>
+</div>

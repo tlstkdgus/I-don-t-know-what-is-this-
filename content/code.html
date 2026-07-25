@@ -1,0 +1,200 @@
+<p>아래 코드는 wagmi v2 + viem v2 기준입니다. 실제로 동작하는 최소 구현입니다.</p>
+
+<h3>① 설정 (config)</h3>
+<pre><code><span class="cm">// wagmi.ts</span>
+<span class="kw">import</span> { http, createConfig } <span class="kw">from</span> <span class="st">'wagmi'</span>
+<span class="kw">import</span> { mainnet, base, sepolia } <span class="kw">from</span> <span class="st">'wagmi/chains'</span>
+<span class="kw">import</span> { injected, walletConnect } <span class="kw">from</span> <span class="st">'wagmi/connectors'</span>
+
+<span class="kw">export const</span> config = <span class="fn">createConfig</span>({
+  chains: [mainnet, base, sepolia],
+  connectors: [
+    <span class="fn">injected</span>(),                                <span class="cm">// MetaMask, Rabby 등 브라우저 확장</span>
+    <span class="fn">walletConnect</span>({ projectId: <span class="st">'YOUR_ID'</span> }),   <span class="cm">// 모바일 지갑 QR 연결</span>
+  ],
+  transports: {
+    [mainnet.id]: <span class="fn">http</span>(<span class="st">'https://eth-mainnet.g.alchemy.com/v2/KEY'</span>),
+    [base.id]:    <span class="fn">http</span>(),  <span class="cm">// 생략하면 공개 RPC 사용 (개발용으로만)</span>
+    [sepolia.id]: <span class="fn">http</span>(),
+  },
+})</code></pre>
+
+<h3>② 프로바이더 감싸기</h3>
+<pre><code><span class="cm">// app/providers.tsx</span>
+<span class="st">'use client'</span>
+<span class="kw">import</span> { WagmiProvider } <span class="kw">from</span> <span class="st">'wagmi'</span>
+<span class="kw">import</span> { QueryClient, QueryClientProvider } <span class="kw">from</span> <span class="st">'@tanstack/react-query'</span>
+<span class="kw">import</span> { config } <span class="kw">from</span> <span class="st">'@/wagmi'</span>
+
+<span class="kw">const</span> queryClient = <span class="kw">new</span> <span class="fn">QueryClient</span>()
+
+<span class="kw">export function</span> <span class="fn">Providers</span>({ children }) {
+  <span class="kw">return</span> (
+    &lt;<span class="ty">WagmiProvider</span> config={config}&gt;
+      &lt;<span class="ty">QueryClientProvider</span> client={queryClient}&gt;{children}&lt;/<span class="ty">QueryClientProvider</span>&gt;
+    &lt;/<span class="ty">WagmiProvider</span>&gt;
+  )
+}</code></pre>
+<p class="legend">React Query를 써봤다면 이 구조가 완전히 익숙할 겁니다. 실제로 같은 것입니다.</p>
+
+<h3>③ 지갑 연결 버튼</h3>
+<pre><code><span class="kw">import</span> { useAccount, useConnect, useDisconnect, useBalance, useEnsName } <span class="kw">from</span> <span class="st">'wagmi'</span>
+
+<span class="kw">function</span> <span class="fn">ConnectButton</span>() {
+  <span class="kw">const</span> { address, isConnected, chain } = <span class="fn">useAccount</span>()
+  <span class="kw">const</span> { connectors, connect, isPending } = <span class="fn">useConnect</span>()
+  <span class="kw">const</span> { disconnect } = <span class="fn">useDisconnect</span>()
+  <span class="kw">const</span> { data: ensName } = <span class="fn">useEnsName</span>({ address })     <span class="cm">// vitalik.eth 같은 이름</span>
+  <span class="kw">const</span> { data: balance } = <span class="fn">useBalance</span>({ address })    <span class="cm">// 네이티브 ETH 잔고</span>
+
+  <span class="kw">if</span> (isConnected) <span class="kw">return</span> (
+    &lt;div&gt;
+      &lt;p&gt;{ensName ?? <span class="st">`</span>${address.<span class="fn">slice</span>(<span class="nu">0</span>,<span class="nu">6</span>)}…${address.<span class="fn">slice</span>(-<span class="nu">4</span>)}<span class="st">`</span>}&lt;/p&gt;
+      &lt;p&gt;{balance?.formatted} {balance?.symbol} · {chain?.name}&lt;/p&gt;
+      &lt;button onClick={() =&gt; <span class="fn">disconnect</span>()}&gt;연결 해제&lt;/button&gt;
+    &lt;/div&gt;
+  )
+
+  <span class="kw">return</span> connectors.<span class="fn">map</span>((c) =&gt; (
+    &lt;button key={c.uid} onClick={() =&gt; <span class="fn">connect</span>({ connector: c })} disabled={isPending}&gt;
+      {c.name}<span class="fn"> </span>연결
+    &lt;/button&gt;
+  ))
+}</code></pre>
+
+<h3>④ 컨트랙트 읽기 — 가스 없음, 즉시</h3>
+<pre><code><span class="kw">import</span> { useReadContract } <span class="kw">from</span> <span class="st">'wagmi'</span>
+<span class="kw">import</span> { formatUnits } <span class="kw">from</span> <span class="st">'viem'</span>
+
+<span class="cm">// `as const`가 핵심! 이게 있어야 타입 추론이 동작합니다</span>
+<span class="kw">const</span> erc20Abi = [
+  { name:<span class="st">'balanceOf'</span>, type:<span class="st">'function'</span>, stateMutability:<span class="st">'view'</span>,
+    inputs:[{name:<span class="st">'owner'</span>,type:<span class="st">'address'</span>}], outputs:[{type:<span class="st">'uint256'</span>}] },
+  { name:<span class="st">'decimals'</span>, type:<span class="st">'function'</span>, stateMutability:<span class="st">'view'</span>,
+    inputs:[], outputs:[{type:<span class="st">'uint8'</span>}] },
+] <span class="kw">as const</span>
+
+<span class="kw">const</span> USDC = <span class="st">'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'</span>  <span class="cm">// 메인넷 USDC</span>
+
+<span class="kw">function</span> <span class="fn">UsdcBalance</span>({ address }) {
+  <span class="kw">const</span> { data, isLoading, error } = <span class="fn">useReadContract</span>({
+    address: USDC,
+    abi: erc20Abi,
+    functionName: <span class="st">'balanceOf'</span>,   <span class="cm">// ← 자동완성 됨. 오타 시 컴파일 에러</span>
+    args: [address],              <span class="cm">// ← 인자 타입도 검사됨</span>
+    query: { enabled: !!address },
+  })
+
+  <span class="kw">if</span> (isLoading) <span class="kw">return</span> &lt;p&gt;불러오는 중…&lt;/p&gt;
+  <span class="kw">if</span> (error) <span class="kw">return</span> &lt;p&gt;오류: {error.shortMessage}&lt;/p&gt;
+
+  <span class="cm">// data는 bigint! USDC는 decimals가 6 (ETH의 18과 다름 — 하드코딩 금지)</span>
+  <span class="kw">return</span> &lt;p&gt;{<span class="fn">formatUnits</span>(data ?? <span class="nu">0n</span>, <span class="nu">6</span>)} USDC&lt;/p&gt;
+}</code></pre>
+
+<h3>⑤ 컨트랙트 쓰기 — 트랜잭션 전체 라이프사이클</h3>
+<pre><code><span class="kw">import</span> { useWriteContract, useWaitForTransactionReceipt, useAccount, useSwitchChain } <span class="kw">from</span> <span class="st">'wagmi'</span>
+<span class="kw">import</span> { parseUnits } <span class="kw">from</span> <span class="st">'viem'</span>
+<span class="kw">import</span> { base } <span class="kw">from</span> <span class="st">'wagmi/chains'</span>
+
+<span class="kw">function</span> <span class="fn">SendUsdc</span>() {
+  <span class="kw">const</span> { chain } = <span class="fn">useAccount</span>()
+  <span class="kw">const</span> { switchChain } = <span class="fn">useSwitchChain</span>()
+  <span class="kw">const</span> { writeContract, data: hash, isPending, error } = <span class="fn">useWriteContract</span>()
+
+  <span class="cm">// 트랜잭션이 블록에 포함될 때까지 폴링</span>
+  <span class="kw">const</span> { isLoading: isConfirming, isSuccess } = <span class="fn">useWaitForTransactionReceipt</span>({ hash })
+
+  <span class="kw">async function</span> <span class="fn">send</span>(to, amount) {
+    <span class="cm">// ⚠️ 필수: 사용자가 다른 체인에 있을 수 있음</span>
+    <span class="kw">if</span> (chain?.id !== base.id) {
+      <span class="kw">await</span> <span class="fn">switchChain</span>({ chainId: base.id })
+    }
+    <span class="fn">writeContract</span>({
+      address: USDC_BASE,
+      abi: erc20Abi,
+      functionName: <span class="st">'transfer'</span>,
+      args: [to, <span class="fn">parseUnits</span>(amount, <span class="nu">6</span>)],   <span class="cm">// "10.5" → 10500000n</span>
+    })
+  }
+
+  <span class="kw">return</span> (
+    &lt;&gt;
+      &lt;button onClick={() =&gt; <span class="fn">send</span>(<span class="st">'0x…'</span>, <span class="st">'10.5'</span>)} disabled={isPending || isConfirming}&gt;
+        {isPending    ? <span class="st">'지갑에서 승인해 주세요…'</span>     <span class="cm">// 사용자가 팝업 확인 중</span>
+        : isConfirming ? <span class="st">'블록 확정 대기 중…'</span>        <span class="cm">// 네트워크가 처리 중</span>
+        : <span class="st">'10.5 USDC 보내기'</span>}
+      &lt;/button&gt;
+
+      {hash      &amp;&amp; &lt;a href={<span class="st">`https://basescan.org/tx/</span>${hash}<span class="st">`</span>}&gt;익스플로러에서 보기&lt;/a&gt;}
+      {isSuccess &amp;&amp; &lt;p&gt;✅ 전송 완료&lt;/p&gt;}
+      {error     &amp;&amp; &lt;p&gt;❌ {error.shortMessage}&lt;/p&gt;}  <span class="cm">// shortMessage가 사용자 친화적</span>
+    &lt;/&gt;
+  )
+}</code></pre>
+
+<div class="card tip">
+<h4>💡 상태가 3단계인 것에 주목하세요</h4>
+<p style="margin:0"><code>isPending</code>(지갑 팝업 대기) → <code>isConfirming</code>(네트워크 대기) → <code>isSuccess</code>(포함됨). Web2의 <code>loading/success/error</code>보다 한 단계 많습니다. 이 구분을 UI에 반영하지 않으면 사용자는 "왜 아무 반응이 없지?"라고 느낍니다. 그리고 <code>isSuccess</code>도 <em>최종성</em>이 아니라 <em>블록 포함</em>임을 기억하세요.</p>
+</div>
+
+<h3>⑥ 이벤트 구독 (실시간 업데이트)</h3>
+<pre><code><span class="kw">import</span> { useWatchContractEvent } <span class="kw">from</span> <span class="st">'wagmi'</span>
+
+<span class="fn">useWatchContractEvent</span>({
+  address: USDC,
+  abi: erc20Abi,
+  eventName: <span class="st">'Transfer'</span>,
+  args: { to: myAddress },        <span class="cm">// indexed 파라미터로 필터링</span>
+  <span class="fn">onLogs</span>(logs) {
+    logs.<span class="fn">forEach</span>(l =&gt; <span class="fn">toast</span>(<span class="st">`입금: </span>${<span class="fn">formatUnits</span>(l.args.value, <span class="nu">6</span>)}<span class="st"> USDC`</span>))
+    <span class="fn">refetchBalance</span>()
+  },
+})</code></pre>
+
+<h3>⑦ 서명으로 로그인 (SIWE)</h3>
+<pre><code><span class="kw">import</span> { useSignMessage } <span class="kw">from</span> <span class="st">'wagmi'</span>
+
+<span class="kw">const</span> { signMessageAsync } = <span class="fn">useSignMessage</span>()
+
+<span class="kw">async function</span> <span class="fn">login</span>(address) {
+  <span class="cm">// 1. 서버에서 nonce 받기 (재사용 공격 방지)</span>
+  <span class="kw">const</span> { nonce } = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="st">'/api/nonce'</span>).<span class="fn">then</span>(r =&gt; r.<span class="fn">json</span>())
+
+  <span class="cm">// 2. EIP-4361 형식 메시지에 서명 — 가스 0원, 온체인 기록 없음</span>
+  <span class="kw">const</span> message = <span class="st">`myapp.com wants you to sign in with your Ethereum account:</span>
+<span class="st">${address}</span>
+<span class="st"></span>
+<span class="st">URI: https://myapp.com</span>
+<span class="st">Version: 1</span>
+<span class="st">Chain ID: 1</span>
+<span class="st">Nonce: ${nonce}</span>
+<span class="st">Issued At: ${<span class="kw">new</span> <span class="fn">Date</span>().<span class="fn">toISOString</span>()}`</span>
+
+  <span class="kw">const</span> signature = <span class="kw">await</span> <span class="fn">signMessageAsync</span>({ message })
+
+  <span class="cm">// 3. 서버가 verifyMessage로 주소를 복원해 검증 → 세션 발급</span>
+  <span class="kw">await</span> <span class="fn">fetch</span>(<span class="st">'/api/verify'</span>, { method:<span class="st">'POST'</span>, body: <span class="ty">JSON</span>.<span class="fn">stringify</span>({ message, signature }) })
+}</code></pre>
+
+<h3>⑧ viem 단독 사용 (React 밖 / 서버)</h3>
+<pre><code><span class="kw">import</span> { createPublicClient, http, formatEther } <span class="kw">from</span> <span class="st">'viem'</span>
+<span class="kw">import</span> { mainnet } <span class="kw">from</span> <span class="st">'viem/chains'</span>
+
+<span class="kw">const</span> client = <span class="fn">createPublicClient</span>({ chain: mainnet, transport: <span class="fn">http</span>() })
+
+<span class="kw">const</span> block   = <span class="kw">await</span> client.<span class="fn">getBlockNumber</span>()
+<span class="kw">const</span> balance = <span class="kw">await</span> client.<span class="fn">getBalance</span>({ address: <span class="st">'0xd8dA…6045'</span> })  <span class="cm">// vitalik.eth</span>
+<span class="kw">const</span> gas     = <span class="kw">await</span> client.<span class="fn">getGasPrice</span>()
+
+<span class="fn">console</span>.<span class="fn">log</span>(block, <span class="fn">formatEther</span>(balance), gas)
+
+<span class="cm">// 여러 컨트랙트 호출을 1번의 RPC로 묶기 (multicall) — 성능 필수 기법</span>
+<span class="kw">const</span> results = <span class="kw">await</span> client.<span class="fn">multicall</span>({
+  contracts: [
+    { address: USDC, abi: erc20Abi, functionName: <span class="st">'balanceOf'</span>, args: [me] },
+    { address: DAI,  abi: erc20Abi, functionName: <span class="st">'balanceOf'</span>, args: [me] },
+    { address: WETH, abi: erc20Abi, functionName: <span class="st">'balanceOf'</span>, args: [me] },
+  ],
+})</code></pre>
+<p class="legend"><code>multicall</code>은 N번의 네트워크 왕복을 1번으로 줄입니다. 토큰 목록을 그리는 화면에서 필수입니다.</p>

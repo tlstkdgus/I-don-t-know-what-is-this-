@@ -1,0 +1,48 @@
+<p>"Web3"라는 단어는 2014년 이더리움 공동창업자 개빈 우드(Gavin Wood)가 만들었습니다. 마케팅 용어로 오염되긴 했지만, 원래 정의는 명확합니다: <strong>사용자가 자신의 데이터와 자산에 대한 소유권을 갖고, 신뢰할 제3자 없이 상호작용하는 인터넷</strong>.</p>
+
+<table>
+<tr><th style="width:130px"></th><th>Web1 (1990~2004)</th><th>Web2 (2004~현재)</th><th>Web3</th></tr>
+<tr><td><strong>한 줄 요약</strong></td><td>읽기 (Read)</td><td>읽기 + 쓰기 (Read/Write)</td><td>읽기 + 쓰기 + 소유 (Read/Write/Own)</td></tr>
+<tr><td><strong>대표</strong></td><td>정적 HTML, 야후 디렉토리, 개인 홈페이지</td><td>페이스북, 유튜브, 인스타그램, SaaS</td><td>Uniswap, ENS, Farcaster, Lens</td></tr>
+<tr><td><strong>데이터 저장</strong></td><td>개별 서버</td><td>플랫폼 기업의 중앙 DB</td><td>퍼블릭 블록체인 + 분산 스토리지</td></tr>
+<tr><td><strong>인증</strong></td><td>없음 / 단순 ID</td><td>이메일·비밀번호, OAuth (구글/애플 로그인)</td><td>개인키 서명 (Sign-In with Ethereum)</td></tr>
+<tr><td><strong>계정 소유권</strong></td><td>—</td><td>플랫폼. 정지되면 끝</td><td>사용자. 키를 가진 사람이 주인</td></tr>
+<tr><td><strong>백엔드</strong></td><td>정적 파일</td><td>내 서버 / 클라우드</td><td>스마트 컨트랙트 (공유 백엔드)</td></tr>
+<tr><td><strong>수익 모델</strong></td><td>배너 광고</td><td>광고, 데이터 판매, 구독</td><td>프로토콜 수수료, 토큰</td></tr>
+<tr><td><strong>약점</strong></td><td>상호작용 불가</td><td>플랫폼 종속, 검열, 데이터 독점</td><td>느림, 비쌈(과거), UX 난이도, 사기 다발</td></tr>
+</table>
+
+<h3>구체적인 차이 하나: "내 계정을 정지당한다"</h3>
+<p>Web2에서는 인스타그램이 계정을 정지하면, 10년간 쌓은 팔로워·게시물·DM이 전부 사라집니다. 항소할 수는 있지만 결정권은 회사에 있습니다.</p>
+<p>Web3의 이상은, 팔로우 그래프와 게시물이 퍼블릭 체인에 있어서 <strong>클라이언트 앱이 나를 차단해도 다른 클라이언트로 갈아타면 팔로워가 그대로 따라오는</strong> 구조입니다. Farcaster나 Lens 같은 탈중앙 소셜 프로토콜이 이걸 노립니다. 실제로 Farcaster는 클라이언트(Warpcast 등)를 바꿔도 계정과 소셜 그래프가 유지됩니다.</p>
+<p>단, <strong>이게 항상 성립하지는 않습니다.</strong> 상당수 "Web3" 프로젝트는 사실상 중앙 서버에 의존합니다. 이 문제는 <a href="#critique">23장 비판론</a>에서 정직하게 다룹니다.</p>
+
+<div class="card fe">
+<h4>💜 프론트엔드 시각에서의 한 문장 정의</h4>
+<p style="margin:0"><strong>Web3 앱 = 백엔드가 내 서버가 아니라, 전 세계가 공유하는 공개 상태 머신(스마트 컨트랙트)인 프론트엔드 앱.</strong></p>
+<p style="margin:8px 0 0">즉 <code>POST /api/transfer</code> 대신 <code>writeContract({ functionName: 'transfer' })</code>를 호출합니다. DB는 내 것이 아니라 모두의 것이고, 누구나 읽을 수 있고, 쓰기는 개인키 서명으로 인가됩니다.</p>
+</div>
+
+<h3>Web3가 실제로 잘하는 것 / 못하는 것</h3>
+<div class="grid g2">
+<div class="card tip">
+<h4>✅ 잘하는 것</h4>
+<ul style="font-size:14.5px">
+<li><strong>국경 없는 가치 이동</strong> — 스테이블코인 송금은 은행 영업시간·SWIFT와 무관하게 수 초 내, 몇 센트로</li>
+<li><strong>검열 저항</strong> — 특정 주체가 거래를 막기 어려움</li>
+<li><strong>조합 가능성(Composability)</strong> — A 프로토콜 위에 허가 없이 B를 얹을 수 있음. "돈의 레고"</li>
+<li><strong>투명한 감사</strong> — 모든 잔고·거래가 공개 검증 가능</li>
+<li><strong>디지털 희소성</strong> — 복제 가능한 비트에 유일성 부여</li>
+</ul>
+</div>
+<div class="card bad">
+<h4>❌ 못하거나 나쁜 것</h4>
+<ul style="font-size:14.5px">
+<li><strong>프라이버시</strong> — 기본값이 <em>전체 공개</em>. 내 지갑 잔고를 전 세계가 봄</li>
+<li><strong>실수 복구</strong> — 잘못 보낸 돈, 잃어버린 시드구문은 되돌릴 수 없음</li>
+<li><strong>대용량 데이터</strong> — 이미지 1장도 온체인 저장은 비현실적</li>
+<li><strong>UX</strong> — 여전히 일반인에게 어려움(개선 중)</li>
+<li><strong>사기 밀도</strong> — 허가 없는 시스템은 사기꾼에게도 허가가 없음</li>
+</ul>
+</div>
+</div>
