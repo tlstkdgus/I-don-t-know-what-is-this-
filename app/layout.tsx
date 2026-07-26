@@ -6,6 +6,7 @@ import { SITE } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://web3-site-xi.vercel.app"),
   title: {
     default: `${SITE.name} — ${SITE.tagline}`,
     template: `%s · ${SITE.name}`,

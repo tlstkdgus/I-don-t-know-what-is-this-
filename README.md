@@ -123,6 +123,13 @@ data 주제도 2026년 7월 기준입니다. 각 장의 `legend` 블록에 출�
 
 3장의 테이블 포맷 현황은 변화가 빨라 재확인이 필요합니다.
 
+## 이미지 출처
+
+`public/og/`의 다이어그램은 위키미디어 커먼즈에서 가져와 OG(소셜 공유) 이미지에만 사용합니다.
+
+- `blockchain.svg` — [Blockchain.svg](https://commons.wikimedia.org/wiki/File:Blockchain.svg), Theymos(Bitcoin Wiki) 원작·Razorbliss 벡터화, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0). 다크 배경에서 보이도록 stroke 색만 바꿨습니다.
+- `graph-database.svg` — [GraphDatabase PropertyGraph.svg](https://commons.wikimedia.org/wiki/File:GraphDatabase_PropertyGraph.svg), Ole Mussmann, [CC0](https://creativecommons.org/publicdomain/zero/1.0/deed.en).
+
 ## 라이선스
 
 학습 목적 자료입니다. 투자 조언이 아닙니다.

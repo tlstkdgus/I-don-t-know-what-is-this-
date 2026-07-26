@@ -149,7 +149,9 @@ npm run build   # 타입 체크 + 정적 생성이 전부 통과해야 함
 
 ## 남은 작업 아이디어
 
-- [ ] OG 이미지 생성 (`app/opengraph-image.tsx`) — 그라디언트 스포트라이트 스타일로
+- [x] OG 이미지 생성 — `lib/og.tsx` + `app/opengraph-image.tsx`(홈) · `app/[topic]/opengraph-image.tsx` ·
+      `app/[topic]/[slug]/opengraph-image.tsx`. 그라디언트 스포트라이트 + 위키미디어 커먼즈 다이어그램
+      (web3/data만, 출처는 README.md 참고). Pretendard는 `node_modules/pretendard`의 정적 OTF를 그대로 읽습니다.
 - [ ] 챕터 내 목차(TOC) — `h2`/`h3` 블록을 훑어 우측 고정 네비 (데이터라서 쉬움)
 - [ ] 검색을 본문 전문 검색으로 확장 (현재는 제목·설명·태그만) — `plain()` 활용
 - [ ] `sitemap.ts`, `robots.ts`
