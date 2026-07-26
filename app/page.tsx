@@ -23,9 +23,9 @@ export default function Home() {
           하나씩 채웁니다
         </h1>
 
-        <p className="mt-8 max-w-[44ch] text-body-lg text-ink-muted">
-          동작하니까 넘어갔던 것들을 주제별로 다시 열어봅니다. 이해한 만큼만
-          쓰고, 모르는 건 모른다고 씁니다.
+        <p className="mt-8 max-w-[55ch] text-body-lg text-ink-muted">
+          제대로 공부하지 않고 넘어갔던 것들을 하나씩 채워가는 곳입니다. 
+          <br/>이해한 만큼 쓰고, 모르는 건 review하며, 배운 것을 정리하는 곳입니다.
         </p>
 
         <div className="mt-10 flex flex-wrap gap-2.5">
@@ -71,11 +71,11 @@ export default function Home() {
         <div className="mt-7 grid gap-x-10 gap-y-7 sm:grid-cols-3">
           <Rule
             k="출처를 확인한 것만"
-            v="수치·날짜·버전은 원문을 찾아 확인하고 씁니다. 확인 못 한 건 안 씁니다."
+            v="수치·날짜·버전은 원문을 찾아 확인하고 씁니다. 확인하지 못한 것은 쓰지 않습니다."
           />
           <Rule
             k="한계도 같은 비중으로"
-            v="잘 되는 것만 적으면 정리가 아니라 홍보가 됩니다. 실패 사례와 못 하는 것을 같이 적습니다."
+            v="이해한 것만 쓰지 않습니다. 실패 사례와 못 하는 것을 같이 적습니다."
           />
           <Rule
             k="아는 것에 붙여서"
