@@ -19,9 +19,16 @@ const LANGS = [
   "sql",
   "python",
   "yaml",
+  "cypher",
 ] as const;
 
 export type Lang = (typeof LANGS)[number];
+
+/**
+ * 하이라이팅 없이 그대로 두는 언어들. 다이어그램·의사코드·출력 예시가 여기 해당합니다.
+ * shiki가 특수 처리하므로 LANGS에 넣어 문법을 불러올 필요가 없습니다.
+ */
+const PLAIN = new Set(["text", "txt", "plaintext"]);
 
 let cached: Promise<Highlighter> | null = null;
 
@@ -40,7 +47,9 @@ export async function highlight(src: string, lang: string): Promise<string> {
   const hl = await highlighter();
   // 콘텐츠 파일에서 템플릿 리터럴로 쓰다 보면 앞뒤 개행이 붙습니다.
   return hl.codeToHtml(src.replace(/^\n+/, "").replace(/\s+$/, ""), {
-    lang: isLang(lang) ? lang : "ts",
+    // 모르는 언어를 ts로 칠하면 다이어그램·출력 예시가 엉뚱하게 색칠됩니다.
+    // 등록되지 않은 언어는 전부 text로 떨어뜨립니다.
+    lang: isLang(lang) && !PLAIN.has(lang) ? lang : "text",
     themes: { light: "github-light", dark: "github-dark-default" },
     defaultColor: false,
   });

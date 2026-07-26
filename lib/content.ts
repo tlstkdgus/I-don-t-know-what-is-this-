@@ -6,7 +6,7 @@
  * 순서·제목·slug는 여기서만 바꾸세요.
  *
  * 챕터를 추가하려면:
- *   1. content/{topic}/{slug}.mdx 작성
+ *   1. content/{topic}/{slug}.ts 작성 (Block[] default export)
  *   2. 아래 docs 배열에 항목 추가
  *   3. npm run build 로 정적 경로 생성 확인
  */
@@ -53,6 +53,22 @@ export const topics: Topic[] = [
       { key: "p3", name: "확장성" },
       { key: "p4", name: "프론트엔드 실무" },
       { key: "p5", name: "생태계와 현실" },
+    ],
+  },
+  {
+    slug: "data",
+    name: "데이터 · 지식 표현",
+    tagline: "모델링부터 그래프, 검색, 계보까지",
+    intro:
+      "테이블을 만들 줄은 아는데 왜 그렇게 만드는지는 설명하기 어려웠던 것들. 데이터에 의미를 붙이는 방법과, 그 의미가 조직 안에서 깨지는 지점을 다룹니다.",
+    status: "active",
+    parts: [
+      { key: "p1", name: "표현과 모델링" },
+      { key: "p2", name: "관계와 의미" },
+      { key: "p3", name: "검색" },
+      // p4(운영과 신뢰 — 계보 · 데이터 계약 · 개인정보)는 아직 챕터가 없습니다.
+      // groupedDocs가 빈 파트를 걸러내므로, 등록만 해두고 글이 생기면 docs에 추가합니다.
+      { key: "p4", name: "운영과 신뢰" },
     ],
   },
   {
@@ -113,11 +129,13 @@ export const topics: Topic[] = [
       { key: "p2", name: "애플리케이션 패턴" },
       { key: "p3", name: "평가와 한계" },
     ],
+    // 검색 계층(역색인 · 벡터 저장소 운영 · 하이브리드 융합)은 data 주제에서 다룹니다.
+    // 여기서는 "모델이 데이터를 어떻게 다루는가"만 봅니다.
     outline: [
       "토크나이저 — 모델이 보는 텍스트의 실제 단위",
       "트랜스포머와 어텐션을 수식 없이",
       "컨텍스트 윈도우와 비용의 관계",
-      "임베딩과 벡터 검색이 키워드 검색과 다른 점",
+      "임베딩은 어떻게 만들어지는가 — 저장·검색 운영은 데이터 주제에서",
       "RAG 파이프라인의 실패 지점들",
       "파인튜닝 · 프롬프트 · 컨텍스트 중 무엇을 언제",
       "환각은 버그가 아니라 성질이다",
@@ -255,6 +273,109 @@ export const docs: Doc[] = [
     partKey: "p5",
     minutes: 12,
     tags: ["보안", "비판"],
+  },
+
+  /* ---------------- data ---------------- */
+
+  {
+    topic: "data",
+    slug: "data-models",
+    num: 1,
+    title: "데이터 모델의 계보",
+    desc: "계층형 → 관계형 → 문서 → 그래프. 관계형이 오래 버틴 이유와, 그 이유가 흔들리는 지점.",
+    partKey: "p1",
+    minutes: 10,
+    tags: ["개념", "입문"],
+  },
+  {
+    topic: "data",
+    slug: "normalization",
+    num: 2,
+    title: "정규화와, 그것을 깨는 순간",
+    desc: "3NF까지의 논리를 규칙이 아니라 증상으로. 그리고 실무에서 비정규화를 택하는 세 가지 기준.",
+    partKey: "p1",
+    minutes: 12,
+    tags: ["모델링", "핵심"],
+  },
+  {
+    topic: "data",
+    slug: "schema-on-read",
+    num: 3,
+    title: "스키마 온 라이트 vs 스키마 온 리드",
+    desc: "웨어하우스·레이크·레이크하우스가 실제로 갈라지는 지점과, 2026년 테이블 포맷 현황.",
+    partKey: "p1",
+    minutes: 11,
+    tags: ["아키텍처", "2026 업데이트"],
+  },
+  {
+    topic: "data",
+    slug: "identifiers",
+    num: 4,
+    title: "식별자 설계",
+    desc: "auto increment, UUIDv4, UUIDv7, ULID. 자연키를 기본키로 쓰면 안 되는 이유부터.",
+    partKey: "p1",
+    minutes: 9,
+    tags: ["모델링", "실무"],
+  },
+  {
+    topic: "data",
+    slug: "graph-model",
+    num: 5,
+    title: "그래프 데이터 모델",
+    desc: "속성 그래프와 RDF의 차이. 조인이 관계 탐색에 지는 지점과, 그래프가 지는 지점.",
+    partKey: "p2",
+    minutes: 12,
+    tags: ["그래프", "핵심"],
+  },
+  {
+    topic: "data",
+    slug: "ontology",
+    num: 6,
+    title: "온톨로지와 지식 그래프",
+    desc: "스키마와 무엇이 다른가. RDF/OWL 표준, 팔란티어식 객체·액션 모델, 그리고 GraphRAG.",
+    partKey: "p2",
+    minutes: 14,
+    tags: ["개념", "RAG"],
+  },
+  {
+    topic: "data",
+    slug: "semantic-layer",
+    num: 7,
+    title: "시맨틱 레이어",
+    desc: "「활성 사용자」의 정의가 팀마다 다른 문제. 지표를 코드로 고정하고 에이전트에 넘기기.",
+    partKey: "p2",
+    minutes: 11,
+    tags: ["실무", "협업"],
+  },
+  {
+    topic: "data",
+    slug: "keyword-search",
+    num: 8,
+    title: "키워드 검색은 어떻게 동작하는가",
+    desc: "역색인과 BM25, 그리고 교착어라서 생기는 한국어 형태소 분석이라는 별도의 난관.",
+    partKey: "p3",
+    minutes: 12,
+    tags: ["검색", "한국어"],
+  },
+  {
+    topic: "data",
+    slug: "vector-search",
+    num: 9,
+    title: "임베딩과 벡터 검색",
+    desc: "의미로 찾는다는 것의 실제 구현. 정확하지 않아도 되는 이유와, 품번에 약한 이유.",
+    partKey: "p3",
+    minutes: 13,
+    tags: ["검색", "AI"],
+  },
+  {
+    topic: "data",
+    slug: "hybrid-search",
+    num: 10,
+    title: "하이브리드 검색과 리랭킹",
+    desc: "RRF로 두 순위를 합치는 법, 크로스 인코더 리랭커, 그리고 어디서 멈출 것인가.",
+    partKey: "p3",
+    minutes: 10,
+    tags: ["검색", "실무"],
   },
 ];
 

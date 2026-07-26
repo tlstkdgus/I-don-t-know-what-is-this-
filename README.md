@@ -8,6 +8,7 @@
 | 주제 | 상태 |
 | --- | --- |
 | `web3` | 13장 작성 완료 |
+| `data` 데이터·지식 표현 | 10장 작성 완료 (파트 4 「운영과 신뢰」는 미작성) |
 | `backend` 백엔드·인프라 | 목차만 |
 | `cs` CS 기초 | 목차만 |
 | `ai` AI·ML | 목차만 |
@@ -112,6 +113,15 @@ web3 주제의 수치·날짜는 2026년 7월 기준으로 검증했습니다. �
 - [Building on Ethereum in 2026 — ethereum.org](https://ethereum.org/latest/building-on-ethereum-in-2026/)
 - [wagmi 공식 문서](https://wagmi.sh)
 - [L2BEAT](https://l2beat.com) · [DeFiLlama](https://defillama.com)
+
+data 주제도 2026년 7월 기준입니다. 각 장의 `legend` 블록에 출처를 남겼습니다.
+
+- [RFC 9562 — UUIDs](https://www.rfc-editor.org/info/rfc9562/) (4장)
+- [Palantir Foundry — Ontology core concepts](https://www.palantir.com/docs/foundry/ontology/core-concepts) (6장)
+- [Edge et al., *From Local to Global: A Graph RAG Approach*](https://arxiv.org/abs/2404.16130) (6장)
+- [Cormack et al., *Reciprocal Rank Fusion…*, SIGIR '09](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf) (10장)
+
+3장의 테이블 포맷 현황은 변화가 빨라 재확인이 필요합니다.
 
 ## 라이선스
 
