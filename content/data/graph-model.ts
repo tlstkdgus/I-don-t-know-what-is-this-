@@ -25,7 +25,7 @@ const blocks: Block[] = [
   {
     t: "figure",
     caption: "같은 사실을 표현하는 두 방식. 속성 그래프는 엣지에도 속성을 붙일 수 있고, RDF는 모든 것을 세 쌍으로 쪼갭니다.",
-    svg: `<svg viewBox="0 0 640 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="속성 그래프와 RDF 트리플 비교">
+    svg: `<svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="속성 그래프와 RDF 트리플 비교">
   <g font-family="ui-sans-serif, system-ui" font-size="12" fill="currentColor">
     <text x="20" y="22" font-size="13" fill-opacity="0.6">속성 그래프</text>
     <ellipse cx="90" cy="72" rx="58" ry="26" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
@@ -36,15 +36,15 @@ const blocks: Block[] = [
     <text x="240" y="86" font-size="10" fill-opacity="0.6">Order</text>
     <line x1="148" y1="72" x2="212" y2="72" stroke="currentColor" stroke-opacity="0.5"/>
     <polygon points="212,72 204,68 204,76" fill="currentColor" fill-opacity="0.5"/>
-    <text x="146" y="62" font-size="10">PLACED</text>
-    <text x="142" y="90" font-size="10" fill-opacity="0.6">at: 2026-07-01</text>
+    <text x="180" y="60" font-size="10" text-anchor="middle">PLACED</text>
+    <text x="180" y="112" font-size="10" fill-opacity="0.6" text-anchor="middle">at: 2026-07-01</text>
 
-    <line x1="20" y1="120" x2="620" y2="120" stroke="currentColor" stroke-opacity="0.15"/>
+    <line x1="20" y1="140" x2="620" y2="140" stroke="currentColor" stroke-opacity="0.15"/>
 
-    <text x="20" y="150" font-size="13" fill-opacity="0.6">RDF 트리플</text>
-    <text x="20" y="176" font-family="ui-monospace, monospace" font-size="11">:alice   :placed        :order7 .</text>
-    <text x="20" y="196" font-family="ui-monospace, monospace" font-size="11">:order7  :placedAt      "2026-07-01" .</text>
-    <text x="20" y="216" font-family="ui-monospace, monospace" font-size="11">:alice   rdf:type       :Person .</text>
+    <text x="20" y="170" font-size="13" fill-opacity="0.6">RDF 트리플</text>
+    <text x="20" y="196" font-family="ui-monospace, monospace" font-size="11">:alice   :placed        :order7 .</text>
+    <text x="20" y="216" font-family="ui-monospace, monospace" font-size="11">:order7  :placedAt      "2026-07-01" .</text>
+    <text x="20" y="236" font-family="ui-monospace, monospace" font-size="11">:alice   rdf:type       :Person .</text>
   </g>
 </svg>`,
   },
