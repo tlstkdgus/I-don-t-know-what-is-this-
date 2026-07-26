@@ -2,6 +2,9 @@
 
 동작하니까 넘어갔던 것들을 주제별로 다시 정리하는 개발 공부 기록.
 
+독자는 **개발·컴퓨터 배경지식이 전혀 없는 완전 비전공자**를 기준으로 합니다.
+모든 개념을 일상 비유로 먼저 풀고, 코드는 몰라도 본문만으로 핵심이 이해되게 씁니다.
+
 주제(Topic) → 챕터(Doc) 2단계 구조입니다.
 사이트 이름·설명·GitHub 링크는 `lib/site.ts` 한 곳에서만 관리합니다.
 
@@ -12,6 +15,22 @@
 | `backend` 백엔드·인프라 | 목차만 |
 | `cs` CS 기초 | 목차만 |
 | `ai` AI·ML | 목차만 |
+
+## 스크린샷
+
+<table>
+  <tr>
+    <td><img src="docs/screenshots/home-dark.png" alt="홈 화면, 다크 모드(기본값)" width="100%" /></td>
+    <td><img src="docs/screenshots/home-light.png" alt="홈 화면, 라이트 모드" width="100%" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>홈 — 다크(기본)</sub></td>
+    <td align="center"><sub>홈 — 라이트(읽기 모드)</sub></td>
+  </tr>
+</table>
+
+<img src="docs/screenshots/chapter-dark.png" alt="챕터 페이지 예시 — 블록체인 구조: 해시와 체인" width="100%" />
+<p><sub>챕터 페이지 — 사이드바 목차, 진도 표시, 본문</sub></p>
 
 ## 실행
 
@@ -79,10 +98,10 @@ default export 합니다.
 import type { Block } from "@/lib/blocks";
 
 const blocks: Block[] = [
-  { t: "p", md: "가스는 EVM 연산의 단위입니다. **수수료**는 `gasUsed × baseFee`." },
+  { t: "p", md: "가스는 이더리움에서 어떤 작업을 하느냐에 따라 매겨지는 가격표입니다. **수수료**는 실제로 쓴 작업량과 단가를 곱해서 정해집니다." },
 
-  { t: "callout", tone: "fe", title: "이미 아는 것에 붙이면", body: [
-    { t: "p", md: "API rate limit과 성격이 비슷합니다." },
+  { t: "callout", tone: "fe", title: "일상 비유로 한 문장", body: [
+    { t: "p", md: "택배 배송비가 무게와 거리에 따라 달라지는 것과 비슷합니다." },
   ]},
 
   { t: "code", lang: "ts", src: `
