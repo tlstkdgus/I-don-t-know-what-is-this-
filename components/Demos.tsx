@@ -1,13 +1,57 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 
 async function sha256(s: string) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-/* ---------------- 1. Hash ---------------- */
+/* ---------------- 공통 껍데기 ---------------- */
+function DemoShell({
+  n,
+  title,
+  desc,
+  note,
+  children,
+}: {
+  n: number;
+  title: string;
+  desc: ReactNode;
+  note?: ReactNode;
+  children: ReactNode;
+}) {
+  return (
+    <section className="demo my-8 rounded-lg border border-hairline bg-surface-1 p-5 sm:p-6">
+      <p className="text-[0.68rem] uppercase tracking-[0.12em] text-accent">
+        실습 {n}
+      </p>
+      <h4 className="mt-1.5 text-[1.02rem] font-semibold tracking-tight text-ink">
+        {title}
+      </h4>
+      <p className="mt-1.5 text-[0.85rem] leading-relaxed text-ink-muted">{desc}</p>
+      <div className="mt-4">{children}</div>
+      {note && (
+        <p className="mt-4 border-t border-hairline-soft pt-3 text-[0.75rem] leading-relaxed text-ink-dim">
+          {note}
+        </p>
+      )}
+    </section>
+  );
+}
+
+const btn =
+  "rounded-md border border-hairline px-3 py-1.5 text-[0.78rem] text-ink-muted transition-colors hover:text-ink disabled:opacity-50";
+
+function Output({ children }: { children: ReactNode }) {
+  return (
+    <div className="mt-3 break-all rounded-md border border-hairline bg-surface-2 p-3 font-mono text-[0.75rem] leading-relaxed text-ink">
+      {children}
+    </div>
+  );
+}
+
+/* ---------------- 1. 해시 ---------------- */
 export function HashDemo() {
   const [text, setText] = useState("안녕하세요 Web3");
   const [hash, setHash] = useState("");
@@ -21,20 +65,30 @@ export function HashDemo() {
   }, [text]);
 
   return (
-    <div className="demo">
-      <div className="demo-title">▶ 실습 1 — SHA-256 해시 계산기</div>
-      <p className="demo-desc">
-        아무 문장이나 입력해 보세요. 마침표 하나만 추가해도 결과가 완전히 달라집니다. 이것이 <b>눈사태 효과</b>입니다.
-      </p>
+    <DemoShell
+      n={1}
+      title="SHA-256 해시 계산기"
+      desc={
+        <>
+          아무 문장이나 입력해 보세요. 마침표 하나만 추가해도 결과가 완전히
+          달라집니다. 이것이 <strong className="text-ink">눈사태 효과</strong>입니다.
+        </>
+      }
+      note="브라우저의 Web Crypto API로 실제 SHA-256을 계산합니다."
+    >
       <label htmlFor="hash-in">입력값</label>
-      <input id="hash-in" type="text" value={text} onChange={(e) => setText(e.target.value)} />
-      <div className="out">{hash || "…"}</div>
-      <p className="legend">브라우저의 Web Crypto API로 실제 SHA-256을 계산합니다.</p>
-    </div>
+      <input
+        id="hash-in"
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <Output>{hash || "…"}</Output>
+    </DemoShell>
   );
 }
 
-/* ---------------- 2. Blockchain tamper ---------------- */
+/* ---------------- 2. 블록체인 변조 ---------------- */
 type Blk = { i: number; d: string; n: number; h: string; p: string };
 
 export function ChainDemo() {
@@ -78,6 +132,7 @@ export function ChainDemo() {
       setBlocks(b);
       setMining(false);
     });
+    // 최초 1회만 채굴합니다.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -93,45 +148,72 @@ export function ChainDemo() {
   }
 
   return (
-    <div className="demo">
-      <div className="demo-title">▶ 실습 2 — 블록체인 변조 시뮬레이터</div>
-      <p className="demo-desc">
-        Block #1의 데이터를 아무렇게나 바꿔보세요. 그 뒤 블록들이 전부 <b>무효</b>로 변합니다. 이것이 과거를 조작할 수 없는 이유입니다.
-      </p>
-      <div className="chainrow">
+    <DemoShell
+      n={2}
+      title="블록체인 변조 시뮬레이터"
+      desc={
+        <>
+          Block #1의 데이터를 아무렇게나 바꿔보세요. 그 뒤 블록들이 전부{" "}
+          <strong className="text-ink">무효</strong>로 변합니다. 이것이 과거를
+          조작할 수 없는 이유입니다.
+        </>
+      }
+      note={
+        <>
+          “채굴”은 해시가 <code className="font-mono">0000</code>으로 시작할 때까지
+          nonce를 바꿔가며 반복 계산하는 것 — 이것이 작업증명(PoW)의 실체입니다.
+          실제 비트코인은 난이도가 훨씬 높아 전 세계 전용 장비가 동원됩니다.
+        </>
+      }
+    >
+      <div className="flex gap-3 overflow-x-auto pb-2">
         {blocks.map((b, k) => {
           const valid = b.h.startsWith("0000") && (k === 0 || b.p === blocks[k - 1].h);
           return (
-            <div key={b.i} className={`blk ${valid ? "ok" : "no"}`}>
-              <div style={{ color: valid ? "var(--mint)" : "var(--rose)", fontWeight: 700 }}>
-                Block #{b.i} {valid ? "✔ 유효" : "✘ 무효"}
+            <div
+              key={b.i}
+              className="w-48 shrink-0 rounded-md border p-3 font-mono text-[0.68rem]"
+              style={{ borderColor: valid ? "var(--tip)" : "var(--bad)" }}
+            >
+              <div
+                className="font-semibold"
+                style={{ color: valid ? "var(--tip)" : "var(--bad)" }}
+              >
+                Block #{b.i} {valid ? "유효" : "무효"}
               </div>
-              <div className="lb">data</div>
-              <input value={b.d} onChange={(e) => edit(k, e.target.value)} />
-              <div className="lb">nonce</div>
-              <div className="vv">{b.n}</div>
-              <div className="lb">prev</div>
-              <div className="vv">{b.p.slice(0, 20)}…</div>
-              <div className="lb">hash</div>
-              <div className="vv" style={{ color: valid ? "var(--mint)" : "var(--rose)" }}>
-                {b.h.slice(0, 20)}…
-              </div>
+              <Field label="data">
+                <input value={b.d} onChange={(e) => edit(k, e.target.value)} />
+              </Field>
+              <Field label="nonce">{b.n}</Field>
+              <Field label="prev">{b.p.slice(0, 18)}…</Field>
+              <Field label="hash">
+                <span style={{ color: valid ? "var(--tip)" : "var(--bad)" }}>
+                  {b.h.slice(0, 18)}…
+                </span>
+              </Field>
             </div>
           );
         })}
       </div>
-      <button className="btn ghost" onClick={remine} disabled={mining}>
-        {mining ? "⛏️ 채굴 중…" : "🔨 전체 다시 채굴 (조작 은폐 시도)"}
+      <button className={`${btn} mt-3`} onClick={remine} disabled={mining}>
+        {mining ? "채굴 중…" : "전체 다시 채굴 (조작 은폐 시도)"}
       </button>
-      <p className="legend">
-        &quot;채굴&quot;은 해시가 <code>0000</code>으로 시작할 때까지 nonce를 바꿔가며 반복 계산하는 것 — 이것이 작업증명(PoW)의 실체입니다. 실제
-        비트코인은 난이도가 훨씬 높아 전 세계 전용 장비가 동원됩니다.
-      </p>
+    </DemoShell>
+  );
+}
+
+function Field({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="mt-2">
+      <div className="text-[0.6rem] uppercase tracking-wider text-ink-dim">
+        {label}
+      </div>
+      <div className="break-all">{children}</div>
     </div>
   );
 }
 
-/* ---------------- 3. Gas calculator ---------------- */
+/* ---------------- 3. 가스 계산기 ---------------- */
 const OPS = [
   { label: "ETH 전송", gas: 21000 },
   { label: "ERC-20 토큰 전송", gas: 65000 },
@@ -151,17 +233,38 @@ export function GasDemo() {
   const krw = usd * 1380;
 
   return (
-    <div className="demo">
-      <div className="demo-title">▶ 실습 3 — 가스 비용 계산기</div>
-      <p className="demo-desc">
-        2026년 4월 이더리움 메인넷 일평균 가스는 약 <b>0.5 gwei</b>였습니다. 2021년 혼잡기와 비교해 보세요.
-      </p>
-      <div className="grid g2" style={{ margin: 0 }}>
+    <DemoShell
+      n={3}
+      title="가스 비용 계산기"
+      desc={
+        <>
+          2026년 4월 이더리움 메인넷 일평균 가스는 약{" "}
+          <strong className="text-ink">0.5 gwei</strong>였습니다. 2021년 혼잡기와
+          비교해 보세요.
+        </>
+      }
+      note="출처: ethereum.org “Building on Ethereum in 2026”. 실제 비용은 ETH 가격·혼잡도·컨트랙트 복잡도에 따라 변동합니다."
+    >
+      <div className="grid gap-x-6 sm:grid-cols-2">
         <div>
           <label htmlFor="gwei">가스 가격 (gwei)</label>
-          <input id="gwei" type="number" step="0.1" min="0" value={gwei} onChange={(e) => setGwei(+e.target.value)} />
+          <input
+            id="gwei"
+            type="number"
+            step="0.1"
+            min="0"
+            value={gwei}
+            onChange={(e) => setGwei(+e.target.value)}
+          />
           <label htmlFor="ethp">ETH 가격 (USD)</label>
-          <input id="ethp" type="number" step="50" min="0" value={ethPrice} onChange={(e) => setEthPrice(+e.target.value)} />
+          <input
+            id="ethp"
+            type="number"
+            step="50"
+            min="0"
+            value={ethPrice}
+            onChange={(e) => setEthPrice(+e.target.value)}
+          />
         </div>
         <div>
           <label htmlFor="op">작업 종류</label>
@@ -173,9 +276,9 @@ export function GasDemo() {
             ))}
           </select>
           <label>프리셋</label>
-          <div style={{ display: "flex", gap: 8 }}>
+          <div className="flex gap-2">
             <button
-              className="btn ghost"
+              className={btn}
               onClick={() => {
                 setGwei(0.5);
                 setEthPrice(2350);
@@ -184,7 +287,7 @@ export function GasDemo() {
               2026년
             </button>
             <button
-              className="btn ghost"
+              className={btn}
               onClick={() => {
                 setGwei(60);
                 setEthPrice(4000);
@@ -195,21 +298,21 @@ export function GasDemo() {
           </div>
         </div>
       </div>
-      <div className="out">
-        {gas.toLocaleString()} gas × {gwei} gwei = <b>{feeEth.toFixed(8)} ETH</b>
+      <Output>
+        {gas.toLocaleString()} gas × {gwei} gwei ={" "}
+        <strong className="text-ink">{feeEth.toFixed(8)} ETH</strong>
         <br />≈{" "}
-        <b style={{ color: "var(--amber)", fontSize: 17 }}>
+        <strong className="text-[0.95rem]" style={{ color: "var(--accent)" }}>
           ${usd < 0.01 ? usd.toFixed(4) : usd.toFixed(2)}
-        </b>{" "}
-        (약 {krw < 10 ? krw.toFixed(2) : Math.round(krw).toLocaleString()}원, 1,380원/USD 가정)
-      </div>
-      <p className="legend">
-        출처: ethereum.org &quot;Building on Ethereum in 2026&quot;. 실제 비용은 ETH 가격·혼잡도·컨트랙트 복잡도에 따라 변동합니다.
-      </p>
-    </div>
+        </strong>{" "}
+        (약 {krw < 10 ? krw.toFixed(2) : Math.round(krw).toLocaleString()}원,
+        1,380원/USD 가정)
+      </Output>
+    </DemoShell>
   );
 }
 
+/** 새 데모를 만들면 여기에 등록하세요. 본문에서는 <Demo name="키" /> 로 부릅니다. */
 export const DEMOS: Record<string, () => React.JSX.Element> = {
   hash: HashDemo,
   chain: ChainDemo,

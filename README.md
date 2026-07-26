@@ -1,93 +1,113 @@
-# Web3 완전 정복
+# sanghyeon.dev
 
-블록체인을 아예 모르는 **프론트엔드 개발자**를 위한 Web3 학습 사이트.
-해시 함수부터 wagmi/viem 실전 코드, 2026년 생태계 현황과 비판론까지 13개 챕터.
+동작하니까 넘어갔던 것들을 주제별로 다시 정리하는 개발 공부 기록.
+
+주제(Topic) → 챕터(Doc) 2단계 구조입니다.
+사이트 이름·설명·GitHub 링크는 `lib/site.ts` 한 곳에서만 관리합니다.
+
+| 주제 | 상태 |
+| --- | --- |
+| `web3` | 13장 작성 완료 |
+| `backend` 백엔드·인프라 | 목차만 |
+| `cs` CS 기초 | 목차만 |
+| `ai` AI·ML | 목차만 |
 
 ## 실행
 
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # 정적 생성 19페이지
+npm run build    # 정적 생성
 ```
 
-Node 18.18+ 필요. 의존성은 `next`, `react`, `react-dom`뿐이며 CSS 프레임워크를 쓰지 않습니다.
+Node 18.18+ 필요.
+
+## 스택
+
+- **Next.js 16** (App Router, Turbopack) · React 19 — 전 페이지 SSG
+- **Tailwind CSS v4** — 디자인 토큰은 `app/globals.css`의 CSS 변수가 원본
+- **Pretendard Variable** — 동적 서브셋, npm에서 self-host (외부 요청 없음)
+- **Shiki** — 빌드 타임 코드 하이라이팅 (런타임 JS 없음)
+
+빌드 도구는 이게 전부입니다. MDX·remark·rehype 툴체인은 쓰지 않습니다.
+
+## 디자인
+
+`DESIGN.md`가 색·타이포·컴포넌트 스펙의 출처입니다 (Framer 스타일 — 순흑 캔버스,
+흰 디스플레이 타이포에 강한 음수 자간, 단일 블루 액센트, 그라디언트 스포트라이트 카드, 필 버튼).
+
+두 가지를 의도적으로 다르게 했습니다.
+
+- **본문 line-height를 늘렸습니다.** 스펙의 1.30은 마케팅 카피 기준이고, 여기는 한글 장문을
+  읽는 곳입니다. 크기와 음수 자간은 그대로 둡니다.
+- **라이트 모드를 남겼습니다.** 다크가 기본이자 정체성이고, 라이트는 스펙 밖의 '읽기 모드'입니다.
 
 ## 구조
 
 ```
 app/
-  layout.tsx              루트 레이아웃 · 테마 부트스트랩 스크립트 · 메타데이터
-  page.tsx                랜딩 (히어로 + 파트별 챕터 카드)
-  globals.css             전체 스타일. CSS 변수로 다크/라이트 테마 관리
-  chapters/[slug]/page.tsx  챕터 페이지 (SSG)
-  quiz/page.tsx           셀프 체크 퀴즈
-  glossary/page.tsx       용어집
+  layout.tsx                 루트 레이아웃 · 테마 부트스트랩 · 푸터
+  page.tsx                   홈 (히어로 + 주제 그리드 + 스포트라이트 카드)
+  globals.css                디자인 토큰 + Pretendard + Shiki 테마 전환
+  [topic]/layout.tsx         사이드바가 있는 주제 셸
+  [topic]/page.tsx           주제 표지 (챕터 목록 또는 예정 목차)
+  [topic]/[slug]/page.tsx    챕터 페이지
+  glossary/ quiz/            부록
 components/
-  Header.tsx              상단바 · 테마 토글 · 검색 트리거 (client)
-  Sidebar.tsx             좌측 목차 · 진도율 바 (client)
-  Search.tsx              ⌘K 검색 모달 (client)
-  ChapterBody.tsx         HTML 렌더 + 데모 주입 + 코드 복사 버튼 (client)
-  Demos.tsx               인터랙티브 실습 3종 (client)
-  Quiz.tsx                퀴즈 채점 UI (client)
-  ReadMark.tsx            학습 완료 토글 (client)
+  Blocks.tsx                 Block[] 렌더러 (서버 · Shiki 하이라이팅)
+  Inline.tsx                 문단 안의 **굵게** `코드` [링크] 렌더
+  CodeBlock · Tabs · Demo · Demos      상호작용 조각 (client)
+  Header · Sidebar · Search · ThemeToggle · ReadMark · Quiz
 content/
-  *.html                  챕터 본문 (HTML 조각)
+  {topic}/{slug}.ts          본문 데이터 (Block[])
 lib/
-  chapters.ts             챕터 메타데이터 — 순서·제목·태그의 단일 출처
-  quiz.ts                 퀴즈 문항
-  progress.ts             localStorage 진도 관리
+  site.ts                    사이트 이름·설명·GitHub 링크 — 여기만 고치면 전체 반영
+  content.ts                 주제·챕터 메타데이터 — 단일 출처
+  blocks.ts                  본문 블록 타입 + 인라인 파서
+  highlight.ts               Shiki 하이라이터 (캐시)
+  progress.ts                localStorage 진도
+  quiz.ts                    퀴즈 문항
 ```
 
-## 콘텐츠 작성 방식
+## 콘텐츠 작성
 
-챕터 본문은 TSX가 아니라 `content/{slug}.html`의 **순수 HTML 조각**입니다.
-JSX 이스케이프 문제(`{`, `class`, 자기닫힘 태그) 없이 코드 예제를 그대로 쓸 수 있어서 이렇게 했습니다.
+본문은 MDX가 아니라 **데이터**입니다. `content/{topic}/{slug}.ts`가 `Block[]`을
+default export 합니다.
 
-빌드 시 서버 컴포넌트가 `fs.readFileSync`로 읽어 정적 생성합니다.
+```ts
+import type { Block } from "@/lib/blocks";
 
-### 인터랙티브 데모 삽입
+const blocks: Block[] = [
+  { t: "p", md: "가스는 EVM 연산의 단위입니다. **수수료**는 `gasUsed × baseFee`." },
 
-본문 중간에 아래 마커를 넣으면 그 자리에 React 컴포넌트가 렌더링됩니다.
+  { t: "callout", tone: "fe", title: "이미 아는 것에 붙이면", body: [
+    { t: "p", md: "API rate limit과 성격이 비슷합니다." },
+  ]},
 
-```html
-<div data-demo="hash"></div>
+  { t: "code", lang: "ts", src: `
+const { gas } = await estimate({ to, value })
+` },
+
+  { t: "demo", name: "gas" },
+];
+
+export default blocks;
 ```
 
-사용 가능한 이름: `hash`, `chain`, `gas` — `components/Demos.tsx`의 `DEMOS` 레지스트리에 정의돼 있습니다.
+데이터라서 좋은 점: 코드 예제에 `{`, `${`, `<`를 넣어도 이스케이프가 필요 없고,
+오타 난 `tone`이나 빠진 필드는 빌드가 잡아줍니다.
 
-### 사용 가능한 CSS 클래스
+블록 종류와 인라인 문법은 `CLAUDE.md`의 표를, 타입은 `lib/blocks.ts`를 보세요.
 
-| 클래스 | 용도 |
-| --- | --- |
-| `.card` / `.card.tip` / `.card.warn` / `.card.bad` / `.card.fe` | 강조 박스 (기본/팁/주의/위험/프론트엔드 연결) |
-| `.grid.g2` `.g3` `.g4` | 반응형 그리드 |
-| `.stat` + `.n` `.l` | 숫자 지표 카드 |
-| `.flow` + `.n` `.a` | 가로 흐름 다이어그램 |
-| `.lead` | 도입 문단 |
-| `.legend` | 그림·표 아래 각주 |
-| `.badge` `.badge.y` `.badge.r` | 인라인 라벨 |
-| `.kw` `.st` `.cm` `.fn` `.nu` `.ty` | 코드 하이라이트 (`<pre>` 안에서 `<span>`으로) |
+### 챕터 추가
 
-표는 `<table>`만 쓰면 클라이언트에서 자동으로 가로 스크롤 래퍼가 씌워집니다.
-`<pre>`에는 복사 버튼이 자동으로 붙습니다.
-
-## 챕터 추가하기
-
-1. `content/새슬러그.html` 생성
-2. `lib/chapters.ts`의 `chapters` 배열에 항목 추가 (`slug`가 파일명과 일치해야 함)
-3. 끝 — 사이드바·검색·이전/다음 네비게이션·정적 경로가 자동 반영됩니다
-
-## 테마
-
-`html[data-theme="dark"|"light"]` 속성으로 전환합니다.
-`app/layout.tsx`의 인라인 스크립트가 렌더 전에 `localStorage` → OS 설정 순으로 읽어 적용하므로 깜빡임이 없습니다.
-
-메인 컬러는 민트 그린 `--mint: #4cc9a0`.
+1. `content/{topic}/{slug}.ts` 생성
+2. `lib/content.ts`의 `docs` 배열에 항목 추가
+3. 끝 — 사이드바·검색·이전/다음·정적 경로가 자동 반영됩니다
 
 ## 콘텐츠 출처
 
-2026년 7월 기준으로 검증했습니다. 주요 출처는 13장 말미에 정리돼 있습니다.
+web3 주제의 수치·날짜는 2026년 7월 기준으로 검증했습니다. 주요 출처는 13장 말미에 있습니다.
 
 - [Building on Ethereum in 2026 — ethereum.org](https://ethereum.org/latest/building-on-ethereum-in-2026/)
 - [wagmi 공식 문서](https://wagmi.sh)

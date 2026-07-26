@@ -1,150 +1,166 @@
 import Link from "next/link";
-import { PARTS, chapters, totalMinutes } from "@/lib/chapters";
+
+import { docsOf, minutesOf, topics } from "@/lib/content";
+import { SITE } from "@/lib/site";
 
 export default function Home() {
+  const [featured, ...rest] = topics;
+  const written = topics.filter((t) => t.status === "active");
+  const chapters = written.reduce((a, t) => a + docsOf(t.slug).length, 0);
+  const minutes = written.reduce((a, t) => a + minutesOf(t.slug), 0);
+
   return (
-    <div className="content" style={{ maxWidth: 1080, margin: "0 auto" }}>
-      <section className="hero">
-        <div className="hero-eyebrow">● 2026년 7월 기준 · 모든 수치 출처 검증</div>
-        <h1>
-          블록체인을 아예 모르는
+    <main className="mx-auto max-w-[75rem] px-5 sm:px-8">
+      {/* ---------- 히어로 ---------- */}
+      <section className="py-24 sm:py-32">
+        <p className="inline-flex rounded-pill bg-surface-1 px-3.5 py-1.5 text-caption font-medium text-ink-muted">
+          {SITE.tagline}
+        </p>
+
+        <h1 className="mt-8 max-w-[16ch] text-[3rem] font-medium leading-[0.98] tracking-[-0.05em] text-ink sm:text-display-lg lg:text-display-xl">
+          모르는 것을
           <br />
-          <span className="hl">프론트엔드 개발자</span>를 위한
-          <br />
-          Web3 완전 정복
+          하나씩 채웁니다
         </h1>
-        <p>
-          추상적인 &ldquo;탈중앙화된 미래&rdquo; 이야기도, 갑작스러운 타원곡선 암호학도 아닙니다. 이미 아는 React·REST·JWT 지식에
-          하나씩 연결해가며, 해시부터 실제로 돌아가는 wagmi 코드까지 갑니다.
+
+        <p className="mt-8 max-w-[44ch] text-body-lg text-ink-muted">
+          동작하니까 넘어갔던 것들을 주제별로 다시 열어봅니다. 이해한 만큼만
+          쓰고, 모르는 건 모른다고 씁니다.
         </p>
-        <div className="hero-cta">
-          <Link href="/chapters/what-is-web3" className="cta primary">
-            1장부터 시작하기 →
+
+        <div className="mt-10 flex flex-wrap gap-2.5">
+          <Link
+            href={`/${featured.slug}`}
+            className="rounded-pill bg-ink px-5 py-3 text-button font-medium text-canvas transition-transform hover:scale-[0.98]"
+          >
+            {featured.name}부터 읽기
           </Link>
-          <Link href="/chapters/code" className="cta sec">
-            바로 코드부터 보기
+          <Link
+            href="/glossary"
+            className="rounded-pill bg-surface-1 px-5 py-3 text-button font-medium text-ink transition-colors hover:bg-surface-2"
+          >
+            용어집
           </Link>
+        </div>
+
+        <dl className="tnum mt-14 flex flex-wrap gap-x-10 gap-y-4 border-t border-hairline-soft pt-7 text-caption">
+          <Metric k="쓴 글" v={`${chapters}장`} />
+          <Metric k="분량" v={`약 ${minutes}분`} />
+          <Metric k="주제" v={`${topics.length}개`} />
+        </dl>
+      </section>
+
+      {/* ---------- 주제 ---------- */}
+      <section className="pb-8">
+        <div className="flex items-baseline justify-between">
+          <h2 className="text-display-md text-ink">주제</h2>
+        </div>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {/* 스포트라이트 카드는 페이지당 하나. 스펙상 셋 이상은 무드보드가 됩니다. */}
+          <SpotlightCard slug={featured.slug} />
+          {rest.map((t) => (
+            <TopicCard key={t.slug} slug={t.slug} />
+          ))}
         </div>
       </section>
 
-      <div className="grid g4">
-        <div className="stat">
-          <div className="n">{chapters.length}개</div>
-          <div className="l">챕터 · 총 {Math.round(totalMinutes / 60 * 10) / 10}시간 분량</div>
-        </div>
-        <div className="stat">
-          <div className="n">3개</div>
-          <div className="l">인터랙티브 실습 (해시 · 블록체인 변조 · 가스 계산)</div>
-        </div>
-        <div className="stat">
-          <div className="n">8종</div>
-          <div className="l">복사해서 바로 쓰는 wagmi/viem 실전 코드</div>
-        </div>
-        <div className="stat">
-          <div className="n">8문항</div>
-          <div className="l">이해도 확인용 셀프 체크 퀴즈</div>
-        </div>
-      </div>
-
-      <div className="grid g3" style={{ marginTop: 26 }}>
-        <div className="card fe">
-          <h4>💜 기존 지식과 연결</h4>
-          <p style={{ fontSize: 14.5, margin: 0 }}>
-            ABI는 OpenAPI, 인덱서는 read replica, 서명 로그인은 JWT의 대체. 낯선 개념마다 익숙한 대응물을 붙여 설명합니다.
-          </p>
-        </div>
-        <div className="card tip">
-          <h4>✅ 최신 사실만</h4>
-          <p style={{ fontSize: 14.5, margin: 0 }}>
-            Dencun·Pectra·Fusaka 이후 달라진 가스 비용, GENIUS Act 규제, 2026년 L2 지형까지 반영했습니다.
-          </p>
-        </div>
-        <div className="card bad">
-          <h4>⚠️ 비판도 함께</h4>
-          <p style={{ fontSize: 14.5, margin: 0 }}>
-            해킹 통계와 &ldquo;탈중앙화 극장&rdquo; 비판을 마지막 장에 그대로 담았습니다. 균형 없이는 판단할 수 없으니까요.
-          </p>
-        </div>
-      </div>
-
-      {PARTS.map((p) => (
-        <section key={p.key}>
-          <div className="part-head">
-            <span className="k">{p.key}</span>
-            <span className="n">{p.name}</span>
-            <span className="line" />
-          </div>
-          <div className="grid g2">
-            {chapters
-              .filter((c) => c.partKey === p.key)
-              .map((c) => (
-                <Link key={c.slug} href={`/chapters/${c.slug}`} className="ch-card">
-                  <div className="top">
-                    <span className="idx">{c.num}</span>
-                    <span className="t">{c.title}</span>
-                  </div>
-                  <p className="d">{c.desc}</p>
-                  <div className="tags">
-                    {c.tags.map((t) => (
-                      <span className="tag" key={t}>
-                        {t}
-                      </span>
-                    ))}
-                    <span className="tag">약 {c.minutes}분</span>
-                  </div>
-                </Link>
-              ))}
-          </div>
-        </section>
-      ))}
-
-      <section>
-        <div className="part-head">
-          <span className="k">부록</span>
-          <span className="n">복습 도구</span>
-          <span className="line" />
-        </div>
-        <div className="grid g2">
-          <Link href="/quiz" className="ch-card">
-            <div className="top">
-              <span className="idx">Q</span>
-              <span className="t">셀프 체크 퀴즈</span>
-            </div>
-            <p className="d">8문항으로 실제 이해도를 확인합니다. 틀린 문제는 해당 챕터로 바로 연결됩니다.</p>
-          </Link>
-          <Link href="/glossary" className="ch-card">
-            <div className="top">
-              <span className="idx">G</span>
-              <span className="t">용어집</span>
-            </div>
-            <p className="d">gas, nonce, MEV, TVL, 슬리피지… 자주 나오는 25개 용어를 한 곳에.</p>
-          </Link>
+      {/* ---------- 쓰는 방식 ---------- */}
+      <section className="border-t border-hairline-soft py-16">
+        <h2 className="text-headline text-ink">쓰는 방식</h2>
+        <div className="mt-7 grid gap-x-10 gap-y-7 sm:grid-cols-3">
+          <Rule
+            k="출처를 확인한 것만"
+            v="수치·날짜·버전은 원문을 찾아 확인하고 씁니다. 확인 못 한 건 안 씁니다."
+          />
+          <Rule
+            k="한계도 같은 비중으로"
+            v="잘 되는 것만 적으면 정리가 아니라 홍보가 됩니다. 실패 사례와 못 하는 것을 같이 적습니다."
+          />
+          <Rule
+            k="아는 것에 붙여서"
+            v="새 개념을 공중에 띄우지 않고 이미 쓰던 도구·패턴에 매핑해 설명합니다."
+          />
         </div>
       </section>
+    </main>
+  );
+}
 
-      <footer className="foot">
-        <p style={{ margin: 0 }}>
-          Web3 완전 정복 · 2026년 7월 작성 · 주요 출처:{" "}
-          <a href="https://ethereum.org/latest/building-on-ethereum-in-2026/" target="_blank" rel="noopener noreferrer">
-            ethereum.org
-          </a>
-          ,{" "}
-          <a href="https://wagmi.sh" target="_blank" rel="noopener noreferrer">
-            wagmi
-          </a>
-          ,{" "}
-          <a href="https://defillama.com" target="_blank" rel="noopener noreferrer">
-            DeFiLlama
-          </a>
-          ,{" "}
-          <a href="https://l2beat.com" target="_blank" rel="noopener noreferrer">
-            L2BEAT
-          </a>
-        </p>
-        <p style={{ margin: "8px 0 0", fontSize: 12.5 }}>
-          이 사이트는 학습 자료이며 투자 조언이 아닙니다. 암호자산은 원금 손실 위험이 있습니다.
-        </p>
-      </footer>
+function Metric({ k, v }: { k: string; v: string }) {
+  return (
+    <div>
+      <dt className="text-micro text-ink-dim">{k}</dt>
+      <dd className="mt-1 text-body font-medium text-ink">{v}</dd>
     </div>
+  );
+}
+
+function Rule({ k, v }: { k: string; v: string }) {
+  return (
+    <div>
+      <h3 className="text-body font-medium text-ink">{k}</h3>
+      <p className="mt-2 text-body-sm text-ink-dim">{v}</p>
+    </div>
+  );
+}
+
+/* 브랜드 시그니처 — 검은 그리드 위에 놓이는 그라디언트 스포트라이트 타일 */
+function SpotlightCard({ slug }: { slug: string }) {
+  const t = topics.find((x) => x.slug === slug)!;
+  const count = docsOf(slug).length;
+
+  return (
+    <Link
+      href={`/${slug}`}
+      className="group relative flex min-h-[19rem] flex-col justify-between overflow-hidden rounded-xxl p-8 sm:row-span-2"
+      style={{
+        background:
+          "linear-gradient(150deg, var(--grad-violet) 0%, var(--grad-magenta) 55%, var(--grad-orange) 100%)",
+      }}
+    >
+      <div>
+        <p className="tnum text-caption font-medium text-white/70">
+          {count}장 · 약 {minutesOf(slug)}분
+        </p>
+        <h3 className="mt-4 text-display-md text-white">{t.name}</h3>
+        <p className="mt-3 max-w-[28ch] text-body text-white/80">{t.tagline}</p>
+      </div>
+      <span className="mt-8 inline-flex w-fit rounded-pill bg-white/15 px-4 py-2 text-button font-medium text-white backdrop-blur-sm transition-colors group-hover:bg-white group-hover:text-black">
+        읽기 시작
+      </span>
+    </Link>
+  );
+}
+
+function TopicCard({ slug }: { slug: string }) {
+  const t = topics.find((x) => x.slug === slug)!;
+  const planned = t.status === "planned";
+  const count = docsOf(slug).length;
+
+  return (
+    <Link
+      href={`/${slug}`}
+      className="group flex flex-col justify-between rounded-xl border border-hairline bg-surface-1 p-6 transition-colors hover:bg-surface-2"
+    >
+      <div>
+        <div className="flex items-baseline gap-2.5">
+          <h3 className="text-headline text-ink">{t.name}</h3>
+          {planned && (
+            <span className="rounded-sm bg-surface-2 px-1.5 py-0.5 text-micro font-medium text-ink-dim">
+              예정
+            </span>
+          )}
+        </div>
+        <p className="mt-2.5 max-w-[34ch] text-body-sm text-ink-muted">
+          {t.tagline}
+        </p>
+      </div>
+      <p className="tnum mt-6 text-caption text-ink-dim">
+        {planned
+          ? `목차 ${t.outline?.length ?? 0}편`
+          : `${count}장 · 약 ${minutesOf(slug)}분`}
+      </p>
+    </Link>
   );
 }

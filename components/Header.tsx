@@ -1,76 +1,48 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+
+import { topics } from "@/lib/content";
+import { SITE } from "@/lib/site";
 import Search from "./Search";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
-  const [dark, setDark] = useState(true);
-  const [searchOpen, setSearchOpen] = useState(false);
-
-  useEffect(() => {
-    const t = document.documentElement.getAttribute("data-theme");
-    setDark(t !== "light");
-  }, []);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-        e.preventDefault();
-        setSearchOpen((v) => !v);
-      }
-      if (e.key === "Escape") setSearchOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  function toggleTheme() {
-    const next = dark ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    try {
-      localStorage.setItem("w3-theme", next);
-    } catch {}
-    setDark(!dark);
-  }
-
-  function toggleMenu() {
-    document.querySelector(".side")?.classList.toggle("open");
-  }
+  const pathname = usePathname();
+  const current = pathname.split("/")[1];
 
   return (
-    <>
-      <header className="hdr">
-        <div className="hdr-in">
-          <Link href="/" className="logo">
-            <span className="logo-mark">W3</span>
-            <span>
-              Web3 완전 정복
-              <span style={{ color: "var(--muted-2)", fontWeight: 500, marginLeft: 7, fontSize: 12.5 }} className="hide-sm">
-                프론트엔드 개발자를 위한 가이드
-              </span>
-            </span>
-          </Link>
-          <nav className="hdr-nav">
-            <button onClick={() => setSearchOpen(true)} title="검색 (Ctrl+K)">
-              🔍 <span className="hide-sm">검색</span> <span className="kbd hide-sm">⌘K</span>
-            </button>
-            <Link href="/quiz" className="hide-sm">
-              퀴즈
+    <header className="sticky top-0 z-40 border-b border-hairline-soft bg-canvas/85 backdrop-blur-xl">
+      <div className="mx-auto flex h-14 max-w-[75rem] items-center gap-5 px-5 sm:px-8">
+        <Link
+          href="/"
+          className="shrink-0 text-[0.95rem] font-medium tracking-[-0.03em] text-ink"
+        >
+          {SITE.name}
+        </Link>
+
+        <nav className="hidden items-center gap-0.5 md:flex">
+          {topics.map((t) => (
+            <Link
+              key={t.slug}
+              href={`/${t.slug}`}
+              className={`rounded-pill px-3 py-1.5 text-body-sm font-medium transition-colors ${
+                current === t.slug
+                  ? "bg-surface-2 text-ink"
+                  : "text-ink-dim hover:text-ink"
+              }`}
+            >
+              {t.name}
             </Link>
-            <Link href="/glossary" className="hide-sm">
-              용어집
-            </Link>
-            <button onClick={toggleTheme} title="테마 전환" aria-label="테마 전환">
-              {dark ? "☀️" : "🌙"}
-            </button>
-            <button className="menu-btn" onClick={toggleMenu} aria-label="목차">
-              ☰
-            </button>
-          </nav>
+          ))}
+        </nav>
+
+        <div className="ml-auto flex items-center gap-2">
+          <Search />
+          <ThemeToggle />
         </div>
-      </header>
-      {searchOpen && <Search onClose={() => setSearchOpen(false)} />}
-    </>
+      </div>
+    </header>
   );
 }

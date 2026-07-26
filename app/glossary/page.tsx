@@ -1,8 +1,9 @@
-import Sidebar from "@/components/Sidebar";
+import Link from "next/link";
 
 export const metadata = {
   title: "용어집",
-  description: "gas, nonce, MEV, TVL, 슬리피지 등 Web3에서 자주 나오는 25개 용어 정리.",
+  description:
+    "gas, nonce, MEV, TVL, 슬리피지 등 Web3에서 자주 나오는 25개 용어 정리.",
 };
 
 const terms: [string, string][] = [
@@ -35,33 +36,34 @@ const terms: [string, string][] = [
 
 export default function GlossaryPage() {
   return (
-    <div className="shell">
-      <Sidebar />
-      <div className="content narrow">
-        <div className="crumb">부록</div>
-        <h1>용어집</h1>
-        <p className="lead">읽다가 막히는 단어가 나오면 여기서 찾아보세요. Ctrl+F로 검색하면 빠릅니다.</p>
-        <div className="tbl-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th style={{ width: 190 }}>용어</th>
-                <th>뜻</th>
-              </tr>
-            </thead>
-            <tbody>
-              {terms.map(([t, d]) => (
-                <tr key={t}>
-                  <td>
-                    <strong>{t}</strong>
-                  </td>
-                  <td>{d}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <main className="mx-auto max-w-[75rem] px-5 pb-16 sm:px-8">
+      <header className="py-16 sm:py-24">
+        <p className="text-caption font-medium text-ink-dim">
+          부록 ·{" "}
+          <Link href="/web3" className="transition-colors hover:text-ink">
+            Web3
+          </Link>
+        </p>
+        <h1 className="mt-4 text-[2.5rem] font-medium leading-[1.02] tracking-[-0.05em] text-ink sm:text-display-lg">
+          용어집
+        </h1>
+        <p className="mt-6 max-w-[42ch] text-body-lg text-ink-muted">
+          읽다가 막히는 단어가 나오면 여기서 찾아보세요. Ctrl+F로 검색하면
+          빠릅니다.
+        </p>
+      </header>
+
+      <dl className="max-w-[52rem] overflow-hidden rounded-lg border border-hairline">
+        {terms.map(([term, def]) => (
+          <div
+            key={term}
+            className="grid gap-x-6 gap-y-1 border-b border-hairline-soft bg-surface-1 px-5 py-4 last:border-b-0 sm:grid-cols-[13rem_1fr]"
+          >
+            <dt className="font-mono text-body-sm text-ink">{term}</dt>
+            <dd className="text-body-sm text-ink-muted">{def}</dd>
+          </div>
+        ))}
+      </dl>
+    </main>
   );
 }
