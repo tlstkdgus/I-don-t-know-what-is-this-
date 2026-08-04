@@ -42,6 +42,12 @@ const blocks: Block[] = [
     ],
   },
   {
+    t: "diagram",
+    name: "amm-pool",
+    caption:
+      "이더 1개가 빠져나가면 남은 이더가 줄고 USDC는 늘어납니다. 가격은 두 수량의 비율이므로 자동으로 올라갑니다 — 주문을 짝지어 주는 사람이 필요 없습니다.",
+  },
+  {
     t: "callout",
     tone: "warn",
     title: "DeFi의 진짜 위험",

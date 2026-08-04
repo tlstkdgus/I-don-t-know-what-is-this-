@@ -805,3 +805,267 @@ export function HnswLayers() {
     </Diagram>
   );
 }
+
+/* ═══════════════ 6장 · 분류체계 / 온톨로지 / 지식 그래프 ═══════════════ */
+
+export function OntologyLayers() {
+  return (
+    <Diagram h={300} label="분류체계는 상하 관계만, 온톨로지는 데이터가 따라야 할 틀, 지식 그래프는 그 틀에 채운 실제 값이다">
+      <ArrowHeads id="on" tones={[undefined, "fe"]} />
+
+      <Text x={16} y={22} role="section">
+        분류체계 — 상하 관계만
+      </Text>
+      <rect x={16} y={32} width={192} height={104} rx={12} fill={C.surface} stroke={C.hair} strokeWidth={1.5} />
+      <Text x={112} y={56} anchor="middle">
+        상품
+      </Text>
+      <path d="M112 62 L112 74 M64 74 L160 74 M64 74 L64 84 M160 74 L160 84" stroke={C.dim} strokeWidth={1.5} fill="none" />
+      <Text x={64} y={98} anchor="middle">
+        가전
+      </Text>
+      <Text x={160} y={98} anchor="middle">
+        의류
+      </Text>
+      <path d="M64 104 L64 116" stroke={C.dim} strokeWidth={1.5} fill="none" />
+      <Text x={64} y={130} anchor="middle" role="note">
+        냉장고
+      </Text>
+
+      <Text x={232} y={22} role="section" tone="fe">
+        온톨로지 — 따라야 할 틀
+      </Text>
+      <rect x={232} y={32} width={192} height={104} rx={12} fill="var(--fe)" fillOpacity={0.07} stroke="var(--fe)" strokeWidth={2.5} />
+      <rect x={248} y={46} width={72} height={30} rx={7} fill={C.surface} stroke="var(--fe)" strokeWidth={1.8} />
+      <Text x={284} y={65} anchor="middle">
+        고객
+      </Text>
+      <rect x={336} y={46} width={72} height={30} rx={7} fill={C.surface} stroke="var(--fe)" strokeWidth={1.8} />
+      <Text x={372} y={65} anchor="middle">
+        주문
+      </Text>
+      <Arrow heads="on" from={[322, 61]} to={[334, 61]} tone="fe" />
+      <Text x={248} y={100} role="note">
+        고객이 주문을 발생시킨다
+      </Text>
+      <Text x={248} y={118} role="note">
+        주문은 항목이 1개 이상
+      </Text>
+      <Text x={248} y={132} role="note">
+        (실제 값이 아니라 규칙)
+      </Text>
+
+      <Text x={448} y={22} role="section" tone="tip">
+        지식 그래프 — 채운 값
+      </Text>
+      <rect x={448} y={32} width={196} height={104} rx={12} fill="var(--tip)" fillOpacity={0.07} stroke="var(--tip)" strokeWidth={2.5} />
+      <ellipse cx={500} cy={62} rx={40} ry={20} fill={C.surface} stroke="var(--tip)" strokeWidth={1.8} />
+      <Text x={500} y={67} anchor="middle" mono>
+        앨리스
+      </Text>
+      <ellipse cx={594} cy={62} rx={40} ry={20} fill={C.surface} stroke="var(--tip)" strokeWidth={1.8} />
+      <Text x={594} y={67} anchor="middle" mono>
+        주문 #7
+      </Text>
+      <line x1={540} y1={62} x2={554} y2={62} stroke="var(--tip)" strokeWidth={1.8} />
+      <Text x={464} y={104} role="note">
+        앨리스가 주문 #7을
+      </Text>
+      <Text x={464} y={120} role="note">
+        발생시켰다
+      </Text>
+      <Text x={464} y={134} role="note">
+        (틀에 맞춘 실제 사실)
+      </Text>
+
+      <Divider x={166} y1={16} y2={644} horizontal />
+
+      <Text x={16} y={196} role="section">
+        관공서 신청서에 비유하면
+      </Text>
+      <Text x={16} y={222}>
+        온톨로지는 양식입니다 — 어떤 항목을 채워야 하고 항목끼리 어떤 관계여야 하는지.
+      </Text>
+      <Text x={16} y={244}>
+        지식 그래프는 그 양식에 실제로 적어 넣은 신청서 뭉치입니다.
+      </Text>
+      <Text x={16} y={272} role="note">
+        다른 점 하나: 양식 자체도 시스템 안에 데이터로 저장돼 있어서, 사람도 컴퓨터도
+      </Text>
+      <Text x={16} y={290} role="note">
+        나중에 "이 시스템엔 어떤 개념이 있지?"라고 다시 물어볼 수 있습니다.
+      </Text>
+    </Diagram>
+  );
+}
+
+/* ═══════════════ 7장 · 지표 정의가 흩어진 문제 ═══════════════ */
+
+export function MetricDefinitionDrift() {
+  const sources = [
+    { who: "대시보드", def: "30일 내 로그인", n: "12,400" },
+    { who: "백오피스", def: "30일 내 아무 활동", n: "15,900" },
+    { who: "월간 보고서", def: "로그인 + 내부계정 제외", n: "11,800" },
+  ];
+  const r = row(3, { end: 644, gap: 18 });
+  return (
+    <Diagram h={334} label="정의가 흩어져 있으면 같은 지표가 세 개의 숫자를 갖게 되고, 한 곳으로 모으면 하나가 된다">
+      <ArrowHeads id="sl" tones={[undefined, "tip"]} />
+
+      <Text x={16} y={22} role="section" tone="bad">
+        정의가 흩어져 있을 때
+      </Text>
+      {sources.map((s, i) => (
+        <g key={s.who}>
+          <rect x={r.x(i)} y={32} width={r.w} height={86} rx={12} fill="var(--bad)" fillOpacity={0.06} stroke="var(--bad)" strokeWidth={2.2} />
+          <Text x={r.cx(i)} y={54} anchor="middle" role="section">
+            {s.who}
+          </Text>
+          <Text x={r.cx(i)} y={74} anchor="middle" role="note">
+            {s.def}
+          </Text>
+          <text x={r.cx(i)} y={106} textAnchor="middle" fontSize={19} fontWeight={600} fill="var(--bad)">
+            {s.n}
+          </text>
+        </g>
+      ))}
+      <Text x={330} y={146} anchor="middle">
+        세 숫자가 다 다릅니다. 그리고 세 쿼리 모두 정확하게 동작합니다.
+      </Text>
+      <Text x={330} y={166} anchor="middle" role="note">
+        틀린 건 쿼리가 아니라, "활성 사용자"가 세 개의 뜻을 갖고 있다는 사실입니다.
+      </Text>
+
+      <Divider x={192} y1={16} y2={644} horizontal />
+
+      <Text x={16} y={222} role="section" tone="tip">
+        한 곳에 모았을 때
+      </Text>
+      <Box x={232} y={232} w={196} h={54} label="지표 정의 한 곳" sub="활성 사용자 = …" tone="tip" />
+      {[0, 1, 2].map((i) => (
+        <g key={i}>
+          <Arrow heads="sl" from={[330, 286]} to={[r.cx(i), 300]} tone="tip" />
+          <rect x={r.x(i)} y={306} width={r.w} height={26} rx={7} fill={C.surface} stroke={C.hair} strokeWidth={1.5} />
+          <Text x={r.cx(i)} y={323} anchor="middle" mono>
+            {sources[i].who + " · 12,400"}
+          </Text>
+        </g>
+      ))}
+      <Text x={456} y={256} role="note">
+        어디서 물어봐도
+      </Text>
+      <Text x={456} y={274} role="note">
+        같은 답이 나옵니다
+      </Text>
+    </Diagram>
+  );
+}
+
+/* ═══════════════ 10장 · RRF 순위 합치기 ═══════════════ */
+
+export function RrfFusion() {
+  const kw = ["문서 A", "문서 C", "문서 B"];
+  const vec = ["문서 B", "문서 A", "문서 D"];
+  const merged = [
+    { d: "문서 A", calc: "1/61 + 1/62", why: "양쪽 상위" },
+    { d: "문서 B", calc: "1/63 + 1/61", why: "한쪽 1등" },
+    { d: "문서 C", calc: "1/62", why: "한쪽에만" },
+  ];
+  return (
+    <Diagram h={306} label="점수 대신 등수만 써서 두 검색 결과를 합치므로 기준이 다른 점수를 억지로 맞출 필요가 없다">
+      <Text x={16} y={22} role="section">
+        키워드 검색
+      </Text>
+      {kw.map((d, i) => (
+        <g key={d}>
+          <rect x={16} y={34 + i * 40} width={150} height={32} rx={8} fill={C.surface} stroke={C.hair} strokeWidth={1.5} />
+          <Text x={30} y={55 + i * 40} role="note">
+            {i + 1 + "등"}
+          </Text>
+          <Text x={68} y={55 + i * 40}>
+            {d}
+          </Text>
+        </g>
+      ))}
+      <Text x={16} y={178} role="note">
+        점수 12.7 · 8.4 · 5.1
+      </Text>
+      <Text x={16} y={196} role="note">
+        (상한 없음)
+      </Text>
+
+      <Text x={198} y={22} role="section">
+        좌표 기반 검색
+      </Text>
+      {vec.map((d, i) => (
+        <g key={d}>
+          <rect x={198} y={34 + i * 40} width={150} height={32} rx={8} fill={C.surface} stroke={C.hair} strokeWidth={1.5} />
+          <Text x={212} y={55 + i * 40} role="note">
+            {i + 1 + "등"}
+          </Text>
+          <Text x={250} y={55 + i * 40}>
+            {d}
+          </Text>
+        </g>
+      ))}
+      <Text x={198} y={178} role="note">
+        점수 0.91 · 0.88 · 0.72
+      </Text>
+      <Text x={198} y={196} role="note">
+        (0~1 사이)
+      </Text>
+
+      <Text x={16} y={232} role="section" tone="bad">
+        기준이 달라 그냥 더할 수 없습니다 — 원화와 별점을 더하는 셈
+      </Text>
+      <Text x={16} y={258}>
+        그래서 점수는 버리고 등수만 씁니다.
+      </Text>
+      <Text x={16} y={282} role="note">
+        각 검색에서 1/(60 + 등수)를 구해 전부 더합니다. 60은 원 논문이 쓴 상수입니다.
+      </Text>
+
+      <Divider x={372} y1={16} y2={292} />
+
+      <Text x={396} y={22} role="section" tone="tip">
+        합친 결과
+      </Text>
+      {merged.map((m, i) => (
+        <g key={m.d}>
+          <rect
+            x={396}
+            y={34 + i * 56}
+            width={248}
+            height={48}
+            rx={10}
+            fill={i === 0 ? "var(--tip)" : C.surface}
+            fillOpacity={i === 0 ? 0.09 : 1}
+            stroke={i === 0 ? "var(--tip)" : C.hair}
+            strokeWidth={i === 0 ? 2.5 : 1.5}
+          />
+          <Text x={412} y={54 + i * 56}>
+            {i + 1 + "등  " + m.d}
+          </Text>
+          <Text x={412} y={72 + i * 56} role="note" mono>
+            {m.calc}
+          </Text>
+          <Text x={632} y={54 + i * 56} anchor="end" role="note">
+            {m.why}
+          </Text>
+        </g>
+      ))}
+      <Text x={396} y={226} role="note">
+        양쪽에서 상위였던 문서가
+      </Text>
+      <Text x={396} y={244} role="note">
+        자연스럽게 1등이 됩니다.
+      </Text>
+      <Text x={396} y={272} role="note">
+        등수가 뒤로 가도 기여가 0이
+      </Text>
+      <Text x={396} y={290} role="note">
+        되지는 않습니다.
+      </Text>
+    </Diagram>
+  );
+}

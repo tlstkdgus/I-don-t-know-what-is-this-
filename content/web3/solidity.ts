@@ -138,6 +138,12 @@ function withdrawGood() external {
       },
     ],
   },
+  {
+    t: "diagram",
+    name: "reentrancy-attack",
+    caption:
+      "위 코드의 순서를 그림으로 본 것입니다. 왼쪽에서 ③이 실행되기 전에 ①로 되돌아오는 고리가 만들어지고, 이 고리를 반복하면 잔고보다 많은 돈이 빠져나갑니다.",
+  },
   { t: "h4", md: "이 언어의 독특한 점들" },
   {
     t: "ul",
