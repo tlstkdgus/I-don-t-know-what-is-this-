@@ -377,6 +377,36 @@ export const docs: Doc[] = [
     minutes: 10,
     tags: ["검색", "실무"],
   },
+  {
+    topic: "data",
+    slug: "lineage",
+    num: 11,
+    title: "데이터 계보",
+    desc: "\"이 숫자 어디서 나온 거예요?\"에 답하는 법. 식재료 원산지 추적에 비유하면 쉬운, 데이터가 흘러온 길의 기록.",
+    partKey: "p4",
+    minutes: 11,
+    tags: ["운영", "핵심"],
+  },
+  {
+    topic: "data",
+    slug: "data-contract",
+    num: 12,
+    title: "데이터 계약",
+    desc: "어느 날 아침 대시보드가 비어 있는 이유. 부품 납품 규격서처럼, 데이터에도 지켜야 할 약속을 못 박아두는 방법.",
+    partKey: "p4",
+    minutes: 12,
+    tags: ["운영", "협업"],
+  },
+  {
+    topic: "data",
+    slug: "privacy",
+    num: 13,
+    title: "개인정보와 데이터 최소화",
+    desc: "안 가진 데이터는 유출될 수 없습니다. 개인정보·가명정보·익명정보의 차이와 2026년 바뀐 기준까지. (법률 자문 아님)",
+    partKey: "p4",
+    minutes: 13,
+    tags: ["개인정보", "2026 업데이트"],
+  },
 ];
 
 /* ---------------- 조회 헬퍼 ---------------- */
