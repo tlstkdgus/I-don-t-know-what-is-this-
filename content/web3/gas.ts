@@ -66,31 +66,9 @@ const blocks: Block[] = [
              ↑ gasUsed      ↑ 사라짐(소각)  ↑ 검증자가 받음`,
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "gas-split",
     caption: "낸 수수료가 통째로 누군가에게 가는 게 아닙니다. 대부분은 아예 사라집니다.",
-    svg: `<svg viewBox="0 0 660 268" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="이더리움 수수료의 구성과 소각">
-  <g font-family="ui-sans-serif, system-ui">
-    <text x="20" y="24" font-size="12" font-weight="600" fill="var(--ink-muted)">내가 낸 수수료</text>
-    <rect x="16" y="34" width="628" height="50" rx="12" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="330" y="65" text-anchor="middle" font-size="16" font-weight="600" fill="var(--ink)">작업량 × (기본 요금 + 팁)</text>
-
-    <path d="M200 84 L200 106 M470 84 L470 106" stroke="var(--ink-dim)" stroke-width="1.8" fill="none"/>
-    <polygon points="200,112 195,102 205,102" fill="var(--ink-dim)"/>
-    <polygon points="470,112 465,102 475,102" fill="var(--ink-dim)"/>
-
-    <rect x="16" y="116" width="368" height="66" rx="12" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.5"/>
-    <text x="200" y="146" text-anchor="middle" font-size="15" font-weight="600" fill="var(--ink)">기본 요금 → 소각</text>
-    <text x="200" y="167" text-anchor="middle" font-size="11.5" fill="var(--bad)">아무도 받지 않고 그냥 없어짐</text>
-
-    <rect x="400" y="116" width="244" height="66" rx="12" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="522" y="146" text-anchor="middle" font-size="15" font-weight="600" fill="var(--ink)">팁 → 검증자</text>
-    <text x="522" y="167" text-anchor="middle" font-size="11.5" fill="var(--ink-muted)">처리해준 사람 몫</text>
-
-    <text x="20" y="216" font-size="12" fill="var(--ink-muted)">기본 요금은 네트워크가 붐빌수록 자동으로 오르고, 한산하면 내려갑니다.</text>
-    <text x="20" y="238" font-size="12" fill="var(--ink-muted)">걷힌 기본 요금이 사라지므로, 많이 쓸수록 전체 코인 수량이 조금씩 줄어듭니다.</text>
-    <text x="20" y="260" font-size="11.5" fill="var(--ink-dim)">고속도로 통행료의 일부를 아예 폐기해서 시중 통화량을 줄이는 상황과 비슷합니다.</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",

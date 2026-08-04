@@ -26,39 +26,9 @@ const blocks: Block[] = [
     ],
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "seed-derivation",
     caption: "시드구문 하나가 지갑 주소 여러 개를 만들어냅니다. 그래서 시드구문은 개인키보다도 더 중요합니다.",
-    svg: `<svg viewBox="0 0 660 276" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="시드구문에서 여러 개인키와 주소가 파생되는 구조">
-  <g font-family="ui-sans-serif, system-ui">
-    <rect x="176" y="14" width="308" height="58" rx="12" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.5"/>
-    <text x="330" y="40" text-anchor="middle" font-size="15" font-weight="600" fill="var(--ink)">시드구문 (영어 단어 12~24개)</text>
-    <text x="330" y="60" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink-muted)">apple ocean tiger … forest</text>
-
-    <path d="M330 72 L330 92 M136 92 L524 92 M136 92 L136 110 M330 92 L330 110 M524 92 L524 110" stroke="var(--ink-dim)" stroke-width="1.8" fill="none"/>
-
-    <rect x="66" y="110" width="140" height="38" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="136" y="134" text-anchor="middle" font-size="13" fill="var(--ink)">개인키 1</text>
-    <rect x="260" y="110" width="140" height="38" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="330" y="134" text-anchor="middle" font-size="13" fill="var(--ink)">개인키 2</text>
-    <rect x="454" y="110" width="140" height="38" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="524" y="134" text-anchor="middle" font-size="13" fill="var(--ink)">개인키 3 …</text>
-
-    <path d="M136 148 L136 168 M330 148 L330 168 M524 148 L524 168" stroke="var(--ink-dim)" stroke-width="1.8" fill="none"/>
-    <polygon points="136,174 131,164 141,164" fill="var(--ink-dim)"/>
-    <polygon points="330,174 325,164 335,164" fill="var(--ink-dim)"/>
-    <polygon points="524,174 519,164 529,164" fill="var(--ink-dim)"/>
-
-    <rect x="66" y="178" width="140" height="38" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="136" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink)">0x71C7…976F</text>
-    <rect x="260" y="178" width="140" height="38" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="330" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink)">0x3A9b…21Ec</text>
-    <rect x="454" y="178" width="140" height="38" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="524" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink)">0xF04d…8B12</text>
-
-    <text x="330" y="238" text-anchor="middle" font-size="11.5" fill="var(--ink-muted)">각각 남에게 알려줘도 되는 주소 (계좌번호)</text>
-    <text x="330" y="266" text-anchor="middle" font-size="13" font-weight="600" fill="var(--bad)">시드구문을 잃으면 전부 잃고, 시드구문이 새면 전부 털립니다.</text>
-  </g>
-</svg>`,
   },
   {
     t: "callout",

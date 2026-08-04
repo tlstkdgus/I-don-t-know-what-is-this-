@@ -66,22 +66,9 @@ const blocks: Block[] = [
     md: "요즘 널리 쓰이는 절충안은, 값싼 대형 창고(클라우드의 대용량 저장 서비스)에 원본을 그대로 두는 저렴함은 그대로 살리면서, 그 위에 \"지금 이 창고 안에 뭐가 있고 각각 어떤 상태인지\"를 정리해주는 담당자 역할의 소프트웨어를 하나 얹는 것입니다. 이 담당자가 다음을 보장해줍니다: 여러 사람이 동시에 손대도 변경 작업이 통째로 적용되거나 통째로 취소되게 하기, 누군가 읽는 도중에 다른 사람이 몰래 바꿔도 그 사람은 계속 일관된 상태를 보게 하기, 나중에 칸을 추가하거나 이름을 바꿔도 예전 데이터가 안 깨지게 하기, 예전 시점 상태로 되돌려 조회하기, 파일 전체가 아니라 특정 줄만 콕 집어 고치거나 지우기.",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "lakehouse-layers",
     caption: "이 \"정리 담당자\"는 파일 위에 얹히는 한 겹입니다. 파일 자체는 여전히 원래 형식 그대로 저장돼 있습니다.",
-    svg: `<svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="레이크하우스 계층 구조">
-  <g font-family="ui-sans-serif, system-ui" font-size="13" fill="currentColor">
-    <rect x="20" y="16" width="600" height="42" rx="10" fill="none" stroke="currentColor" stroke-opacity="0.25"/>
-    <text x="36" y="42">질의 엔진(질문을 던지는 도구) — Spark · Trino · DuckDB · Snowflake · BigQuery</text>
-
-    <rect x="20" y="72" width="600" height="42" rx="10" fill="none" stroke="currentColor" stroke-opacity="0.55"/>
-    <text x="36" y="98">정리 담당자(테이블 포맷) — Iceberg · Delta Lake · Hudi</text>
-
-    <rect x="20" y="128" width="600" height="42" rx="10" fill="none" stroke="currentColor" stroke-opacity="0.25"/>
-    <text x="36" y="154">실제 파일 형식 — Parquet · ORC · Avro</text>
-
-    <text x="20" y="196" fill-opacity="0.6">그 아래는 그냥 대용량 저장 서비스(S3 등)입니다.</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",

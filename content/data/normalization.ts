@@ -42,75 +42,9 @@ const blocks: Block[] = [
     ],
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "normalization-before-after",
     caption: "왼쪽에서 전화번호가 세 줄에 중복돼 있습니다. 바꾸려면 세 곳을 다 고쳐야 하고, 하나라도 놓치면 어느 게 맞는지 알 수 없게 됩니다.",
-    svg: `<svg viewBox="0 0 660 306" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="정규화 전후 비교">
-  <g font-family="ui-sans-serif, system-ui">
-    <text x="16" y="22" font-size="12.5" font-weight="600" fill="var(--bad)">한 표에 다 넣었을 때</text>
-
-    <rect x="16" y="34" width="290" height="110" rx="12" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.5"/>
-    <line x1="16" y1="60" x2="306" y2="60" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="32" y="53" font-size="11" font-weight="600" fill="var(--ink-muted)">주문</text>
-    <text x="86" y="53" font-size="11" font-weight="600" fill="var(--ink-muted)">고객</text>
-    <text x="150" y="53" font-size="11" font-weight="600" fill="var(--ink-muted)">전화번호</text>
-    <text x="252" y="53" font-size="11" font-weight="600" fill="var(--ink-muted)">상품</text>
-
-    <rect x="144" y="66" width="94" height="70" rx="7" fill="var(--bad)" fill-opacity="0.12"/>
-
-    <text x="32" y="86" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">#1</text>
-    <text x="86" y="86" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">김철수</text>
-    <text x="150" y="86" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">010-1234</text>
-    <text x="252" y="86" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">사료</text>
-
-    <text x="32" y="108" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">#2</text>
-    <text x="86" y="108" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">김철수</text>
-    <text x="150" y="108" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">010-1234</text>
-    <text x="252" y="108" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">간식</text>
-
-    <text x="32" y="130" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">#3</text>
-    <text x="86" y="130" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">김철수</text>
-    <text x="150" y="130" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">010-1234</text>
-    <text x="252" y="130" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">장난감</text>
-
-    <text x="191" y="164" text-anchor="middle" font-size="12" font-weight="600" fill="var(--bad)">같은 사실이 3번</text>
-
-    <path d="M322 88 L348 88" stroke="var(--ink-dim)" stroke-width="2" fill="none"/>
-    <polygon points="352,88 342,83 342,93" fill="var(--ink-dim)"/>
-
-    <text x="368" y="22" font-size="12.5" font-weight="600" fill="var(--tip)">나눴을 때</text>
-
-    <rect x="368" y="34" width="150" height="66" rx="12" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
-    <line x1="368" y1="60" x2="518" y2="60" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="384" y="53" font-size="11" font-weight="600" fill="var(--ink-muted)">고객</text>
-    <text x="440" y="53" font-size="11" font-weight="600" fill="var(--ink-muted)">전화번호</text>
-    <text x="384" y="86" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">김철수</text>
-    <text x="440" y="86" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">010-1234</text>
-    <text x="532" y="72" font-size="12" font-weight="600" fill="var(--tip)">한 곳에만</text>
-
-    <rect x="368" y="118" width="150" height="110" rx="12" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <line x1="368" y1="144" x2="518" y2="144" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="384" y="137" font-size="11" font-weight="600" fill="var(--ink-muted)">주문</text>
-    <text x="428" y="137" font-size="11" font-weight="600" fill="var(--ink-muted)">고객</text>
-    <text x="480" y="137" font-size="11" font-weight="600" fill="var(--ink-muted)">상품</text>
-    <text x="384" y="170" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">#1</text>
-    <text x="428" y="170" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink-muted)">김철수</text>
-    <text x="480" y="170" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">사료</text>
-    <text x="384" y="192" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">#2</text>
-    <text x="428" y="192" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink-muted)">김철수</text>
-    <text x="480" y="192" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">간식</text>
-    <text x="384" y="214" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">#3</text>
-    <text x="428" y="214" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink-muted)">김철수</text>
-    <text x="480" y="214" font-family="ui-monospace, monospace" font-size="11.5" fill="var(--ink)">장난감</text>
-
-    <path d="M443 100 L443 116" stroke="var(--tip)" stroke-width="2" stroke-dasharray="4 3" fill="none"/>
-    <text x="532" y="160" font-size="11.5" fill="var(--ink-muted)">가리키기만 함</text>
-    <text x="532" y="178" font-size="11.5" fill="var(--ink-dim)">(실제로는 4장에서 볼</text>
-    <text x="532" y="194" font-size="11.5" fill="var(--ink-dim)">고유 번호를 씁니다)</text>
-
-    <text x="16" y="268" font-size="12.5" font-weight="600" fill="var(--ink-muted)">전화번호가 바뀌면?</text>
-    <text x="16" y="292" font-size="12" fill="var(--ink-muted)">왼쪽은 3줄 전부 수정 — 놓치면 진실이 두 개가 됩니다.  ·  오른쪽은 위 표 한 줄만 수정.</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",

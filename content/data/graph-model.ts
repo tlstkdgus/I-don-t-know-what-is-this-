@@ -27,30 +27,9 @@ const blocks: Block[] = [
     md: "실무에서는 속성 그래프 쪽이 압도적으로 많이 쓰입니다. RDF는 **[다음 장의 온톨로지](/data/ontology)와 함께 쓰일 때** 비로소 진가가 드러납니다. \"우리 조직 밖의 다른 곳과도 똑같은 어휘를 공유해야 한다\"는 요구가 없다면 굳이 고를 이유가 크지 않습니다.",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "property-graph-vs-rdf",
     caption: "같은 사실을 표현하는 두 방식. 속성 그래프는 연결선에도 정보를 붙일 수 있고, RDF는 모든 것을 세 조각 문장으로 쪼갭니다.",
-    svg: `<svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="속성 그래프와 RDF 트리플 비교">
-  <g font-family="ui-sans-serif, system-ui" font-size="12" fill="currentColor">
-    <text x="20" y="22" font-size="13" fill-opacity="0.6">속성 그래프</text>
-    <ellipse cx="90" cy="72" rx="58" ry="26" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
-    <text x="60" y="70">앨리스</text>
-    <text x="52" y="86" font-size="10" fill-opacity="0.6">Person</text>
-    <ellipse cx="270" cy="72" rx="58" ry="26" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
-    <text x="244" y="70">주문 #7</text>
-    <text x="240" y="86" font-size="10" fill-opacity="0.6">Order</text>
-    <line x1="148" y1="72" x2="212" y2="72" stroke="currentColor" stroke-opacity="0.5"/>
-    <polygon points="212,72 204,68 204,76" fill="currentColor" fill-opacity="0.5"/>
-    <text x="180" y="60" font-size="10" text-anchor="middle">PLACED</text>
-    <text x="180" y="112" font-size="10" fill-opacity="0.6" text-anchor="middle">at: 2026-07-01</text>
-
-    <line x1="20" y1="140" x2="620" y2="140" stroke="currentColor" stroke-opacity="0.15"/>
-
-    <text x="20" y="170" font-size="13" fill-opacity="0.6">RDF (세 조각 문장들)</text>
-    <text x="20" y="196" font-family="ui-monospace, monospace" font-size="11">:alice   :placed        :order7 .</text>
-    <text x="20" y="216" font-family="ui-monospace, monospace" font-size="11">:order7  :placedAt      "2026-07-01" .</text>
-    <text x="20" y="236" font-family="ui-monospace, monospace" font-size="11">:alice   rdf:type       :Person .</text>
-  </g>
-</svg>`,
   },
 
   { t: "h3", md: "표를 이어붙이는 방식이 그래프에 지는 지점" },

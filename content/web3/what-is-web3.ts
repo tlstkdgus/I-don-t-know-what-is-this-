@@ -46,56 +46,9 @@ const blocks: Block[] = [
     md: "Web3가 그리는 이상은 다릅니다. 내 팔로우 목록과 게시물이 어느 회사의 서버가 아니라 **모두가 함께 보는 공용 장부**(블록체인)에 적혀 있다면, 특정 앱이 나를 차단해도 다른 앱으로 갈아타는 순간 팔로워 목록이 그대로 따라옵니다. 데이터는 애초에 그 앱 소유가 아니었으니까요. Farcaster라는 서비스가 실제로 이렇게 동작합니다 — Warpcast 같은 여러 화면(클라이언트) 중 어디로 접속해도 같은 계정과 팔로워가 유지됩니다.",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "ownership-compare",
     caption: "내 데이터가 회사 울타리 안에 있느냐, 밖에 있느냐 — 이 위치 차이가 전부입니다.",
-    svg: `<svg viewBox="0 0 660 288" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Web2와 Web3의 데이터 소유 구조 비교">
-  <g font-family="ui-sans-serif, system-ui">
-    <text x="20" y="22" font-size="12.5" font-weight="600" fill="var(--bad)">지금 (Web2)</text>
-
-    <rect x="16" y="32" width="284" height="142" rx="14" fill="var(--bad)" fill-opacity="0.06" stroke="var(--bad)" stroke-width="2" stroke-dasharray="6 4"/>
-    <text x="34" y="55" font-size="11" font-weight="600" fill="var(--bad)">회사 울타리</text>
-
-    <rect x="34" y="68" width="118" height="42" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="93" y="94" text-anchor="middle" font-size="12.5" fill="var(--ink)">앱 화면</text>
-
-    <rect x="166" y="68" width="118" height="42" rx="9" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.2"/>
-    <text x="225" y="89" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--ink)">내 데이터</text>
-    <text x="225" y="104" text-anchor="middle" font-size="10" fill="var(--ink-muted)">팔로워 · 게시물</text>
-
-    <line x1="152" y1="89" x2="166" y2="89" stroke="var(--ink-dim)" stroke-width="1.8"/>
-
-    <text x="34" y="136" font-size="11.5" fill="var(--ink-muted)">회사가 계정을 정지하면</text>
-    <text x="34" y="156" font-size="11.5" fill="var(--ink-muted)">울타리 안의 내 데이터에 접근할 수 없습니다.</text>
-
-    <rect x="16" y="196" width="104" height="36" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="68" y="220" text-anchor="middle" font-size="12.5" fill="var(--ink)">나</text>
-    <line x1="120" y1="214" x2="142" y2="214" stroke="var(--ink-dim)" stroke-width="1.8"/>
-    <text x="150" y="219" font-size="11.5" fill="var(--ink-muted)">회사를 거쳐야만 접근</text>
-
-    <line x1="324" y1="26" x2="324" y2="258" stroke="var(--hairline)" stroke-width="1.5"/>
-
-    <text x="348" y="22" font-size="12.5" font-weight="600" fill="var(--tip)">Web3</text>
-
-    <rect x="348" y="32" width="130" height="40" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5" stroke-dasharray="6 4"/>
-    <text x="413" y="57" text-anchor="middle" font-size="12.5" fill="var(--ink)">앱 A</text>
-    <rect x="500" y="32" width="130" height="40" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5" stroke-dasharray="6 4"/>
-    <text x="565" y="57" text-anchor="middle" font-size="12.5" fill="var(--ink)">앱 B</text>
-
-    <path d="M413 72 L460 104 M565 72 L518 104" stroke="var(--ink-dim)" stroke-width="1.8" fill="none"/>
-
-    <rect x="348" y="108" width="282" height="54" rx="12" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
-    <text x="489" y="132" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">공용 장부 (블록체인)</text>
-    <text x="489" y="150" text-anchor="middle" font-size="10.5" fill="var(--tip)">내 데이터 — 어느 앱의 소유도 아님</text>
-
-    <text x="348" y="186" font-size="11.5" fill="var(--ink-muted)">앱 A가 나를 차단해도</text>
-    <text x="348" y="206" font-size="11.5" fill="var(--ink-muted)">앱 B로 갈아타면 데이터가 그대로 따라옵니다.</text>
-
-    <rect x="348" y="228" width="104" height="36" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="400" y="252" text-anchor="middle" font-size="12.5" fill="var(--ink)">나</text>
-    <line x1="452" y1="246" x2="474" y2="246" stroke="var(--tip)" stroke-width="1.8"/>
-    <text x="482" y="251" font-size="11.5" fill="var(--ink-muted)">내 도장으로 직접</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",

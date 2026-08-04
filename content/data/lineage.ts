@@ -23,50 +23,9 @@ const blocks: Block[] = [
     md: "위 비유의 두 방향이 실제로 계보의 두 가지 용도입니다. 각각 이름이 따로 있습니다.",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "lineage-directions",
     caption: "같은 계보 그래프를 거꾸로 보면 원인 추적, 앞으로 보면 영향 범위 파악이 됩니다.",
-    svg: `<svg viewBox="0 0 660 288" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="데이터 계보의 상류 추적과 하류 영향 분석">
-  <defs>
-    <marker id="ln-ar" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
-      <path d="M0,0 L0,7 L9,3.5 z" fill="var(--ink-dim)"/>
-    </marker>
-    <marker id="ln-ar-hi" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
-      <path d="M0,0 L0,7 L9,3.5 z" fill="var(--fe)"/>
-    </marker>
-  </defs>
-  <g font-family="ui-sans-serif, system-ui">
-    <text x="20" y="26" font-size="12.5" font-weight="600" fill="var(--ink-muted)">← 거꾸로 : 원인 추적</text>
-    <text x="640" y="26" text-anchor="end" font-size="12.5" font-weight="600" fill="var(--fe)">앞으로 : 영향 범위 →</text>
-
-    <rect x="16" y="52" width="126" height="46" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="79" y="80" text-anchor="middle" font-size="13" fill="var(--ink)">결제 원본 로그</text>
-
-    <rect x="16" y="118" width="126" height="46" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="79" y="146" text-anchor="middle" font-size="13" fill="var(--ink)">회원 가입 기록</text>
-
-    <rect x="204" y="85" width="140" height="46" rx="10" fill="var(--surface-2)" stroke="var(--fe)" stroke-width="2.5"/>
-    <text x="274" y="107" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">일별 매출 집계</text>
-    <text x="274" y="123" text-anchor="middle" font-size="10.5" fill="var(--fe)">여기가 틀리면</text>
-
-    <rect x="406" y="52" width="132" height="46" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="472" y="80" text-anchor="middle" font-size="13" fill="var(--ink)">경영 대시보드</text>
-
-    <rect x="406" y="118" width="132" height="46" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="472" y="146" text-anchor="middle" font-size="13" fill="var(--ink)">월간 정산 보고서</text>
-
-    <rect x="406" y="184" width="132" height="46" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="472" y="212" text-anchor="middle" font-size="13" fill="var(--ink)">외부 제출 자료</text>
-
-    <path d="M142 75 L196 100" stroke="var(--ink-dim)" stroke-width="1.8" fill="none" marker-end="url(#ln-ar)"/>
-    <path d="M142 141 L196 116" stroke="var(--ink-dim)" stroke-width="1.8" fill="none" marker-end="url(#ln-ar)"/>
-
-    <path d="M344 100 L398 78" stroke="var(--fe)" stroke-width="2.2" fill="none" marker-end="url(#ln-ar-hi)"/>
-    <path d="M344 112 L398 138" stroke="var(--fe)" stroke-width="2.2" fill="none" marker-end="url(#ln-ar-hi)"/>
-    <path d="M472 166 L472 176" stroke="var(--fe)" stroke-width="2.2" fill="none" marker-end="url(#ln-ar-hi)"/>
-
-    <text x="330" y="266" text-anchor="middle" font-size="12" fill="var(--ink-muted)">가운데 하나가 잘못되면, 오른쪽 세 곳이 전부 조용히 함께 틀려집니다.</text>
-  </g>
-</svg>`,
   },
   {
     t: "ul",
@@ -106,24 +65,9 @@ const blocks: Block[] = [
     md: "누가 이 기록을 만들어 주느냐가 이 분야의 핵심 문제입니다. 방법은 셋인데, 셋 다 약점이 뚜렷합니다.",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "lineage-collection",
     caption: "세 가지 수집 방식. 실무에서는 보통 섞어 쓰고, 그래서 계보에 구멍이 생깁니다.",
-    svg: `<svg viewBox="0 0 660 252" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="데이터 계보 수집 방식 세 가지 비교">
-  <g font-family="ui-sans-serif, system-ui">
-    <rect x="16" y="14" width="628" height="68" rx="12" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="36" y="42" font-size="14" font-weight="600" fill="var(--ink)">① 코드를 읽어서 추론</text>
-    <text x="36" y="65" font-size="11.5" fill="var(--ink-muted)">실행하지 않아도 됨 · 동적으로 만들어지는 처리는 놓침</text>
-
-    <rect x="16" y="92" width="628" height="68" rx="12" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
-    <text x="36" y="120" font-size="14" font-weight="600" fill="var(--ink)">② 실행될 때 자동으로 보고받기</text>
-    <text x="36" y="143" font-size="11.5" fill="var(--ink-muted)">실제로 일어난 일이라 정확 · 처리 도구가 지원해야만 가능</text>
-    <text x="624" y="120" text-anchor="end" font-size="11.5" font-weight="600" fill="var(--tip)">표준이 생긴 지점</text>
-
-    <rect x="16" y="170" width="628" height="68" rx="12" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="36" y="198" font-size="14" font-weight="600" fill="var(--ink)">③ 사람이 직접 등록</text>
-    <text x="36" y="221" font-size="11.5" fill="var(--ink-muted)">뭐든 기록 가능 · 그러나 반드시 뒤처짐 — 코드는 바뀌는데 문서는 안 바뀜</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",
@@ -140,45 +84,9 @@ const blocks: Block[] = [
     md: "구조는 단순합니다. 데이터 처리 작업 하나가 돌 때, 그 작업이 **시작(START) · 완료(COMPLETE) · 실패(FAIL) · 진행 중(RUNNING)** 같은 시점마다 \"나는 이런 작업이고, 이 데이터를 읽어서 저 데이터를 만들었다\"는 기록을 정해진 형식으로 내보냅니다. 이 기록을 받아 모으는 쪽은 어떤 도구가 보냈든 똑같이 처리할 수 있습니다.",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "openlineage-shape",
     caption: "형식이 통일되면, 보내는 쪽과 받는 쪽을 서로 자유롭게 갈아끼울 수 있습니다.",
-    svg: `<svg viewBox="0 0 660 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OpenLineage 표준의 구조">
-  <g font-family="ui-sans-serif, system-ui">
-    <text x="90" y="24" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ink-muted)">보내는 쪽 (처리 도구)</text>
-    <rect x="20" y="38" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="90" y="58" text-anchor="middle" font-size="12.5" fill="var(--ink)">Spark</text>
-    <rect x="20" y="76" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="90" y="96" text-anchor="middle" font-size="12.5" fill="var(--ink)">Airflow</text>
-    <rect x="20" y="114" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="90" y="134" text-anchor="middle" font-size="12.5" fill="var(--ink)">dbt</text>
-    <rect x="20" y="152" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="90" y="172" text-anchor="middle" font-size="12.5" fill="var(--ink)">Flink</text>
-
-    <rect x="242" y="70" width="176" height="90" rx="12" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
-    <text x="330" y="103" text-anchor="middle" font-size="15" font-weight="600" fill="var(--ink)">OpenLineage</text>
-    <text x="330" y="123" text-anchor="middle" font-size="11.5" fill="var(--tip)">공통 기록 형식</text>
-    <text x="330" y="142" text-anchor="middle" font-size="10" fill="var(--ink-muted)">START · COMPLETE · FAIL</text>
-
-    <text x="570" y="24" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ink-muted)">받는 쪽 (수집·시각화)</text>
-    <rect x="500" y="60" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="570" y="80" text-anchor="middle" font-size="12.5" fill="var(--ink)">Marquez</text>
-    <rect x="500" y="100" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="570" y="120" text-anchor="middle" font-size="12.5" fill="var(--ink)">카탈로그 제품들</text>
-    <rect x="500" y="140" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="570" y="160" text-anchor="middle" font-size="12.5" fill="var(--ink)">자체 구축 저장소</text>
-
-    <path d="M164 53 L238 104" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
-    <path d="M164 91 L238 110" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
-    <path d="M164 129 L238 118" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
-    <path d="M164 167 L238 126" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
-
-    <path d="M422 106 L496 78" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
-    <path d="M422 115 L496 115" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
-    <path d="M422 124 L496 152" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
-
-    <text x="330" y="220" text-anchor="middle" font-size="12" fill="var(--ink-muted)">한쪽을 바꿔도 반대쪽은 그대로 — 이게 표준을 만드는 이유입니다.</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",
