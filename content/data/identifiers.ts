@@ -59,8 +59,55 @@ const blocks: Block[] = [
     md: "데이터베이스의 \"인덱스\"(색인)는 책 뒤에 붙은 찾아보기 페이지와 같습니다 — 처음부터 끝까지 다 뒤지지 않고도 원하는 항목을 빨리 찾게 해주는데, 이 색인은 항상 정렬된 상태로 유지됩니다. 번호가 순서대로 붙는 방식이면 새 항목은 항상 맨 끝에만 추가되니 간단합니다. 하지만 완전히 무작위인 번호는 매번 색인의 아무 위치에나 끼어듭니다 — 사전에 새 단어를 알파벳 순서에 맞춰 끼워 넣을 때마다 뒷부분 전체를 밀어서 다시 정리해야 하는 것과 비슷한 부담이 매번 생깁니다. 게다가 최근에 추가된 데이터끼리 가까이 모여있지 않게 되어, \"자주 쓰는 걸 손 닿는 곳에 모아두는\" 효율(캐시 활용)도 떨어집니다. 데이터를 대량으로 밀어 넣을 때 이 차이가 체감될 정도로 큽니다.",
   },
   {
+    t: "figure",
+    caption: "색인은 항상 정렬된 상태로 유지됩니다. 새 항목이 어디에 끼어드느냐가 성능을 가릅니다.",
+    svg: `<svg viewBox="0 0 640 246" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="순차 번호와 무작위 번호의 색인 삽입 차이">
+  <g font-family="ui-sans-serif, system-ui" font-size="10.5" fill="currentColor">
+    <text x="16" y="20" font-size="11.5" fill-opacity="0.62">순서대로 붙는 번호</text>
+
+    <rect x="16" y="32" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
+    <text x="44" y="49" text-anchor="middle" font-family="ui-monospace, monospace">101</text>
+    <rect x="78" y="32" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
+    <text x="106" y="49" text-anchor="middle" font-family="ui-monospace, monospace">102</text>
+    <rect x="140" y="32" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
+    <text x="168" y="49" text-anchor="middle" font-family="ui-monospace, monospace">103</text>
+    <rect x="202" y="32" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
+    <text x="230" y="49" text-anchor="middle" font-family="ui-monospace, monospace">104</text>
+    <rect x="264" y="32" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.7"/>
+    <text x="292" y="49" text-anchor="middle" font-family="ui-monospace, monospace">105</text>
+
+    <line x1="292" y1="70" x2="292" y2="86" stroke="currentColor" stroke-opacity="0.5"/>
+    <polygon points="292,66 288,74 296,74" fill="currentColor" fill-opacity="0.5"/>
+    <text x="330" y="80" font-size="10.5" fill-opacity="0.62">새 항목은 항상 맨 끝에만 추가</text>
+    <text x="330" y="97" font-size="10" fill-opacity="0.45">건드리는 부분이 항상 한 곳 — 빠릅니다</text>
+
+    <line x1="16" y1="118" x2="624" y2="118" stroke="currentColor" stroke-opacity="0.15"/>
+
+    <text x="16" y="142" font-size="11.5" fill-opacity="0.62">완전 무작위 번호</text>
+
+    <rect x="16" y="154" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
+    <text x="44" y="171" text-anchor="middle" font-family="ui-monospace, monospace">1a3f</text>
+    <rect x="78" y="154" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.7"/>
+    <text x="106" y="171" text-anchor="middle" font-family="ui-monospace, monospace">4b2c</text>
+    <rect x="140" y="154" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
+    <text x="168" y="171" text-anchor="middle" font-family="ui-monospace, monospace">7d81</text>
+    <rect x="202" y="154" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
+    <text x="230" y="171" text-anchor="middle" font-family="ui-monospace, monospace">9e04</text>
+    <rect x="264" y="154" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
+    <text x="292" y="171" text-anchor="middle" font-family="ui-monospace, monospace">c5f7</text>
+
+    <line x1="106" y1="192" x2="106" y2="208" stroke="currentColor" stroke-opacity="0.5"/>
+    <polygon points="106,188 102,196 110,196" fill="currentColor" fill-opacity="0.5"/>
+    <text x="330" y="202" font-size="10.5" fill-opacity="0.62">새 항목이 매번 한가운데 끼어듦</text>
+    <text x="330" y="219" font-size="10" fill-opacity="0.45">뒤쪽을 밀어 정리해야 하고, 최근 데이터가 흩어짐</text>
+
+    <text x="16" y="238" font-size="10" fill-opacity="0.45">사전에 새 단어를 알파벳 순서에 맞춰 끼워 넣을 때마다 뒷장을 다시 정리해야 하는 상황과 같습니다.</text>
+  </g>
+</svg>`,
+  },
+  {
     t: "p",
-    md: "해법은 **시간 순서대로 정렬되는 무작위 번호**를 쓰는 것입니다.",
+    md: "해법은 **시간 순서대로 정렬되는 무작위 번호**를 쓰는 것입니다. 앞부분에 시각 정보가 들어가 있으면, 최근에 만들어진 번호일수록 뒤쪽에 정렬되므로 위 그림의 첫 번째 경우처럼 동작합니다.",
   },
   {
     t: "table",

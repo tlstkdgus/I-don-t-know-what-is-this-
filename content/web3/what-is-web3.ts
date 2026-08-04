@@ -46,6 +46,59 @@ const blocks: Block[] = [
     md: "Web3가 그리는 이상은 다릅니다. 내 팔로우 목록과 게시물이 어느 회사의 서버가 아니라 **모두가 함께 보는 공용 장부**(블록체인)에 적혀 있다면, 특정 앱이 나를 차단해도 다른 앱으로 갈아타는 순간 팔로워 목록이 그대로 따라옵니다. 데이터는 애초에 그 앱 소유가 아니었으니까요. Farcaster라는 서비스가 실제로 이렇게 동작합니다 — Warpcast 같은 여러 화면(클라이언트) 중 어디로 접속해도 같은 계정과 팔로워가 유지됩니다.",
   },
   {
+    t: "figure",
+    caption: "내 데이터가 회사 울타리 안에 있느냐, 밖에 있느냐 — 이 위치 차이가 전부입니다.",
+    svg: `<svg viewBox="0 0 640 262" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Web2와 Web3의 데이터 소유 구조 비교">
+  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="currentColor">
+    <text x="20" y="20" font-size="11.5" fill-opacity="0.62">지금 (Web2)</text>
+
+    <rect x="20" y="32" width="264" height="132" rx="10" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="5 3"/>
+    <text x="36" y="52" font-size="10" fill-opacity="0.55">회사 울타리</text>
+
+    <rect x="44" y="66" width="98" height="34" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
+    <text x="93" y="87" text-anchor="middle" font-size="10.5">앱 화면</text>
+
+    <rect x="162" y="66" width="98" height="34" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.55"/>
+    <text x="211" y="82" text-anchor="middle" font-size="10.5">내 데이터</text>
+    <text x="211" y="95" text-anchor="middle" font-size="9" fill-opacity="0.55">팔로워 · 게시물</text>
+
+    <line x1="142" y1="83" x2="158" y2="83" stroke="currentColor" stroke-opacity="0.35"/>
+
+    <text x="44" y="126" font-size="10" fill-opacity="0.6">회사가 계정을 정지하면</text>
+    <text x="44" y="144" font-size="10" fill-opacity="0.6">울타리 안의 내 데이터에 접근할 수 없습니다.</text>
+
+    <rect x="20" y="182" width="98" height="30" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.3"/>
+    <text x="69" y="201" text-anchor="middle" font-size="10.5" fill-opacity="0.6">나</text>
+    <line x1="118" y1="197" x2="140" y2="197" stroke="currentColor" stroke-opacity="0.3"/>
+    <text x="150" y="201" font-size="10" fill-opacity="0.5">회사를 거쳐야만 접근 가능</text>
+
+    <line x1="310" y1="24" x2="310" y2="240" stroke="currentColor" stroke-opacity="0.15"/>
+
+    <text x="336" y="20" font-size="11.5" fill-opacity="0.62">Web3</text>
+
+    <rect x="336" y="32" width="118" height="34" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-dasharray="5 3"/>
+    <text x="395" y="53" text-anchor="middle" font-size="10.5">앱 A</text>
+    <rect x="470" y="32" width="118" height="34" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-dasharray="5 3"/>
+    <text x="529" y="53" text-anchor="middle" font-size="10.5">앱 B</text>
+
+    <line x1="395" y1="66" x2="440" y2="104" stroke="currentColor" stroke-opacity="0.35"/>
+    <line x1="529" y1="66" x2="484" y2="104" stroke="currentColor" stroke-opacity="0.35"/>
+
+    <rect x="336" y="108" width="252" height="46" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.65"/>
+    <text x="462" y="128" text-anchor="middle" font-size="11">공용 장부 (블록체인)</text>
+    <text x="462" y="145" text-anchor="middle" font-size="9" fill-opacity="0.6">내 데이터 — 어느 앱의 소유도 아님</text>
+
+    <text x="336" y="176" font-size="10" fill-opacity="0.6">앱 A가 나를 차단해도</text>
+    <text x="336" y="194" font-size="10" fill-opacity="0.6">앱 B로 갈아타면 데이터가 그대로 따라옵니다.</text>
+
+    <rect x="336" y="212" width="98" height="30" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.3"/>
+    <text x="385" y="231" text-anchor="middle" font-size="10.5" fill-opacity="0.6">나</text>
+    <line x1="434" y1="227" x2="456" y2="227" stroke="currentColor" stroke-opacity="0.3"/>
+    <text x="466" y="231" font-size="10" fill-opacity="0.5">내 도장(개인키)으로 직접</text>
+  </g>
+</svg>`,
+  },
+  {
     t: "p",
     md: "다만 **이게 항상 지켜지지는 않습니다.** \"Web3\"라는 이름을 붙였어도 속을 열어보면 여전히 한 회사의 서버에 의존하는 경우가 많습니다. 이 문제는 [13장 리스크와 비판론](/web3/risk)에서 정직하게 다룹니다.",
   },

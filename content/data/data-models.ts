@@ -56,6 +56,62 @@ const blocks: Block[] = [
 
   { t: "h3", md: "그래도 저마다 확실히 이기는 좁은 영역이 있습니다" },
   {
+    t: "figure",
+    caption: "같은 정보라도 담는 모양이 다릅니다. 모양이 곧 \"무엇을 빨리 할 수 있는가\"를 결정합니다.",
+    svg: `<svg viewBox="0 0 640 216" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="다섯 가지 데이터 모델의 구조 비교">
+  <g font-family="ui-sans-serif, system-ui" font-size="10.5" fill="currentColor">
+    <text x="62" y="18" text-anchor="middle" font-size="11">관계형</text>
+    <rect x="16" y="30" width="92" height="66" rx="4" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+    <line x1="16" y1="46" x2="108" y2="46" stroke="currentColor" stroke-opacity="0.35"/>
+    <line x1="16" y1="63" x2="108" y2="63" stroke="currentColor" stroke-opacity="0.2"/>
+    <line x1="16" y1="80" x2="108" y2="80" stroke="currentColor" stroke-opacity="0.2"/>
+    <line x1="47" y1="30" x2="47" y2="96" stroke="currentColor" stroke-opacity="0.2"/>
+    <line x1="78" y1="30" x2="78" y2="96" stroke="currentColor" stroke-opacity="0.2"/>
+    <text x="62" y="116" text-anchor="middle" font-size="9.5" fill-opacity="0.55">줄과 칸이 있는 표</text>
+
+    <text x="188" y="18" text-anchor="middle" font-size="11">문서형</text>
+    <rect x="146" y="30" width="84" height="66" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+    <text x="156" y="48" font-family="ui-monospace, monospace" font-size="9">{ 이름: …</text>
+    <text x="164" y="64" font-family="ui-monospace, monospace" font-size="9">주소: {…}</text>
+    <text x="164" y="80" font-family="ui-monospace, monospace" font-size="9">주문: [ … ]</text>
+    <text x="188" y="116" text-anchor="middle" font-size="9.5" fill-opacity="0.55">한 덩어리로 통째</text>
+
+    <text x="318" y="18" text-anchor="middle" font-size="11">컬럼형</text>
+    <rect x="278" y="30" width="22" height="66" rx="3" fill="currentColor" fill-opacity="0.18"/>
+    <rect x="307" y="30" width="22" height="66" rx="3" fill="currentColor" fill-opacity="0.32"/>
+    <rect x="336" y="30" width="22" height="66" rx="3" fill="currentColor" fill-opacity="0.18"/>
+    <text x="318" y="116" text-anchor="middle" font-size="9.5" fill-opacity="0.55">칸 단위로 모아둠</text>
+
+    <text x="450" y="18" text-anchor="middle" font-size="11">그래프</text>
+    <circle cx="424" cy="44" r="9" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+    <circle cx="476" cy="44" r="9" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+    <circle cx="424" cy="86" r="9" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+    <circle cx="476" cy="86" r="9" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+    <line x1="433" y1="44" x2="467" y2="44" stroke="currentColor" stroke-opacity="0.35"/>
+    <line x1="424" y1="53" x2="424" y2="77" stroke="currentColor" stroke-opacity="0.35"/>
+    <line x1="431" y1="51" x2="469" y2="79" stroke="currentColor" stroke-opacity="0.35"/>
+    <line x1="476" y1="53" x2="476" y2="77" stroke="currentColor" stroke-opacity="0.35"/>
+    <text x="450" y="116" text-anchor="middle" font-size="9.5" fill-opacity="0.55">점과 선의 연결</text>
+
+    <text x="576" y="18" text-anchor="middle" font-size="11">키-값</text>
+    <rect x="524" y="34" width="46" height="20" rx="4" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+    <text x="547" y="48" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8.5">key</text>
+    <line x1="570" y1="44" x2="586" y2="44" stroke="currentColor" stroke-opacity="0.35"/>
+    <rect x="586" y="34" width="38" height="20" rx="4" fill="currentColor" fill-opacity="0.2"/>
+    <rect x="524" y="62" width="46" height="20" rx="4" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+    <text x="547" y="76" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8.5">key</text>
+    <line x1="570" y1="72" x2="586" y2="72" stroke="currentColor" stroke-opacity="0.35"/>
+    <rect x="586" y="62" width="38" height="20" rx="4" fill="currentColor" fill-opacity="0.2"/>
+    <text x="576" y="116" text-anchor="middle" font-size="9.5" fill-opacity="0.55">이름표 하나로 꺼냄</text>
+
+    <line x1="16" y1="140" x2="624" y2="140" stroke="currentColor" stroke-opacity="0.15"/>
+    <text x="16" y="164" font-size="10.5" fill-opacity="0.62">모양이 다르면 잘하는 일도 달라집니다.</text>
+    <text x="16" y="184" font-size="10" fill-opacity="0.48">표는 조건 검색에, 문서는 통째로 읽기에, 컬럼형은 한 칸만 전부 훑는 통계에,</text>
+    <text x="16" y="202" font-size="10" fill-opacity="0.48">그래프는 연결을 따라가기에, 키-값은 정해진 이름표 하나로 즉시 꺼내는 데 강합니다.</text>
+  </g>
+</svg>`,
+  },
+  {
     t: "table",
     head: ["방식", "잘하는 것", "못하는 것"],
     rows: [

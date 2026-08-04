@@ -66,6 +66,34 @@ const blocks: Block[] = [
              ↑ gasUsed      ↑ 사라짐(소각)  ↑ 검증자가 받음`,
   },
   {
+    t: "figure",
+    caption: "낸 수수료가 통째로 누군가에게 가는 게 아닙니다. 대부분은 아예 사라집니다.",
+    svg: `<svg viewBox="0 0 640 236" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="이더리움 수수료의 구성과 소각">
+  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="currentColor">
+    <text x="20" y="22" font-size="11.5" fill-opacity="0.62">내가 낸 수수료</text>
+    <rect x="20" y="32" width="420" height="40" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.55"/>
+    <text x="230" y="57" text-anchor="middle" font-size="11.5">작업량 × (기본 요금 + 팁)</text>
+
+    <line x1="150" y1="72" x2="150" y2="100" stroke="currentColor" stroke-opacity="0.35"/>
+    <line x1="360" y1="72" x2="360" y2="100" stroke="currentColor" stroke-opacity="0.35"/>
+    <polygon points="150,104 146,96 154,96" fill="currentColor" fill-opacity="0.35"/>
+    <polygon points="360,104 356,96 364,96" fill="currentColor" fill-opacity="0.35"/>
+
+    <rect x="20" y="108" width="260" height="56" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.5"/>
+    <text x="150" y="130" text-anchor="middle" font-size="11.5">기본 요금 → 소각</text>
+    <text x="150" y="148" text-anchor="middle" font-size="9.5" fill-opacity="0.58">아무도 받지 않고 그냥 없어짐</text>
+
+    <rect x="300" y="108" width="140" height="56" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
+    <text x="370" y="130" text-anchor="middle" font-size="11.5">팁 → 검증자</text>
+    <text x="370" y="148" text-anchor="middle" font-size="9.5" fill-opacity="0.58">처리해준 사람 몫</text>
+
+    <text x="20" y="192" font-size="10.5" fill-opacity="0.62">기본 요금은 네트워크가 붐빌수록 자동으로 오르고, 한산하면 내려갑니다.</text>
+    <text x="20" y="212" font-size="10" fill-opacity="0.48">걷힌 기본 요금이 사라지므로, 네트워크를 많이 쓸수록 전체 코인 수량이 조금씩 줄어듭니다.</text>
+    <text x="20" y="230" font-size="10" fill-opacity="0.4">고속도로 통행료의 일부를 한국은행이 소각해서 시중 통화량을 줄이는 상황과 비슷합니다.</text>
+  </g>
+</svg>`,
+  },
+  {
     t: "p",
     md: "이 중 \"기본 요금\"은 네트워크가 얼마나 붐비는지에 따라 자동으로 오르내리고, 걷힌 만큼 그대로 **사라집니다**(2021년부터 적용된 규칙입니다). 통행료 일부가 아예 폐기되는 셈이라, 네트워크를 많이 쓸수록 이더리움 전체 코인 수량이 조금씩 줄어드는 효과가 있습니다.",
   },

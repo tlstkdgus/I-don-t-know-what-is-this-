@@ -42,6 +42,76 @@ const blocks: Block[] = [
     ],
   },
   {
+    t: "figure",
+    caption: "왼쪽에서 전화번호가 세 줄에 중복돼 있습니다. 바꾸려면 세 곳을 다 고쳐야 하고, 하나라도 놓치면 어느 게 맞는지 알 수 없게 됩니다.",
+    svg: `<svg viewBox="0 0 640 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="정규화 전후 비교">
+  <g font-family="ui-sans-serif, system-ui" font-size="10.5" fill="currentColor">
+    <text x="16" y="18" font-size="11.5" fill-opacity="0.62">한 표에 다 넣었을 때</text>
+
+    <rect x="16" y="28" width="286" height="96" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.3"/>
+    <line x1="16" y1="50" x2="302" y2="50" stroke="currentColor" stroke-opacity="0.25"/>
+    <text x="28" y="44" font-size="10" fill-opacity="0.55">주문</text>
+    <text x="86" y="44" font-size="10" fill-opacity="0.55">고객</text>
+    <text x="150" y="44" font-size="10" fill-opacity="0.55">전화번호</text>
+    <text x="248" y="44" font-size="10" fill-opacity="0.55">상품</text>
+
+    <text x="28" y="70" font-family="ui-monospace, monospace" font-size="10">#1</text>
+    <text x="86" y="70" font-family="ui-monospace, monospace" font-size="10">김철수</text>
+    <text x="150" y="70" font-family="ui-monospace, monospace" font-size="10">010-1234</text>
+    <text x="248" y="70" font-family="ui-monospace, monospace" font-size="10">사료</text>
+
+    <text x="28" y="90" font-family="ui-monospace, monospace" font-size="10">#2</text>
+    <text x="86" y="90" font-family="ui-monospace, monospace" font-size="10">김철수</text>
+    <text x="150" y="90" font-family="ui-monospace, monospace" font-size="10">010-1234</text>
+    <text x="248" y="90" font-family="ui-monospace, monospace" font-size="10">간식</text>
+
+    <text x="28" y="110" font-family="ui-monospace, monospace" font-size="10">#3</text>
+    <text x="86" y="110" font-family="ui-monospace, monospace" font-size="10">김철수</text>
+    <text x="150" y="110" font-family="ui-monospace, monospace" font-size="10">010-1234</text>
+    <text x="248" y="110" font-family="ui-monospace, monospace" font-size="10">장난감</text>
+
+    <rect x="144" y="58" width="70" height="58" rx="4" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="3 2"/>
+    <text x="179" y="140" text-anchor="middle" font-size="10" fill-opacity="0.62">같은 사실이 3번</text>
+
+    <line x1="318" y1="76" x2="342" y2="76" stroke="currentColor" stroke-opacity="0.45"/>
+    <polygon points="342,76 334,72 334,80" fill="currentColor" fill-opacity="0.45"/>
+
+    <text x="360" y="18" font-size="11.5" fill-opacity="0.62">나눴을 때</text>
+
+    <rect x="360" y="28" width="128" height="76" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+    <line x1="360" y1="50" x2="488" y2="50" stroke="currentColor" stroke-opacity="0.25"/>
+    <text x="372" y="44" font-size="10" fill-opacity="0.55">고객</text>
+    <text x="420" y="44" font-size="10" fill-opacity="0.55">전화번호</text>
+    <text x="372" y="70" font-family="ui-monospace, monospace" font-size="10">김철수</text>
+    <text x="420" y="70" font-family="ui-monospace, monospace" font-size="10">010-1234</text>
+    <text x="424" y="92" font-size="9.5" fill-opacity="0.6">한 곳에만</text>
+
+    <rect x="360" y="118" width="128" height="96" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.3"/>
+    <line x1="360" y1="140" x2="488" y2="140" stroke="currentColor" stroke-opacity="0.25"/>
+    <text x="372" y="134" font-size="10" fill-opacity="0.55">주문</text>
+    <text x="410" y="134" font-size="10" fill-opacity="0.55">고객</text>
+    <text x="452" y="134" font-size="10" fill-opacity="0.55">상품</text>
+    <text x="372" y="160" font-family="ui-monospace, monospace" font-size="10">#1</text>
+    <text x="410" y="160" font-family="ui-monospace, monospace" font-size="10">김철수</text>
+    <text x="452" y="160" font-family="ui-monospace, monospace" font-size="10">사료</text>
+    <text x="372" y="180" font-family="ui-monospace, monospace" font-size="10">#2</text>
+    <text x="410" y="180" font-family="ui-monospace, monospace" font-size="10">김철수</text>
+    <text x="452" y="180" font-family="ui-monospace, monospace" font-size="10">간식</text>
+    <text x="372" y="200" font-family="ui-monospace, monospace" font-size="10">#3</text>
+    <text x="410" y="200" font-family="ui-monospace, monospace" font-size="10">김철수</text>
+    <text x="452" y="200" font-family="ui-monospace, monospace" font-size="10">장난감</text>
+
+    <line x1="424" y1="104" x2="424" y2="116" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3 2"/>
+    <text x="502" y="128" font-size="10" fill-opacity="0.6">이름으로 가리키기만</text>
+    <text x="502" y="146" font-size="10" fill-opacity="0.6">(실제로는 4장에서 볼</text>
+    <text x="502" y="164" font-size="10" fill-opacity="0.6">고유 번호를 씁니다)</text>
+
+    <text x="16" y="248" font-size="10.5" fill-opacity="0.62">전화번호가 바뀌면?</text>
+    <text x="16" y="268" font-size="10" fill-opacity="0.48">왼쪽: 3줄 전부 수정 — 놓치면 진실이 두 개가 됨   ·   오른쪽: 위 표 한 줄만 수정</text>
+  </g>
+</svg>`,
+  },
+  {
     t: "p",
     md: "정규화는 이 세 가지 문제를 순서대로 없애는 절차일 뿐입니다. 외울 대상이 아니라, 뭐가 문제인지 짚어내는 진단 도구에 가깝습니다.",
   },

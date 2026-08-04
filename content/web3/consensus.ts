@@ -79,6 +79,41 @@ const blocks: Block[] = [
     md: "이더리움을 만든 비탈릭 부테린이 정리한 문제입니다. 블록체인이 갖고 싶어하는 성질 세 가지 — **탈중앙화**(소수가 아니라 많은 사람이 나눠 운영해서, 특정 회사가 마음대로 못 하게 하는 정도), **보안**(공격당해도 안전한 정도), **확장성**(얼마나 많은 사람이 동시에 빠르고 저렴하게 쓸 수 있는가) — 이 세 가지를 동시에 셋 다 최고 수준으로 만들기가 매우 어렵다는 것입니다. 보통 둘을 얻으면 하나를 희생합니다.",
   },
   {
+    t: "figure",
+    caption: "세 꼭짓점을 동시에 다 잡기가 어렵습니다. 각 체인은 삼각형 안의 서로 다른 위치를 택한 셈입니다.",
+    svg: `<svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="블록체인 트릴레마 삼각형">
+  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="currentColor">
+    <polygon points="320,44 508,244 132,244" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
+
+    <circle cx="320" cy="44" r="4" fill="currentColor" fill-opacity="0.7"/>
+    <text x="320" y="30" text-anchor="middle" font-size="12">탈중앙화</text>
+    <text x="320" y="16" text-anchor="middle" font-size="9.5" fill-opacity="0.55">많은 사람이 나눠 운영</text>
+
+    <circle cx="132" cy="244" r="4" fill="currentColor" fill-opacity="0.7"/>
+    <text x="112" y="264" text-anchor="middle" font-size="12">보안</text>
+    <text x="112" y="278" text-anchor="middle" font-size="9.5" fill-opacity="0.55">공격에 견딤</text>
+
+    <circle cx="508" cy="244" r="4" fill="currentColor" fill-opacity="0.7"/>
+    <text x="528" y="264" text-anchor="middle" font-size="12">확장성</text>
+    <text x="528" y="278" text-anchor="middle" font-size="9.5" fill-opacity="0.55">빠르고 저렴하게</text>
+
+    <circle cx="226" cy="150" r="5" fill="currentColor" fill-opacity="0.85"/>
+    <text x="150" y="140" font-size="10.5">비트코인 · 이더리움</text>
+    <text x="150" y="155" font-size="9.5" fill-opacity="0.55">확장성을 내줌</text>
+
+    <circle cx="414" cy="150" r="5" fill="currentColor" fill-opacity="0.85"/>
+    <text x="430" y="140" font-size="10.5">솔라나 등 고성능 체인</text>
+    <text x="430" y="155" font-size="9.5" fill-opacity="0.55">탈중앙화를 일부 내줌</text>
+
+    <circle cx="320" cy="205" r="5" fill="currentColor" fill-opacity="0.85"/>
+    <text x="320" y="226" text-anchor="middle" font-size="10.5">L2 롤업</text>
+    <text x="320" y="240" text-anchor="middle" font-size="9.5" fill-opacity="0.55">보안은 빌리고 처리만 밖에서</text>
+
+    <text x="320" y="296" text-anchor="middle" font-size="10" fill-opacity="0.45">꼭짓점에 가까울수록 그 성질이 강합니다. 셋 다 꼭짓점에 놓는 방법은 아직 없습니다.</text>
+  </g>
+</svg>`,
+  },
+  {
     t: "grid",
     cols: 3,
     items: [
