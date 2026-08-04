@@ -273,14 +273,15 @@ async function renderBlock(b: Block, key: number): Promise<React.ReactNode> {
 
     case "figure":
       return (
-        <figure key={key} className="mt-8">
+        <figure key={key} className="mt-8 overflow-hidden rounded-[20px] border border-hairline bg-surface-1">
           <div
-            className="overflow-x-auto rounded-[20px] border border-hairline bg-surface-1 p-5 [&_svg]:h-auto [&_svg]:max-w-full"
+            className="overflow-x-auto p-6 [&_svg]:h-auto [&_svg]:max-w-full"
             dangerouslySetInnerHTML={{ __html: b.svg }}
           />
           {b.caption && (
-            <figcaption className="mt-3 text-caption text-ink-dim">
-              {b.caption}
+            <figcaption className="flex gap-2.5 border-t border-hairline px-6 py-3.5 text-caption leading-[1.6] text-ink-muted">
+              <span className="shrink-0 font-medium text-ink-dim">그림</span>
+              <span>{b.caption}</span>
             </figcaption>
           )}
         </figure>

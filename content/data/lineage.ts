@@ -25,45 +25,46 @@ const blocks: Block[] = [
   {
     t: "figure",
     caption: "같은 계보 그래프를 거꾸로 보면 원인 추적, 앞으로 보면 영향 범위 파악이 됩니다.",
-    svg: `<svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="데이터 계보의 상류 추적과 하류 영향 분석">
-  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="currentColor">
-    <rect x="14" y="70" width="104" height="34" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="66" y="91" text-anchor="middle" font-size="11">결제 원본 로그</text>
+    svg: `<svg viewBox="0 0 660 288" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="데이터 계보의 상류 추적과 하류 영향 분석">
+  <defs>
+    <marker id="ln-ar" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="var(--ink-dim)"/>
+    </marker>
+    <marker id="ln-ar-hi" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="var(--fe)"/>
+    </marker>
+  </defs>
+  <g font-family="ui-sans-serif, system-ui">
+    <text x="20" y="26" font-size="12.5" font-weight="600" fill="var(--ink-muted)">← 거꾸로 : 원인 추적</text>
+    <text x="640" y="26" text-anchor="end" font-size="12.5" font-weight="600" fill="var(--fe)">앞으로 : 영향 범위 →</text>
 
-    <rect x="14" y="126" width="104" height="34" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="66" y="147" text-anchor="middle" font-size="11">회원 가입 기록</text>
+    <rect x="16" y="52" width="126" height="46" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="79" y="80" text-anchor="middle" font-size="13" fill="var(--ink)">결제 원본 로그</text>
 
-    <rect x="176" y="98" width="104" height="34" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.55"/>
-    <text x="228" y="119" text-anchor="middle" font-size="11">일별 매출 집계</text>
+    <rect x="16" y="118" width="126" height="46" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="79" y="146" text-anchor="middle" font-size="13" fill="var(--ink)">회원 가입 기록</text>
 
-    <rect x="338" y="70" width="112" height="34" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="394" y="91" text-anchor="middle" font-size="11">경영 대시보드</text>
+    <rect x="204" y="85" width="140" height="46" rx="10" fill="var(--surface-2)" stroke="var(--fe)" stroke-width="2.5"/>
+    <text x="274" y="107" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">일별 매출 집계</text>
+    <text x="274" y="123" text-anchor="middle" font-size="10.5" fill="var(--fe)">여기가 틀리면</text>
 
-    <rect x="338" y="126" width="112" height="34" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="394" y="147" text-anchor="middle" font-size="11">월간 정산 보고서</text>
+    <rect x="406" y="52" width="132" height="46" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="472" y="80" text-anchor="middle" font-size="13" fill="var(--ink)">경영 대시보드</text>
 
-    <rect x="506" y="98" width="112" height="34" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="562" y="119" text-anchor="middle" font-size="11">외부 제출 자료</text>
+    <rect x="406" y="118" width="132" height="46" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="472" y="146" text-anchor="middle" font-size="13" fill="var(--ink)">월간 정산 보고서</text>
 
-    <line x1="118" y1="87" x2="170" y2="110" stroke="currentColor" stroke-opacity="0.4"/>
-    <line x1="118" y1="143" x2="170" y2="121" stroke="currentColor" stroke-opacity="0.4"/>
-    <line x1="280" y1="110" x2="332" y2="87" stroke="currentColor" stroke-opacity="0.4"/>
-    <line x1="280" y1="121" x2="332" y2="143" stroke="currentColor" stroke-opacity="0.4"/>
-    <line x1="450" y1="143" x2="500" y2="121" stroke="currentColor" stroke-opacity="0.4"/>
+    <rect x="406" y="184" width="132" height="46" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="472" y="212" text-anchor="middle" font-size="13" fill="var(--ink)">외부 제출 자료</text>
 
-    <polygon points="170,110 162,106 162,114" fill="currentColor" fill-opacity="0.4"/>
-    <polygon points="170,121 162,117 162,125" fill="currentColor" fill-opacity="0.4"/>
-    <polygon points="332,87 324,83 324,91" fill="currentColor" fill-opacity="0.4"/>
-    <polygon points="332,143 324,139 324,147" fill="currentColor" fill-opacity="0.4"/>
-    <polygon points="500,121 492,117 492,125" fill="currentColor" fill-opacity="0.4"/>
+    <path d="M142 75 L196 100" stroke="var(--ink-dim)" stroke-width="1.8" fill="none" marker-end="url(#ln-ar)"/>
+    <path d="M142 141 L196 116" stroke="var(--ink-dim)" stroke-width="1.8" fill="none" marker-end="url(#ln-ar)"/>
 
-    <text x="228" y="42" text-anchor="middle" font-size="11" fill-opacity="0.75">← 거꾸로: "이 숫자 어디서 왔지?"</text>
-    <text x="228" y="58" text-anchor="middle" font-size="10" fill-opacity="0.5">원인 추적 (상류)</text>
+    <path d="M344 100 L398 78" stroke="var(--fe)" stroke-width="2.2" fill="none" marker-end="url(#ln-ar-hi)"/>
+    <path d="M344 112 L398 138" stroke="var(--fe)" stroke-width="2.2" fill="none" marker-end="url(#ln-ar-hi)"/>
+    <path d="M472 166 L472 176" stroke="var(--fe)" stroke-width="2.2" fill="none" marker-end="url(#ln-ar-hi)"/>
 
-    <text x="450" y="200" text-anchor="middle" font-size="11" fill-opacity="0.75">앞으로: "이거 고치면 뭐가 깨지지?" →</text>
-    <text x="450" y="216" text-anchor="middle" font-size="10" fill-opacity="0.5">영향 범위 파악 (하류)</text>
-
-    <text x="20" y="240" font-size="10" fill-opacity="0.5">가운데 표 하나가 잘못되면, 오른쪽 세 곳이 전부 조용히 함께 틀려집니다.</text>
+    <text x="330" y="266" text-anchor="middle" font-size="12" fill="var(--ink-muted)">가운데 하나가 잘못되면, 오른쪽 세 곳이 전부 조용히 함께 틀려집니다.</text>
   </g>
 </svg>`,
   },
@@ -107,21 +108,20 @@ const blocks: Block[] = [
   {
     t: "figure",
     caption: "세 가지 수집 방식. 실무에서는 보통 섞어 쓰고, 그래서 계보에 구멍이 생깁니다.",
-    svg: `<svg viewBox="0 0 640 246" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="데이터 계보 수집 방식 세 가지 비교">
-  <g font-family="ui-sans-serif, system-ui" font-size="12" fill="currentColor">
-    <rect x="16" y="16" width="608" height="62" rx="9" fill="none" stroke="currentColor" stroke-opacity="0.3"/>
-    <text x="32" y="40" font-size="12.5">① 코드를 읽어서 추론</text>
-    <text x="32" y="60" font-size="10.5" fill-opacity="0.62">처리 쿼리문을 파싱해 관계를 뽑아냄 · 실행 안 해도 됨 · 동적으로 만들어지는 쿼리는 놓침</text>
+    svg: `<svg viewBox="0 0 660 252" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="데이터 계보 수집 방식 세 가지 비교">
+  <g font-family="ui-sans-serif, system-ui">
+    <rect x="16" y="14" width="628" height="68" rx="12" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="36" y="42" font-size="14" font-weight="600" fill="var(--ink)">① 코드를 읽어서 추론</text>
+    <text x="36" y="65" font-size="11.5" fill="var(--ink-muted)">실행하지 않아도 됨 · 동적으로 만들어지는 처리는 놓침</text>
 
-    <rect x="16" y="90" width="608" height="62" rx="9" fill="none" stroke="currentColor" stroke-opacity="0.55"/>
-    <text x="32" y="114" font-size="12.5">② 실행될 때 자동으로 보고받기</text>
-    <text x="32" y="134" font-size="10.5" fill-opacity="0.62">처리 도구가 작업하며 스스로 기록을 남김 · 실제로 일어난 일이라 정확 · 도구가 지원해야만 가능</text>
+    <rect x="16" y="92" width="628" height="68" rx="12" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
+    <text x="36" y="120" font-size="14" font-weight="600" fill="var(--ink)">② 실행될 때 자동으로 보고받기</text>
+    <text x="36" y="143" font-size="11.5" fill="var(--ink-muted)">실제로 일어난 일이라 정확 · 처리 도구가 지원해야만 가능</text>
+    <text x="624" y="120" text-anchor="end" font-size="11.5" font-weight="600" fill="var(--tip)">표준이 생긴 지점</text>
 
-    <rect x="16" y="164" width="608" height="62" rx="9" fill="none" stroke="currentColor" stroke-opacity="0.3"/>
-    <text x="32" y="188" font-size="12.5">③ 사람이 직접 등록</text>
-    <text x="32" y="208" font-size="10.5" fill-opacity="0.62">뭐든 기록 가능 · 그러나 반드시 뒤처짐 — 코드는 바뀌는데 문서는 안 바뀜</text>
-
-    <text x="608" y="121" text-anchor="end" font-size="10" fill-opacity="0.55">← 표준이 생긴 지점</text>
+    <rect x="16" y="170" width="628" height="68" rx="12" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="36" y="198" font-size="14" font-weight="600" fill="var(--ink)">③ 사람이 직접 등록</text>
+    <text x="36" y="221" font-size="11.5" fill="var(--ink-muted)">뭐든 기록 가능 · 그러나 반드시 뒤처짐 — 코드는 바뀌는데 문서는 안 바뀜</text>
   </g>
 </svg>`,
   },
@@ -142,41 +142,41 @@ const blocks: Block[] = [
   {
     t: "figure",
     caption: "형식이 통일되면, 보내는 쪽과 받는 쪽을 서로 자유롭게 갈아끼울 수 있습니다.",
-    svg: `<svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OpenLineage 표준의 구조">
-  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="currentColor">
-    <text x="86" y="26" text-anchor="middle" font-size="11" fill-opacity="0.6">보내는 쪽 (처리 도구)</text>
-    <rect x="26" y="38" width="120" height="26" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="86" y="55" text-anchor="middle">Spark</text>
-    <rect x="26" y="72" width="120" height="26" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="86" y="89" text-anchor="middle">Airflow</text>
-    <rect x="26" y="106" width="120" height="26" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="86" y="123" text-anchor="middle">dbt</text>
-    <rect x="26" y="140" width="120" height="26" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="86" y="157" text-anchor="middle">Flink</text>
+    svg: `<svg viewBox="0 0 660 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OpenLineage 표준의 구조">
+  <g font-family="ui-sans-serif, system-ui">
+    <text x="90" y="24" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ink-muted)">보내는 쪽 (처리 도구)</text>
+    <rect x="20" y="38" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="90" y="58" text-anchor="middle" font-size="12.5" fill="var(--ink)">Spark</text>
+    <rect x="20" y="76" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="90" y="96" text-anchor="middle" font-size="12.5" fill="var(--ink)">Airflow</text>
+    <rect x="20" y="114" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="90" y="134" text-anchor="middle" font-size="12.5" fill="var(--ink)">dbt</text>
+    <rect x="20" y="152" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="90" y="172" text-anchor="middle" font-size="12.5" fill="var(--ink)">Flink</text>
 
-    <rect x="238" y="60" width="164" height="84" rx="10" fill="none" stroke="currentColor" stroke-opacity="0.6"/>
-    <text x="320" y="92" text-anchor="middle" font-size="12.5">OpenLineage</text>
-    <text x="320" y="112" text-anchor="middle" font-size="10" fill-opacity="0.6">공통 기록 형식</text>
-    <text x="320" y="128" text-anchor="middle" font-size="9.5" fill-opacity="0.5">START · COMPLETE · FAIL</text>
+    <rect x="242" y="70" width="176" height="90" rx="12" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
+    <text x="330" y="103" text-anchor="middle" font-size="15" font-weight="600" fill="var(--ink)">OpenLineage</text>
+    <text x="330" y="123" text-anchor="middle" font-size="11.5" fill="var(--tip)">공통 기록 형식</text>
+    <text x="330" y="142" text-anchor="middle" font-size="10" fill="var(--ink-muted)">START · COMPLETE · FAIL</text>
 
-    <text x="546" y="26" text-anchor="middle" font-size="11" fill-opacity="0.6">받는 쪽 (수집·시각화)</text>
-    <rect x="486" y="55" width="120" height="26" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="546" y="72" text-anchor="middle">Marquez</text>
-    <rect x="486" y="89" width="120" height="26" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="546" y="106" text-anchor="middle">카탈로그 제품들</text>
-    <rect x="486" y="123" width="120" height="26" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="546" y="140" text-anchor="middle">자체 구축 저장소</text>
+    <text x="570" y="24" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ink-muted)">받는 쪽 (수집·시각화)</text>
+    <rect x="500" y="60" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="570" y="80" text-anchor="middle" font-size="12.5" fill="var(--ink)">Marquez</text>
+    <rect x="500" y="100" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="570" y="120" text-anchor="middle" font-size="12.5" fill="var(--ink)">카탈로그 제품들</text>
+    <rect x="500" y="140" width="140" height="30" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="570" y="160" text-anchor="middle" font-size="12.5" fill="var(--ink)">자체 구축 저장소</text>
 
-    <line x1="150" y1="51" x2="232" y2="95" stroke="currentColor" stroke-opacity="0.3"/>
-    <line x1="150" y1="85" x2="232" y2="99" stroke="currentColor" stroke-opacity="0.3"/>
-    <line x1="150" y1="119" x2="232" y2="105" stroke="currentColor" stroke-opacity="0.3"/>
-    <line x1="150" y1="153" x2="232" y2="110" stroke="currentColor" stroke-opacity="0.3"/>
+    <path d="M164 53 L238 104" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
+    <path d="M164 91 L238 110" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
+    <path d="M164 129 L238 118" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
+    <path d="M164 167 L238 126" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
 
-    <line x1="406" y1="95" x2="482" y2="68" stroke="currentColor" stroke-opacity="0.3"/>
-    <line x1="406" y1="102" x2="482" y2="102" stroke="currentColor" stroke-opacity="0.3"/>
-    <line x1="406" y1="110" x2="482" y2="136" stroke="currentColor" stroke-opacity="0.3"/>
+    <path d="M422 106 L496 78" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
+    <path d="M422 115 L496 115" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
+    <path d="M422 124 L496 152" stroke="var(--ink-dim)" stroke-width="1.6" fill="none"/>
 
-    <text x="320" y="192" text-anchor="middle" font-size="10" fill-opacity="0.55">한쪽을 바꿔도 반대쪽은 그대로 — 이게 표준을 만드는 이유입니다.</text>
+    <text x="330" y="220" text-anchor="middle" font-size="12" fill="var(--ink-muted)">한쪽을 바꿔도 반대쪽은 그대로 — 이게 표준을 만드는 이유입니다.</text>
   </g>
 </svg>`,
   },

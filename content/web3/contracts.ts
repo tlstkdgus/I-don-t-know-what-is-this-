@@ -161,52 +161,55 @@ interface IERC20 {
       {
         t: "figure",
         caption: "허가는 한 번 해두면 계속 남아 있습니다. 그래서 오래된 허가를 정리하는 일이 필요합니다.",
-        svg: `<svg viewBox="0 0 640 254" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="허가 후 실행 두 단계와 무제한 허가의 위험">
-  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="currentColor">
-    <rect x="20" y="34" width="104" height="40" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
-    <text x="72" y="52" text-anchor="middle">내 지갑</text>
-    <text x="72" y="67" text-anchor="middle" font-size="9.5" fill-opacity="0.55">토큰 100개</text>
+        svg: `<svg viewBox="0 0 660 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="허가 후 실행 두 단계와 무제한 허가의 위험">
+  <defs>
+    <marker id="ct-ar" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="var(--ink-dim)"/>
+    </marker>
+  </defs>
+  <g font-family="ui-sans-serif, system-ui">
+    <text x="20" y="22" font-size="12.5" font-weight="600" fill="var(--ink-muted)">1단계 — 허가</text>
 
-    <rect x="268" y="34" width="120" height="40" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
-    <text x="328" y="52" text-anchor="middle">교환 프로그램</text>
-    <text x="328" y="67" text-anchor="middle" font-size="9.5" fill-opacity="0.55">스마트 컨트랙트</text>
+    <rect x="20" y="34" width="118" height="48" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="79" y="56" text-anchor="middle" font-size="13" fill="var(--ink)">내 지갑</text>
+    <text x="79" y="73" text-anchor="middle" font-size="11" fill="var(--ink-muted)">토큰 100개</text>
 
-    <text x="20" y="20" font-size="11.5" fill-opacity="0.62">1단계 — 허가</text>
-    <line x1="124" y1="54" x2="262" y2="54" stroke="currentColor" stroke-opacity="0.45"/>
-    <polygon points="262,54 254,50 254,58" fill="currentColor" fill-opacity="0.45"/>
-    <text x="193" y="46" text-anchor="middle" font-size="10" fill-opacity="0.6">"10개까지 가져가도 좋다"</text>
-    <text x="193" y="90" text-anchor="middle" font-size="9.5" fill-opacity="0.45">거래 1회 · 수수료 발생</text>
+    <rect x="270" y="34" width="132" height="48" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="336" y="56" text-anchor="middle" font-size="13" fill="var(--ink)">교환 프로그램</text>
+    <text x="336" y="73" text-anchor="middle" font-size="11" fill="var(--ink-muted)">스마트 컨트랙트</text>
 
-    <text x="20" y="126" font-size="11.5" fill-opacity="0.62">2단계 — 실행</text>
-    <rect x="20" y="140" width="104" height="40" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
-    <text x="72" y="158" text-anchor="middle">내 지갑</text>
-    <text x="72" y="173" text-anchor="middle" font-size="9.5" fill-opacity="0.55">토큰 90개</text>
+    <line x1="142" y1="58" x2="262" y2="58" stroke="var(--ink-dim)" stroke-width="2" marker-end="url(#ct-ar)"/>
+    <text x="202" y="48" text-anchor="middle" font-size="11" fill="var(--ink)">"10개까지 가져가도 좋다"</text>
+    <text x="202" y="100" text-anchor="middle" font-size="11" fill="var(--ink-dim)">거래 1회 · 수수료 발생</text>
 
-    <rect x="268" y="140" width="120" height="40" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
-    <text x="328" y="158" text-anchor="middle">교환 프로그램</text>
-    <text x="328" y="173" text-anchor="middle" font-size="9.5" fill-opacity="0.55">허가받은 10개 가져감</text>
+    <text x="20" y="146" font-size="12.5" font-weight="600" fill="var(--ink-muted)">2단계 — 실행</text>
 
-    <line x1="262" y1="160" x2="128" y2="160" stroke="currentColor" stroke-opacity="0.45"/>
-    <polygon points="128,160 136,156 136,164" fill="currentColor" fill-opacity="0.45"/>
-    <text x="193" y="152" text-anchor="middle" font-size="10" fill-opacity="0.6">실제로 가져감</text>
-    <text x="193" y="196" text-anchor="middle" font-size="9.5" fill-opacity="0.45">거래 2회째 · 수수료 또 발생</text>
+    <rect x="20" y="158" width="118" height="48" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="79" y="180" text-anchor="middle" font-size="13" fill="var(--ink)">내 지갑</text>
+    <text x="79" y="197" text-anchor="middle" font-size="11" fill="var(--ink-muted)">토큰 90개</text>
 
-    <line x1="418" y1="24" x2="418" y2="212" stroke="currentColor" stroke-opacity="0.15"/>
+    <rect x="270" y="158" width="132" height="48" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="336" y="180" text-anchor="middle" font-size="13" fill="var(--ink)">교환 프로그램</text>
+    <text x="336" y="197" text-anchor="middle" font-size="11" fill="var(--ink-muted)">허가받은 10개 가져감</text>
 
-    <text x="438" y="20" font-size="11.5" fill-opacity="0.62">⚠ 무제한으로 허가하면</text>
-    <rect x="438" y="34" width="182" height="40" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.65"/>
-    <text x="529" y="52" text-anchor="middle" font-size="10.5">"얼마든지 가져가도 좋다"</text>
-    <text x="529" y="67" text-anchor="middle" font-size="9.5" fill-opacity="0.55">한도 없음</text>
+    <line x1="262" y1="182" x2="146" y2="182" stroke="var(--ink-dim)" stroke-width="2" marker-end="url(#ct-ar)"/>
+    <text x="202" y="172" text-anchor="middle" font-size="11" fill="var(--ink)">실제로 가져감</text>
+    <text x="202" y="224" text-anchor="middle" font-size="11" fill="var(--ink-dim)">거래 2회째 · 수수료 또 발생</text>
 
-    <text x="438" y="98" font-size="10" fill-opacity="0.6">편합니다 — 다시 허가할 일이 없으니까요.</text>
+    <line x1="432" y1="26" x2="432" y2="240" stroke="var(--hairline)" stroke-width="1.5"/>
 
-    <text x="438" y="128" font-size="10" fill-opacity="0.6">그런데 이 허가는 계속 살아 있습니다.</text>
-    <text x="438" y="146" font-size="10" fill-opacity="0.6">몇 달 뒤 그 프로그램이 해킹당하면,</text>
-    <text x="438" y="164" font-size="10" fill-opacity="0.72">공격자가 그 허가를 그대로 씁니다.</text>
+    <text x="452" y="22" font-size="12.5" font-weight="600" fill="var(--bad)">⚠ 무제한으로 허가하면</text>
+    <rect x="452" y="34" width="192" height="48" rx="10" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.5"/>
+    <text x="548" y="56" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--ink)">"얼마든지 가져가도 좋다"</text>
+    <text x="548" y="73" text-anchor="middle" font-size="11" fill="var(--bad)">한도 없음</text>
 
-    <text x="438" y="194" font-size="10" fill-opacity="0.5">그래서 오래된 허가는 정리해야 합니다.</text>
+    <text x="452" y="108" font-size="11.5" fill="var(--ink-muted)">편합니다 — 다시 허가할 일이 없으니까요.</text>
+    <text x="452" y="140" font-size="11.5" fill="var(--ink-muted)">그런데 이 허가는 계속 살아 있습니다.</text>
+    <text x="452" y="160" font-size="11.5" fill="var(--ink-muted)">몇 달 뒤 그 프로그램이 해킹당하면,</text>
+    <text x="452" y="180" font-size="11.5" font-weight="600" fill="var(--bad)">공격자가 그 허가를 그대로 씁니다.</text>
+    <text x="452" y="212" font-size="11.5" fill="var(--ink-dim)">그래서 오래된 허가는 정리해야 합니다.</text>
 
-    <text x="20" y="240" font-size="10" fill-opacity="0.45">이 번거로움을 줄이려고 서명 한 번으로 허가를 대신하거나, 두 단계를 한 번에 묶는 방식이 나왔습니다.</text>
+    <text x="20" y="272" font-size="11.5" fill="var(--ink-dim)">이 번거로움을 줄이려고 서명 한 번으로 허가를 대신하거나, 두 단계를 한 번에 묶는 방식이 나왔습니다.</text>
   </g>
 </svg>`,
       },

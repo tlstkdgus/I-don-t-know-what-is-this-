@@ -48,53 +48,52 @@ const blocks: Block[] = [
   {
     t: "figure",
     caption: "내 데이터가 회사 울타리 안에 있느냐, 밖에 있느냐 — 이 위치 차이가 전부입니다.",
-    svg: `<svg viewBox="0 0 640 262" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Web2와 Web3의 데이터 소유 구조 비교">
-  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="currentColor">
-    <text x="20" y="20" font-size="11.5" fill-opacity="0.62">지금 (Web2)</text>
+    svg: `<svg viewBox="0 0 660 288" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Web2와 Web3의 데이터 소유 구조 비교">
+  <g font-family="ui-sans-serif, system-ui">
+    <text x="20" y="22" font-size="12.5" font-weight="600" fill="var(--bad)">지금 (Web2)</text>
 
-    <rect x="20" y="32" width="264" height="132" rx="10" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="5 3"/>
-    <text x="36" y="52" font-size="10" fill-opacity="0.55">회사 울타리</text>
+    <rect x="16" y="32" width="284" height="142" rx="14" fill="var(--bad)" fill-opacity="0.06" stroke="var(--bad)" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="34" y="55" font-size="11" font-weight="600" fill="var(--bad)">회사 울타리</text>
 
-    <rect x="44" y="66" width="98" height="34" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35"/>
-    <text x="93" y="87" text-anchor="middle" font-size="10.5">앱 화면</text>
+    <rect x="34" y="68" width="118" height="42" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="93" y="94" text-anchor="middle" font-size="12.5" fill="var(--ink)">앱 화면</text>
 
-    <rect x="162" y="66" width="98" height="34" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.55"/>
-    <text x="211" y="82" text-anchor="middle" font-size="10.5">내 데이터</text>
-    <text x="211" y="95" text-anchor="middle" font-size="9" fill-opacity="0.55">팔로워 · 게시물</text>
+    <rect x="166" y="68" width="118" height="42" rx="9" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.2"/>
+    <text x="225" y="89" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--ink)">내 데이터</text>
+    <text x="225" y="104" text-anchor="middle" font-size="10" fill="var(--ink-muted)">팔로워 · 게시물</text>
 
-    <line x1="142" y1="83" x2="158" y2="83" stroke="currentColor" stroke-opacity="0.35"/>
+    <line x1="152" y1="89" x2="166" y2="89" stroke="var(--ink-dim)" stroke-width="1.8"/>
 
-    <text x="44" y="126" font-size="10" fill-opacity="0.6">회사가 계정을 정지하면</text>
-    <text x="44" y="144" font-size="10" fill-opacity="0.6">울타리 안의 내 데이터에 접근할 수 없습니다.</text>
+    <text x="34" y="136" font-size="11.5" fill="var(--ink-muted)">회사가 계정을 정지하면</text>
+    <text x="34" y="156" font-size="11.5" fill="var(--ink-muted)">울타리 안의 내 데이터에 접근할 수 없습니다.</text>
 
-    <rect x="20" y="182" width="98" height="30" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.3"/>
-    <text x="69" y="201" text-anchor="middle" font-size="10.5" fill-opacity="0.6">나</text>
-    <line x1="118" y1="197" x2="140" y2="197" stroke="currentColor" stroke-opacity="0.3"/>
-    <text x="150" y="201" font-size="10" fill-opacity="0.5">회사를 거쳐야만 접근 가능</text>
+    <rect x="16" y="196" width="104" height="36" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="68" y="220" text-anchor="middle" font-size="12.5" fill="var(--ink)">나</text>
+    <line x1="120" y1="214" x2="142" y2="214" stroke="var(--ink-dim)" stroke-width="1.8"/>
+    <text x="150" y="219" font-size="11.5" fill="var(--ink-muted)">회사를 거쳐야만 접근</text>
 
-    <line x1="310" y1="24" x2="310" y2="240" stroke="currentColor" stroke-opacity="0.15"/>
+    <line x1="324" y1="26" x2="324" y2="258" stroke="var(--hairline)" stroke-width="1.5"/>
 
-    <text x="336" y="20" font-size="11.5" fill-opacity="0.62">Web3</text>
+    <text x="348" y="22" font-size="12.5" font-weight="600" fill="var(--tip)">Web3</text>
 
-    <rect x="336" y="32" width="118" height="34" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-dasharray="5 3"/>
-    <text x="395" y="53" text-anchor="middle" font-size="10.5">앱 A</text>
-    <rect x="470" y="32" width="118" height="34" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-dasharray="5 3"/>
-    <text x="529" y="53" text-anchor="middle" font-size="10.5">앱 B</text>
+    <rect x="348" y="32" width="130" height="40" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="413" y="57" text-anchor="middle" font-size="12.5" fill="var(--ink)">앱 A</text>
+    <rect x="500" y="32" width="130" height="40" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="565" y="57" text-anchor="middle" font-size="12.5" fill="var(--ink)">앱 B</text>
 
-    <line x1="395" y1="66" x2="440" y2="104" stroke="currentColor" stroke-opacity="0.35"/>
-    <line x1="529" y1="66" x2="484" y2="104" stroke="currentColor" stroke-opacity="0.35"/>
+    <path d="M413 72 L460 104 M565 72 L518 104" stroke="var(--ink-dim)" stroke-width="1.8" fill="none"/>
 
-    <rect x="336" y="108" width="252" height="46" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.65"/>
-    <text x="462" y="128" text-anchor="middle" font-size="11">공용 장부 (블록체인)</text>
-    <text x="462" y="145" text-anchor="middle" font-size="9" fill-opacity="0.6">내 데이터 — 어느 앱의 소유도 아님</text>
+    <rect x="348" y="108" width="282" height="54" rx="12" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
+    <text x="489" y="132" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">공용 장부 (블록체인)</text>
+    <text x="489" y="150" text-anchor="middle" font-size="10.5" fill="var(--tip)">내 데이터 — 어느 앱의 소유도 아님</text>
 
-    <text x="336" y="176" font-size="10" fill-opacity="0.6">앱 A가 나를 차단해도</text>
-    <text x="336" y="194" font-size="10" fill-opacity="0.6">앱 B로 갈아타면 데이터가 그대로 따라옵니다.</text>
+    <text x="348" y="186" font-size="11.5" fill="var(--ink-muted)">앱 A가 나를 차단해도</text>
+    <text x="348" y="206" font-size="11.5" fill="var(--ink-muted)">앱 B로 갈아타면 데이터가 그대로 따라옵니다.</text>
 
-    <rect x="336" y="212" width="98" height="30" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.3"/>
-    <text x="385" y="231" text-anchor="middle" font-size="10.5" fill-opacity="0.6">나</text>
-    <line x1="434" y1="227" x2="456" y2="227" stroke="currentColor" stroke-opacity="0.3"/>
-    <text x="466" y="231" font-size="10" fill-opacity="0.5">내 도장(개인키)으로 직접</text>
+    <rect x="348" y="228" width="104" height="36" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="400" y="252" text-anchor="middle" font-size="12.5" fill="var(--ink)">나</text>
+    <line x1="452" y1="246" x2="474" y2="246" stroke="var(--tip)" stroke-width="1.8"/>
+    <text x="482" y="251" font-size="11.5" fill="var(--ink-muted)">내 도장으로 직접</text>
   </g>
 </svg>`,
   },

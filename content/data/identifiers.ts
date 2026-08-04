@@ -61,47 +61,47 @@ const blocks: Block[] = [
   {
     t: "figure",
     caption: "색인은 항상 정렬된 상태로 유지됩니다. 새 항목이 어디에 끼어드느냐가 성능을 가릅니다.",
-    svg: `<svg viewBox="0 0 640 246" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="순차 번호와 무작위 번호의 색인 삽입 차이">
-  <g font-family="ui-sans-serif, system-ui" font-size="10.5" fill="currentColor">
-    <text x="16" y="20" font-size="11.5" fill-opacity="0.62">순서대로 붙는 번호</text>
+    svg: `<svg viewBox="0 0 660 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="순차 번호와 무작위 번호의 색인 삽입 차이">
+  <g font-family="ui-sans-serif, system-ui">
+    <text x="16" y="24" font-size="12.5" font-weight="600" fill="var(--tip)">순서대로 붙는 번호</text>
 
-    <rect x="16" y="32" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
-    <text x="44" y="49" text-anchor="middle" font-family="ui-monospace, monospace">101</text>
-    <rect x="78" y="32" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
-    <text x="106" y="49" text-anchor="middle" font-family="ui-monospace, monospace">102</text>
-    <rect x="140" y="32" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
-    <text x="168" y="49" text-anchor="middle" font-family="ui-monospace, monospace">103</text>
-    <rect x="202" y="32" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
-    <text x="230" y="49" text-anchor="middle" font-family="ui-monospace, monospace">104</text>
-    <rect x="264" y="32" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.7"/>
-    <text x="292" y="49" text-anchor="middle" font-family="ui-monospace, monospace">105</text>
+    <rect x="16" y="36" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="47" y="58" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">101</text>
+    <rect x="84" y="36" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="115" y="58" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">102</text>
+    <rect x="152" y="36" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="183" y="58" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">103</text>
+    <rect x="220" y="36" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="251" y="58" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">104</text>
+    <rect x="288" y="36" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
+    <text x="319" y="58" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="var(--ink)">105</text>
 
-    <line x1="292" y1="70" x2="292" y2="86" stroke="currentColor" stroke-opacity="0.5"/>
-    <polygon points="292,66 288,74 296,74" fill="currentColor" fill-opacity="0.5"/>
-    <text x="330" y="80" font-size="10.5" fill-opacity="0.62">새 항목은 항상 맨 끝에만 추가</text>
-    <text x="330" y="97" font-size="10" fill-opacity="0.45">건드리는 부분이 항상 한 곳 — 빠릅니다</text>
+    <path d="M319 88 L319 74" stroke="var(--tip)" stroke-width="2" fill="none"/>
+    <polygon points="319,70 314,80 324,80" fill="var(--tip)"/>
+    <text x="374" y="52" font-size="12.5" font-weight="600" fill="var(--ink)">새 항목은 항상 맨 끝에만 추가</text>
+    <text x="374" y="72" font-size="11.5" fill="var(--ink-muted)">건드리는 부분이 늘 한 곳 — 빠릅니다</text>
 
-    <line x1="16" y1="118" x2="624" y2="118" stroke="currentColor" stroke-opacity="0.15"/>
+    <line x1="16" y1="118" x2="644" y2="118" stroke="var(--hairline)" stroke-width="1.5"/>
 
-    <text x="16" y="142" font-size="11.5" fill-opacity="0.62">완전 무작위 번호</text>
+    <text x="16" y="152" font-size="12.5" font-weight="600" fill="var(--bad)">완전 무작위 번호</text>
 
-    <rect x="16" y="154" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
-    <text x="44" y="171" text-anchor="middle" font-family="ui-monospace, monospace">1a3f</text>
-    <rect x="78" y="154" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.7"/>
-    <text x="106" y="171" text-anchor="middle" font-family="ui-monospace, monospace">4b2c</text>
-    <rect x="140" y="154" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
-    <text x="168" y="171" text-anchor="middle" font-family="ui-monospace, monospace">7d81</text>
-    <rect x="202" y="154" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
-    <text x="230" y="171" text-anchor="middle" font-family="ui-monospace, monospace">9e04</text>
-    <rect x="264" y="154" width="56" height="26" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
-    <text x="292" y="171" text-anchor="middle" font-family="ui-monospace, monospace">c5f7</text>
+    <rect x="16" y="164" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="47" y="186" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">1a3f</text>
+    <rect x="84" y="164" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.5"/>
+    <text x="115" y="186" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="var(--ink)">4b2c</text>
+    <rect x="152" y="164" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="183" y="186" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">7d81</text>
+    <rect x="220" y="164" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="251" y="186" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">9e04</text>
+    <rect x="288" y="164" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="319" y="186" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">c5f7</text>
 
-    <line x1="106" y1="192" x2="106" y2="208" stroke="currentColor" stroke-opacity="0.5"/>
-    <polygon points="106,188 102,196 110,196" fill="currentColor" fill-opacity="0.5"/>
-    <text x="330" y="202" font-size="10.5" fill-opacity="0.62">새 항목이 매번 한가운데 끼어듦</text>
-    <text x="330" y="219" font-size="10" fill-opacity="0.45">뒤쪽을 밀어 정리해야 하고, 최근 데이터가 흩어짐</text>
+    <path d="M115 216 L115 202" stroke="var(--bad)" stroke-width="2" fill="none"/>
+    <polygon points="115,198 110,208 120,208" fill="var(--bad)"/>
+    <text x="374" y="180" font-size="12.5" font-weight="600" fill="var(--ink)">새 항목이 매번 한가운데 끼어듦</text>
+    <text x="374" y="200" font-size="11.5" fill="var(--ink-muted)">뒤쪽을 밀어 정리해야 하고, 최근 데이터가 흩어짐</text>
 
-    <text x="16" y="238" font-size="10" fill-opacity="0.45">사전에 새 단어를 알파벳 순서에 맞춰 끼워 넣을 때마다 뒷장을 다시 정리해야 하는 상황과 같습니다.</text>
+    <text x="16" y="262" font-size="11.5" fill="var(--ink-dim)">사전에 새 단어를 알파벳 순서에 맞춰 끼워 넣을 때마다 뒷장을 다시 정리해야 하는 상황과 같습니다.</text>
   </g>
 </svg>`,
   },
