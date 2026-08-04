@@ -59,51 +59,9 @@ const blocks: Block[] = [
     md: "데이터베이스의 \"인덱스\"(색인)는 책 뒤에 붙은 찾아보기 페이지와 같습니다 — 처음부터 끝까지 다 뒤지지 않고도 원하는 항목을 빨리 찾게 해주는데, 이 색인은 항상 정렬된 상태로 유지됩니다. 번호가 순서대로 붙는 방식이면 새 항목은 항상 맨 끝에만 추가되니 간단합니다. 하지만 완전히 무작위인 번호는 매번 색인의 아무 위치에나 끼어듭니다 — 사전에 새 단어를 알파벳 순서에 맞춰 끼워 넣을 때마다 뒷부분 전체를 밀어서 다시 정리해야 하는 것과 비슷한 부담이 매번 생깁니다. 게다가 최근에 추가된 데이터끼리 가까이 모여있지 않게 되어, \"자주 쓰는 걸 손 닿는 곳에 모아두는\" 효율(캐시 활용)도 떨어집니다. 데이터를 대량으로 밀어 넣을 때 이 차이가 체감될 정도로 큽니다.",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "id-index-insertion",
     caption: "색인은 항상 정렬된 상태로 유지됩니다. 새 항목이 어디에 끼어드느냐가 성능을 가릅니다.",
-    svg: `<svg viewBox="0 0 660 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="순차 번호와 무작위 번호의 색인 삽입 차이">
-  <g font-family="ui-sans-serif, system-ui">
-    <text x="16" y="24" font-size="12.5" font-weight="600" fill="var(--tip)">순서대로 붙는 번호</text>
-
-    <rect x="16" y="36" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="47" y="58" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">101</text>
-    <rect x="84" y="36" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="115" y="58" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">102</text>
-    <rect x="152" y="36" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="183" y="58" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">103</text>
-    <rect x="220" y="36" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="251" y="58" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">104</text>
-    <rect x="288" y="36" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
-    <text x="319" y="58" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="var(--ink)">105</text>
-
-    <path d="M319 88 L319 74" stroke="var(--tip)" stroke-width="2" fill="none"/>
-    <polygon points="319,70 314,80 324,80" fill="var(--tip)"/>
-    <text x="374" y="52" font-size="12.5" font-weight="600" fill="var(--ink)">새 항목은 항상 맨 끝에만 추가</text>
-    <text x="374" y="72" font-size="11.5" fill="var(--ink-muted)">건드리는 부분이 늘 한 곳 — 빠릅니다</text>
-
-    <line x1="16" y1="118" x2="644" y2="118" stroke="var(--hairline)" stroke-width="1.5"/>
-
-    <text x="16" y="152" font-size="12.5" font-weight="600" fill="var(--bad)">완전 무작위 번호</text>
-
-    <rect x="16" y="164" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="47" y="186" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">1a3f</text>
-    <rect x="84" y="164" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.5"/>
-    <text x="115" y="186" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="var(--ink)">4b2c</text>
-    <rect x="152" y="164" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="183" y="186" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">7d81</text>
-    <rect x="220" y="164" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="251" y="186" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">9e04</text>
-    <rect x="288" y="164" width="62" height="34" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="319" y="186" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="var(--ink)">c5f7</text>
-
-    <path d="M115 216 L115 202" stroke="var(--bad)" stroke-width="2" fill="none"/>
-    <polygon points="115,198 110,208 120,208" fill="var(--bad)"/>
-    <text x="374" y="180" font-size="12.5" font-weight="600" fill="var(--ink)">새 항목이 매번 한가운데 끼어듦</text>
-    <text x="374" y="200" font-size="11.5" fill="var(--ink-muted)">뒤쪽을 밀어 정리해야 하고, 최근 데이터가 흩어짐</text>
-
-    <text x="16" y="262" font-size="11.5" fill="var(--ink-dim)">사전에 새 단어를 알파벳 순서에 맞춰 끼워 넣을 때마다 뒷장을 다시 정리해야 하는 상황과 같습니다.</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",

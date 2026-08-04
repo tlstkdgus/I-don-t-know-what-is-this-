@@ -66,46 +66,9 @@ const blocks: Block[] = [
     md: "\"거의 맞는 답을 빠르게 찾는\" 여러 방식 중 지금 가장 널리 쓰이는 것의 이름이 HNSW입니다. 여러 층으로 나뉜 지도라고 생각하면 이해가 쉽습니다.",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "hnsw-layers",
     caption: "위층에서 대충 근처까지 이동한 뒤 아래층으로 내려가며 좁힙니다.",
-    svg: `<svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="HNSW 계층 탐색 구조">
-  <g font-family="ui-sans-serif, system-ui" font-size="12" fill="currentColor">
-    <text x="20" y="34" fill-opacity="0.6">상위 층</text>
-    <line x1="110" y1="30" x2="560" y2="30" stroke="currentColor" stroke-opacity="0.35"/>
-    <circle cx="110" cy="30" r="4" fill="currentColor"/>
-    <circle cx="340" cy="30" r="4" fill="currentColor"/>
-    <circle cx="560" cy="30" r="4" fill="currentColor"/>
-    <text x="580" y="34" font-size="11" fill-opacity="0.55">고속도로</text>
-
-    <text x="20" y="94" fill-opacity="0.6">중간 층</text>
-    <line x1="110" y1="90" x2="560" y2="90" stroke="currentColor" stroke-opacity="0.3"/>
-    <circle cx="110" cy="90" r="3.5" fill="currentColor"/>
-    <circle cx="230" cy="90" r="3.5" fill="currentColor"/>
-    <circle cx="340" cy="90" r="3.5" fill="currentColor"/>
-    <circle cx="450" cy="90" r="3.5" fill="currentColor"/>
-    <circle cx="560" cy="90" r="3.5" fill="currentColor"/>
-    <text x="580" y="94" font-size="11" fill-opacity="0.55">국도</text>
-
-    <text x="20" y="154" fill-opacity="0.6">하위 층</text>
-    <line x1="110" y1="150" x2="560" y2="150" stroke="currentColor" stroke-opacity="0.25"/>
-    <circle cx="110" cy="150" r="3" fill="currentColor"/>
-    <circle cx="170" cy="150" r="3" fill="currentColor"/>
-    <circle cx="230" cy="150" r="3" fill="currentColor"/>
-    <circle cx="290" cy="150" r="3" fill="currentColor"/>
-    <circle cx="340" cy="150" r="3" fill="currentColor"/>
-    <circle cx="400" cy="150" r="3" fill="currentColor"/>
-    <circle cx="450" cy="150" r="3" fill="currentColor"/>
-    <circle cx="505" cy="150" r="3" fill="currentColor"/>
-    <circle cx="560" cy="150" r="3" fill="currentColor"/>
-    <text x="580" y="154" font-size="11" fill-opacity="0.55">골목</text>
-
-    <line x1="340" y1="34" x2="340" y2="86" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="3 3"/>
-    <line x1="340" y1="94" x2="340" y2="146" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="3 3"/>
-    <text x="352" y="122" font-size="11" fill-opacity="0.6">내려가며 좁힘</text>
-
-    <text x="20" y="188" fill-opacity="0.55" font-size="11">위층일수록 노드가 적고 엣지가 깁니다.</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",

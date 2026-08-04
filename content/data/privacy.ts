@@ -38,55 +38,9 @@ const blocks: Block[] = [
     md: "이 세 단어가 실무에서 가장 자주 혼동됩니다. 핵심 차이는 하나입니다. **누군가를 특정할 수 있느냐, 그리고 되돌릴 수 있느냐.**",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "privacy-spectrum",
     caption: "오른쪽으로 갈수록 규제는 가벼워지고, 데이터의 쓸모도 함께 줄어듭니다. 공짜는 없습니다.",
-    svg: `<svg viewBox="0 0 660 336" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="개인정보 가명정보 익명정보의 차이">
-  <defs>
-    <marker id="pv-ar" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
-      <path d="M0,0 L0,7 L9,3.5 z" fill="var(--ink-dim)"/>
-    </marker>
-  </defs>
-  <g font-family="ui-sans-serif, system-ui">
-    <rect x="16" y="16" width="192" height="150" rx="12" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.5"/>
-    <text x="112" y="44" text-anchor="middle" font-size="15" font-weight="600" fill="var(--ink)">개인정보</text>
-    <text x="112" y="63" text-anchor="middle" font-size="11" fill="var(--bad)">누구인지 바로 알 수 있음</text>
-    <text x="34" y="92" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink)">김철수 · 1990-03-12</text>
-    <text x="34" y="112" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink)">010-1234-5678</text>
-    <text x="34" y="132" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink)">강남구 역삼동</text>
-    <text x="112" y="155" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">규제 가장 무거움</text>
-
-    <rect x="234" y="16" width="192" height="150" rx="12" fill="var(--surface-2)" stroke="var(--warn)" stroke-width="2.5"/>
-    <text x="330" y="44" text-anchor="middle" font-size="15" font-weight="600" fill="var(--ink)">가명정보</text>
-    <text x="330" y="63" text-anchor="middle" font-size="11" fill="var(--warn)">추가 정보가 있어야 알 수 있음</text>
-    <text x="252" y="92" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink)">U-8471 · 1990년대생</text>
-    <text x="252" y="112" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink-dim)">(연락처 삭제)</text>
-    <text x="252" y="132" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink)">서울</text>
-    <text x="330" y="155" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">되돌릴 열쇠가 따로 존재</text>
-
-    <rect x="452" y="16" width="192" height="150" rx="12" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
-    <text x="548" y="44" text-anchor="middle" font-size="15" font-weight="600" fill="var(--ink)">익명정보</text>
-    <text x="548" y="63" text-anchor="middle" font-size="11" fill="var(--tip)">되돌릴 방법이 없음</text>
-    <text x="470" y="92" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink)">30대 · 서울</text>
-    <text x="470" y="112" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink)">해당 구간 1,428명</text>
-    <text x="470" y="132" font-family="ui-monospace, monospace" font-size="11" fill="var(--ink)">평균 구매액 3.2만원</text>
-    <text x="548" y="155" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">규제 대상 아님</text>
-
-    <line x1="210" y1="91" x2="228" y2="91" stroke="var(--ink-dim)" stroke-width="2" marker-end="url(#pv-ar)"/>
-    <line x1="428" y1="91" x2="446" y2="91" stroke="var(--ink-dim)" stroke-width="2" marker-end="url(#pv-ar)"/>
-
-    <text x="20" y="208" font-size="12" font-weight="600" fill="var(--ink-muted)">되돌릴 수 있는가</text>
-    <text x="112" y="234" text-anchor="middle" font-size="12" fill="var(--ink)">원본 그대로</text>
-    <text x="330" y="234" text-anchor="middle" font-size="12" fill="var(--ink)">열쇠가 있으면 가능</text>
-    <text x="548" y="234" text-anchor="middle" font-size="12" fill="var(--ink)">불가능</text>
-
-    <text x="20" y="272" font-size="12" font-weight="600" fill="var(--ink-muted)">분석에 쓸 수 있는 정보량</text>
-    <rect x="16" y="284" width="192" height="12" rx="6" fill="var(--bad)" fill-opacity="0.75"/>
-    <rect x="234" y="284" width="134" height="12" rx="6" fill="var(--warn)" fill-opacity="0.75"/>
-    <rect x="452" y="284" width="62" height="12" rx="6" fill="var(--tip)" fill-opacity="0.75"/>
-
-    <text x="20" y="324" font-size="11.5" fill="var(--ink-muted)">가명정보의 "열쇠"는 반드시 원본과 분리해 보관합니다 — 같이 두면 가명처리한 의미가 없습니다.</text>
-  </g>
-</svg>`,
   },
   {
     t: "ul",
@@ -134,35 +88,9 @@ const blocks: Block[] = [
     md: "이 원칙을 설계에 옮기면, 최소화는 수집 단계에서만 하는 게 아니라 **네 지점 전부에서** 이뤄져야 합니다.",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "minimization-axes",
     caption: "한 곳만 조여도 나머지가 열려 있으면 소용이 없습니다.",
-    svg: `<svg viewBox="0 0 660 226" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="데이터 최소화의 네 가지 축">
-  <g font-family="ui-sans-serif, system-ui">
-    <rect x="16" y="26" width="150" height="96" rx="12" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="91" y="56" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">덜 모은다</text>
-    <text x="91" y="80" text-anchor="middle" font-size="11" fill="var(--ink-muted)">정말 필요한 항목만</text>
-    <text x="91" y="99" text-anchor="middle" font-size="11" fill="var(--ink-muted)">생년월일 대신 연령대</text>
-
-    <rect x="182" y="26" width="150" height="96" rx="12" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="257" y="56" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">덜 오래 둔다</text>
-    <text x="257" y="80" text-anchor="middle" font-size="11" fill="var(--ink-muted)">보관 기간을 정하고</text>
-    <text x="257" y="99" text-anchor="middle" font-size="11" fill="var(--ink-muted)">지나면 자동 파기</text>
-
-    <rect x="348" y="26" width="150" height="96" rx="12" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="423" y="56" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">덜 열어준다</text>
-    <text x="423" y="80" text-anchor="middle" font-size="11" fill="var(--ink-muted)">업무에 필요한 사람만</text>
-    <text x="423" y="99" text-anchor="middle" font-size="11" fill="var(--ink-muted)">접근 기록을 남김</text>
-
-    <rect x="514" y="26" width="130" height="96" rx="12" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.5"/>
-    <text x="579" y="56" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">덜 퍼뜨린다</text>
-    <text x="579" y="80" text-anchor="middle" font-size="11" fill="var(--ink-muted)">복사본을 안 만듦</text>
-    <text x="579" y="99" text-anchor="middle" font-size="11" fill="var(--bad)">가장 자주 뚫림</text>
-
-    <text x="330" y="168" text-anchor="middle" font-size="12.5" fill="var(--ink-muted)">가장 자주 뚫리는 곳은 첫 번째가 아니라 네 번째입니다.</text>
-    <text x="330" y="194" text-anchor="middle" font-size="11.5" fill="var(--ink-dim)">개발자 노트북에 내려받은 운영 데이터, 분석용으로 복사해둔 표,</text>
-    <text x="330" y="213" text-anchor="middle" font-size="11.5" fill="var(--ink-dim)">엑셀로 뽑아 메일로 보낸 명단.</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",
@@ -175,29 +103,9 @@ const blocks: Block[] = [
     md: "가명정보를 쓰려면 \"이 처리가 안전한가\"를 검토해야 하는데, 그동안 이 기준이 담당자마다 달라 실무에서 혼란이 컸습니다. 개인정보보호위원회는 2026년 3월 「가명정보 처리 가이드라인」을 전면 개정하면서, 이 판단을 **위험도 기반 3단계**로 표준화했습니다.",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "pseudonym-risk-tiers",
     caption: "위험이 낮으면 절차도 가볍게, 높으면 무겁게 — 일률적으로 같은 서류를 요구하던 방식에서 바뀌었습니다.",
-    svg: `<svg viewBox="0 0 660 218" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="가명정보 처리 위험도 3단계 체계">
-  <g font-family="ui-sans-serif, system-ui">
-    <rect x="16" y="14" width="628" height="58" rx="12" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
-    <rect x="16" y="14" width="10" height="58" rx="5" fill="var(--tip)"/>
-    <text x="44" y="40" font-size="14" font-weight="600" fill="var(--ink)">저위험</text>
-    <text x="140" y="40" font-size="12" fill="var(--ink)">반복 제공 · 유사 제공 · 내부 부서 간 제공·활용 · 결합전문기관 제공</text>
-    <text x="140" y="60" font-size="11" fill="var(--ink-muted)">담당자 중심의 검토와 최소 서류로 처리 가능</text>
-
-    <rect x="16" y="82" width="628" height="58" rx="12" fill="var(--surface-2)" stroke="var(--warn)" stroke-width="2.5"/>
-    <rect x="16" y="82" width="10" height="58" rx="5" fill="var(--warn)"/>
-    <text x="44" y="108" font-size="14" font-weight="600" fill="var(--ink)">중위험</text>
-    <text x="140" y="108" font-size="12" fill="var(--ink)">기관 내부 분석공간 제공</text>
-    <text x="140" y="128" font-size="11" fill="var(--ink-muted)">중간 수준의 검토 절차</text>
-
-    <rect x="16" y="150" width="628" height="58" rx="12" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.5"/>
-    <rect x="16" y="150" width="10" height="58" rx="5" fill="var(--bad)"/>
-    <text x="44" y="176" font-size="14" font-weight="600" fill="var(--ink)">고위험</text>
-    <text x="140" y="176" font-size="12" fill="var(--ink)">비정형데이터 처리 (이미지 · 영상 · 자유 텍스트 등)</text>
-    <text x="140" y="196" font-size="11" fill="var(--ink-muted)">가장 엄격한 검토 — 무엇이 찍혀 있을지 미리 알 수 없기 때문</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",

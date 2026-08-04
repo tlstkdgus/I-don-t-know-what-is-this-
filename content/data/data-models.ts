@@ -56,60 +56,9 @@ const blocks: Block[] = [
 
   { t: "h3", md: "그래도 저마다 확실히 이기는 좁은 영역이 있습니다" },
   {
-    t: "figure",
+    t: "diagram",
+    name: "data-model-shapes",
     caption: "같은 정보라도 담는 모양이 다릅니다. 모양이 곧 \"무엇을 빨리 할 수 있는가\"를 결정합니다.",
-    svg: `<svg viewBox="0 0 660 254" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="다섯 가지 데이터 모델의 구조 비교">
-  <g font-family="ui-sans-serif, system-ui">
-    <text x="70" y="24" text-anchor="middle" font-size="13.5" font-weight="600" fill="var(--ink)">관계형</text>
-    <rect x="18" y="36" width="104" height="76" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <line x1="18" y1="56" x2="122" y2="56" stroke="var(--ink-dim)" stroke-width="1.5"/>
-    <line x1="18" y1="75" x2="122" y2="75" stroke="var(--hairline)" stroke-width="1.2"/>
-    <line x1="18" y1="94" x2="122" y2="94" stroke="var(--hairline)" stroke-width="1.2"/>
-    <line x1="53" y1="36" x2="53" y2="112" stroke="var(--hairline)" stroke-width="1.2"/>
-    <line x1="88" y1="36" x2="88" y2="112" stroke="var(--hairline)" stroke-width="1.2"/>
-    <text x="70" y="134" text-anchor="middle" font-size="11.5" fill="var(--ink-muted)">줄과 칸이 있는 표</text>
-
-    <text x="205" y="24" text-anchor="middle" font-size="13.5" font-weight="600" fill="var(--ink)">문서형</text>
-    <rect x="153" y="36" width="104" height="76" rx="8" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="166" y="58" font-family="ui-monospace, monospace" font-size="10.5" fill="var(--ink)">{ 이름: …</text>
-    <text x="175" y="77" font-family="ui-monospace, monospace" font-size="10.5" fill="var(--ink)">주소: {…}</text>
-    <text x="175" y="96" font-family="ui-monospace, monospace" font-size="10.5" fill="var(--ink)">주문: [ … ]</text>
-    <text x="205" y="134" text-anchor="middle" font-size="11.5" fill="var(--ink-muted)">한 덩어리로 통째</text>
-
-    <text x="340" y="24" text-anchor="middle" font-size="13.5" font-weight="600" fill="var(--ink)">컬럼형</text>
-    <rect x="296" y="36" width="24" height="76" rx="5" fill="var(--fe)" fill-opacity="0.25"/>
-    <rect x="328" y="36" width="24" height="76" rx="5" fill="var(--fe)" fill-opacity="0.6"/>
-    <rect x="360" y="36" width="24" height="76" rx="5" fill="var(--fe)" fill-opacity="0.25"/>
-    <text x="340" y="134" text-anchor="middle" font-size="11.5" fill="var(--ink-muted)">칸 단위로 모아둠</text>
-
-    <text x="475" y="24" text-anchor="middle" font-size="13.5" font-weight="600" fill="var(--ink)">그래프</text>
-    <line x1="450" y1="52" x2="500" y2="52" stroke="var(--ink-dim)" stroke-width="1.8"/>
-    <line x1="450" y1="52" x2="450" y2="96" stroke="var(--ink-dim)" stroke-width="1.8"/>
-    <line x1="450" y1="52" x2="500" y2="96" stroke="var(--ink-dim)" stroke-width="1.8"/>
-    <line x1="500" y1="52" x2="500" y2="96" stroke="var(--ink-dim)" stroke-width="1.8"/>
-    <circle cx="450" cy="52" r="10" fill="var(--surface-2)" stroke="var(--fe)" stroke-width="2.2"/>
-    <circle cx="500" cy="52" r="10" fill="var(--surface-2)" stroke="var(--fe)" stroke-width="2.2"/>
-    <circle cx="450" cy="96" r="10" fill="var(--surface-2)" stroke="var(--fe)" stroke-width="2.2"/>
-    <circle cx="500" cy="96" r="10" fill="var(--surface-2)" stroke="var(--fe)" stroke-width="2.2"/>
-    <text x="475" y="134" text-anchor="middle" font-size="11.5" fill="var(--ink-muted)">점과 선의 연결</text>
-
-    <text x="590" y="24" text-anchor="middle" font-size="13.5" font-weight="600" fill="var(--ink)">키-값</text>
-    <rect x="534" y="42" width="50" height="26" rx="6" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="559" y="59" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="var(--ink)">key</text>
-    <line x1="584" y1="55" x2="598" y2="55" stroke="var(--ink-dim)" stroke-width="1.8"/>
-    <rect x="598" y="42" width="44" height="26" rx="6" fill="var(--fe)" fill-opacity="0.35"/>
-    <rect x="534" y="80" width="50" height="26" rx="6" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="559" y="97" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="var(--ink)">key</text>
-    <line x1="584" y1="93" x2="598" y2="93" stroke="var(--ink-dim)" stroke-width="1.8"/>
-    <rect x="598" y="80" width="44" height="26" rx="6" fill="var(--fe)" fill-opacity="0.35"/>
-    <text x="590" y="134" text-anchor="middle" font-size="11.5" fill="var(--ink-muted)">이름표 하나로 꺼냄</text>
-
-    <line x1="16" y1="166" x2="644" y2="166" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="16" y="196" font-size="13" font-weight="600" fill="var(--ink)">모양이 다르면 잘하는 일도 달라집니다.</text>
-    <text x="16" y="220" font-size="12" fill="var(--ink-muted)">표는 조건 검색에, 문서는 통째로 읽기에, 컬럼형은 한 칸만 전부 훑는 통계에,</text>
-    <text x="16" y="240" font-size="12" fill="var(--ink-muted)">그래프는 연결을 따라가기에, 키-값은 정해진 이름표 하나로 즉시 꺼내는 데 강합니다.</text>
-  </g>
-</svg>`,
   },
   {
     t: "table",

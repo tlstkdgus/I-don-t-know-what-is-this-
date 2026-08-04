@@ -3,6 +3,7 @@ import { highlight } from "@/lib/highlight";
 
 import CodeBlock from "./CodeBlock";
 import Demo from "./Demo";
+import { FIGURES } from "./figures";
 import Inline from "./Inline";
 import Tabs from "./Tabs";
 
@@ -271,13 +272,19 @@ async function renderBlock(b: Block, key: number): Promise<React.ReactNode> {
     case "demo":
       return <Demo key={key} name={b.name} />;
 
-    case "figure":
+    case "diagram": {
+      const Fig = FIGURES[b.name];
       return (
         <figure key={key} className="mt-8 overflow-hidden rounded-[20px] border border-hairline bg-surface-1">
-          <div
-            className="overflow-x-auto p-6 [&_svg]:h-auto [&_svg]:max-w-full"
-            dangerouslySetInnerHTML={{ __html: b.svg }}
-          />
+          <div className="overflow-x-auto p-6 [&_svg]:h-auto [&_svg]:max-w-full">
+            {Fig ? (
+              <Fig />
+            ) : (
+              <p className="text-body-sm text-bad">
+                등록되지 않은 도식: <code>{b.name}</code> — components/figures/index.tsx 의 FIGURES를 확인하세요.
+              </p>
+            )}
+          </div>
           {b.caption && (
             <figcaption className="flex gap-2.5 border-t border-hairline px-6 py-3.5 text-caption leading-[1.6] text-ink-muted">
               <span className="shrink-0 font-medium text-ink-dim">그림</span>
@@ -286,6 +293,7 @@ async function renderBlock(b: Block, key: number): Promise<React.ReactNode> {
           )}
         </figure>
       );
+    }
 
     default:
       return null;

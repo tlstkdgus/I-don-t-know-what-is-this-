@@ -49,8 +49,12 @@ export type Block =
   | { t: "tabs"; tabs: { label: string; body: Block[] }[] }
   /** components/Demos.tsx 의 DEMOS 레지스트리 키 */
   | { t: "demo"; name: string }
-  /** SVG 도식. 원본 마크업을 문자열로 그대로 둡니다. */
-  | { t: "figure"; svg: string; caption?: string }
+  /**
+   * SVG 도식. `components/figures/index.tsx`의 FIGURES 레지스트리 키를 가리킵니다.
+   * 도식은 좌표 계산이 많아 문자열로 두면 실수가 잦으므로 JSX 컴포넌트로 그립니다
+   * (부품은 `components/figures/primitives.tsx`).
+   */
+  | { t: "diagram"; name: string; caption?: string }
   /** 표·그림 아래 각주 */
   | { t: "legend"; md: string }
   | { t: "hr" };

@@ -23,58 +23,9 @@ const blocks: Block[] = [
 
   { t: "h3", md: "계약이 없을 때 실제로 벌어지는 일" },
   {
-    t: "figure",
+    t: "diagram",
+    name: "contract-before-after",
     caption: "약속이 없으면 문제를 쓰는 쪽이 먼저 발견합니다 — 그것도 이미 망가진 뒤에.",
-    svg: `<svg viewBox="0 0 660 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="데이터 계약이 없을 때와 있을 때의 차이">
-  <defs>
-    <marker id="dc-ar" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
-      <path d="M0,0 L0,7 L9,3.5 z" fill="var(--ink-dim)"/>
-    </marker>
-    <marker id="dc-ar-ok" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
-      <path d="M0,0 L0,7 L9,3.5 z" fill="var(--tip)"/>
-    </marker>
-  </defs>
-  <g font-family="ui-sans-serif, system-ui">
-    <text x="20" y="24" font-size="13" font-weight="600" fill="var(--bad)">계약이 없을 때</text>
-
-    <rect x="20" y="38" width="130" height="44" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="85" y="65" text-anchor="middle" font-size="13" fill="var(--ink)">만드는 팀</text>
-
-    <rect x="266" y="38" width="128" height="44" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="330" y="65" text-anchor="middle" font-size="13" fill="var(--ink)">데이터</text>
-
-    <rect x="510" y="38" width="130" height="44" rx="10" fill="var(--surface-2)" stroke="var(--bad)" stroke-width="2.5"/>
-    <text x="575" y="65" text-anchor="middle" font-size="13" fill="var(--ink)">쓰는 팀</text>
-
-    <line x1="154" y1="60" x2="258" y2="60" stroke="var(--ink-dim)" stroke-width="2" marker-end="url(#dc-ar)"/>
-    <line x1="398" y1="60" x2="502" y2="60" stroke="var(--ink-dim)" stroke-width="2" marker-end="url(#dc-ar)"/>
-
-    <text x="206" y="104" text-anchor="middle" font-size="11.5" fill="var(--ink-muted)">칸 이름을 바꿈</text>
-    <text x="206" y="121" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">(악의 없음. 그냥 몰랐음)</text>
-    <text x="450" y="104" text-anchor="middle" font-size="11.5" fill="var(--bad)">다음 날 아침 화면이 빔</text>
-    <text x="450" y="121" text-anchor="middle" font-size="10.5" fill="var(--ink-dim)">사용자가 먼저 발견</text>
-
-    <line x1="20" y1="146" x2="640" y2="146" stroke="var(--hairline)" stroke-width="1.5"/>
-
-    <text x="20" y="176" font-size="13" font-weight="600" fill="var(--tip)">계약이 있을 때</text>
-
-    <rect x="20" y="190" width="130" height="44" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="85" y="217" text-anchor="middle" font-size="13" fill="var(--ink)">만드는 팀</text>
-
-    <rect x="252" y="184" width="156" height="56" rx="12" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
-    <text x="330" y="209" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">계약</text>
-    <text x="330" y="228" text-anchor="middle" font-size="10.5" fill="var(--tip)">모양 · 품질 · 주인 · 변경절차</text>
-
-    <rect x="510" y="190" width="130" height="44" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="575" y="217" text-anchor="middle" font-size="13" fill="var(--ink)">쓰는 팀</text>
-
-    <line x1="154" y1="212" x2="244" y2="212" stroke="var(--tip)" stroke-width="2.2" marker-end="url(#dc-ar-ok)"/>
-    <line x1="412" y1="212" x2="502" y2="212" stroke="var(--tip)" stroke-width="2.2" marker-end="url(#dc-ar-ok)"/>
-
-    <text x="330" y="266" text-anchor="middle" font-size="12" fill="var(--ink-muted)">약속을 어기는 변경은 배포 단계에서 자동으로 막힘</text>
-    <text x="330" y="286" text-anchor="middle" font-size="11.5" fill="var(--ink-dim)">→ 쓰는 쪽이 아니라 만드는 쪽이, 사고 전에 알게 됨</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",
@@ -87,35 +38,9 @@ const blocks: Block[] = [
     md: "\"칸 이름과 자료형\"만 적는 건 계약이 아니라 그냥 [3장에서 본 저장 규칙](/data/schema-on-read)입니다. 계약이 되려면 다섯 가지가 필요합니다.",
   },
   {
-    t: "figure",
+    t: "diagram",
+    name: "contract-parts",
     caption: "위 세 개만 있으면 저장 규칙이고, 아래 두 개가 붙어야 계약이 됩니다.",
-    svg: `<svg viewBox="0 0 660 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="데이터 계약의 다섯 가지 구성 요소">
-  <g font-family="ui-sans-serif, system-ui">
-    <text x="20" y="20" font-size="11.5" font-weight="600" fill="var(--ink-dim)">여기까지는 그냥 저장 규칙</text>
-
-    <rect x="16" y="30" width="628" height="52" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="38" y="53" font-size="13.5" font-weight="600" fill="var(--ink)">① 구조 — 어떤 칸이 있고 각각 무슨 자료형인가</text>
-    <text x="38" y="72" font-size="11" fill="var(--ink-muted)">주문번호는 정수, 결제금액은 소수점 없는 정수, 국가코드는 2글자 문자열</text>
-
-    <rect x="16" y="88" width="628" height="52" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="38" y="111" font-size="13.5" font-weight="600" fill="var(--ink)">② 의미 — 그 칸이 정확히 무엇을 뜻하는가</text>
-    <text x="38" y="130" font-size="11" fill="var(--ink-muted)">"결제금액"은 할인 후·세금 포함 금액이며 환불은 반영하지 않는다</text>
-
-    <rect x="16" y="146" width="628" height="52" rx="10" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
-    <text x="38" y="169" font-size="13.5" font-weight="600" fill="var(--ink)">③ 품질 기준 — 어디까지가 정상인가</text>
-    <text x="38" y="188" font-size="11" fill="var(--ink-muted)">주문번호는 비어 있을 수 없고 중복도 없다 · 금액은 0 이상 · 매일 09시까지 갱신</text>
-
-    <text x="20" y="228" font-size="11.5" font-weight="600" fill="var(--tip)">이 둘이 붙어야 비로소 계약</text>
-
-    <rect x="16" y="238" width="628" height="52" rx="10" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
-    <text x="38" y="261" font-size="13.5" font-weight="600" fill="var(--ink)">④ 책임자 — 문제가 생기면 누구에게 연락하는가</text>
-    <text x="38" y="280" font-size="11" fill="var(--ink-muted)">담당 팀과 연락처. 이게 없으면 나머지 넷이 다 있어도 굴러가지 않습니다</text>
-
-    <rect x="16" y="296" width="628" height="52" rx="10" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
-    <text x="38" y="319" font-size="13.5" font-weight="600" fill="var(--ink)">⑤ 변경 절차 — 바꿀 때 어떻게 알리는가</text>
-    <text x="38" y="338" font-size="11" fill="var(--ink-muted)">칸 추가는 자유 · 칸 삭제나 의미 변경은 최소 30일 전 공지 후 합의</text>
-  </g>
-</svg>`,
   },
   {
     t: "p",
