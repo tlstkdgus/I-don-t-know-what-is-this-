@@ -18,44 +18,45 @@ const blocks: Block[] = [
   {
     t: "figure",
     caption: "왼쪽은 원본 그대로입니다. 오른쪽처럼 미리 뒤집어두면 검색어에서 문서를 곧바로 찾아갈 수 있습니다.",
-    svg: `<svg viewBox="0 0 640 236" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="정방향 색인과 역색인의 구조 비교">
-  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="currentColor">
-    <text x="16" y="20" font-size="11.5" fill-opacity="0.62">원본 (문서 → 단어)</text>
+    svg: `<svg viewBox="0 0 660 262" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="정방향 색인과 역색인의 구조 비교">
+  <g font-family="ui-sans-serif, system-ui">
+    <text x="16" y="24" font-size="12.5" font-weight="600" fill="var(--ink-muted)">원본 (문서 → 단어)</text>
 
-    <rect x="16" y="32" width="66" height="28" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
-    <text x="49" y="50" text-anchor="middle">문서1</text>
-    <text x="98" y="50" font-size="10.5" fill-opacity="0.72">고양이 · 사료 · 추천</text>
+    <rect x="16" y="38" width="80" height="36" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="56" y="62" text-anchor="middle" font-size="13" fill="var(--ink)">문서1</text>
+    <text x="108" y="62" font-size="12.5" fill="var(--ink)">고양이 · 사료 · 추천</text>
 
-    <rect x="16" y="72" width="66" height="28" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
-    <text x="49" y="90" text-anchor="middle">문서2</text>
-    <text x="98" y="90" font-size="10.5" fill-opacity="0.72">강아지 · 사료</text>
+    <rect x="16" y="86" width="80" height="36" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="56" y="110" text-anchor="middle" font-size="13" fill="var(--ink)">문서2</text>
+    <text x="108" y="110" font-size="12.5" fill="var(--ink)">강아지 · 사료</text>
 
-    <text x="16" y="128" font-size="10.5" fill-opacity="0.5">"사료"를 찾으려면?</text>
-    <text x="16" y="146" font-size="10" fill-opacity="0.45">문서를 하나씩 다 열어서 안을 훑어야 합니다.</text>
-    <text x="16" y="164" font-size="10" fill-opacity="0.45">문서가 100만 개면 100만 번.</text>
+    <text x="16" y="158" font-size="12" font-weight="600" fill="var(--bad)">"사료"를 찾으려면?</text>
+    <text x="16" y="180" font-size="11.5" fill="var(--ink-muted)">문서를 하나씩 다 열어서 훑어야 합니다.</text>
+    <text x="16" y="199" font-size="11.5" fill="var(--ink-muted)">문서가 100만 개면 100만 번.</text>
 
-    <line x1="322" y1="24" x2="322" y2="196" stroke="currentColor" stroke-opacity="0.15"/>
-    <text x="322" y="112" text-anchor="middle" font-size="15" fill-opacity="0.45">↻</text>
+    <line x1="330" y1="30" x2="330" y2="212" stroke="var(--hairline)" stroke-width="1.5"/>
+    <circle cx="330" cy="121" r="15" fill="var(--surface-1)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="330" y="127" text-anchor="middle" font-size="15" fill="var(--ink-muted)">↻</text>
 
-    <text x="360" y="20" font-size="11.5" fill-opacity="0.62">역색인 (단어 → 문서)</text>
+    <text x="366" y="24" font-size="12.5" font-weight="600" fill="var(--ink-muted)">역색인 (단어 → 문서)</text>
 
-    <rect x="360" y="32" width="76" height="28" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
-    <text x="398" y="50" text-anchor="middle">고양이</text>
-    <text x="452" y="50" font-size="10.5" fill-opacity="0.72">문서1</text>
+    <rect x="366" y="38" width="92" height="36" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="412" y="62" text-anchor="middle" font-size="13" fill="var(--ink)">고양이</text>
+    <text x="472" y="62" font-size="12.5" fill="var(--ink)">문서1</text>
 
-    <rect x="360" y="72" width="76" height="28" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.7"/>
-    <text x="398" y="90" text-anchor="middle">사료</text>
-    <text x="452" y="90" font-size="10.5" fill-opacity="0.85">문서1 · 문서2</text>
+    <rect x="366" y="86" width="92" height="36" rx="9" fill="var(--surface-2)" stroke="var(--tip)" stroke-width="2.5"/>
+    <text x="412" y="110" text-anchor="middle" font-size="13" font-weight="600" fill="var(--ink)">사료</text>
+    <text x="472" y="110" font-size="12.5" font-weight="600" fill="var(--ink)">문서1 · 문서2</text>
 
-    <rect x="360" y="112" width="76" height="28" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
-    <text x="398" y="130" text-anchor="middle">강아지</text>
-    <text x="452" y="130" font-size="10.5" fill-opacity="0.72">문서2</text>
+    <rect x="366" y="134" width="92" height="36" rx="9" fill="var(--surface-2)" stroke="var(--hairline)" stroke-width="1.5"/>
+    <text x="412" y="158" text-anchor="middle" font-size="13" fill="var(--ink)">강아지</text>
+    <text x="472" y="158" font-size="12.5" fill="var(--ink)">문서2</text>
 
-    <text x="360" y="164" font-size="10.5" fill-opacity="0.5">"사료"를 찾으려면?</text>
-    <text x="360" y="182" font-size="10" fill-opacity="0.45">해당 줄 하나만 보면 끝. 문서 수와 무관합니다.</text>
+    <text x="366" y="192" font-size="12" font-weight="600" fill="var(--tip)">"사료"를 찾으려면?</text>
+    <text x="366" y="212" font-size="11.5" fill="var(--ink-muted)">해당 줄 하나만 보면 끝.</text>
 
-    <text x="16" y="216" font-size="10" fill-opacity="0.5">대신 이 표를 미리 만들어둬야 하고, 문서가 바뀌면 표도 같이 고쳐야 합니다.</text>
-    <text x="16" y="230" font-size="10" fill-opacity="0.45">검색할 때 치를 비용을, 저장할 때로 옮긴 셈입니다.</text>
+    <text x="16" y="244" font-size="11.5" fill="var(--ink-dim)">대신 이 표를 미리 만들어둬야 하고, 문서가 바뀌면 표도 같이 고쳐야 합니다.</text>
+    <text x="16" y="260" font-size="11.5" fill="var(--ink-dim)">검색할 때 치를 비용을, 저장할 때로 옮긴 셈입니다.</text>
   </g>
 </svg>`,
   },
