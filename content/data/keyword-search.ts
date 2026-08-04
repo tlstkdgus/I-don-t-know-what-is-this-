@@ -16,17 +16,48 @@ const blocks: Block[] = [
     md: "**역색인**은 이 방향을 아예 뒤집어버립니다.",
   },
   {
-    t: "code",
-    lang: "text",
-    src: `
-정방향 (원본 그대로)
-  문서1 → [고양이, 사료, 추천]
-  문서2 → [강아지, 사료]
+    t: "figure",
+    caption: "왼쪽은 원본 그대로입니다. 오른쪽처럼 미리 뒤집어두면 검색어에서 문서를 곧바로 찾아갈 수 있습니다.",
+    svg: `<svg viewBox="0 0 640 236" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="정방향 색인과 역색인의 구조 비교">
+  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="currentColor">
+    <text x="16" y="20" font-size="11.5" fill-opacity="0.62">원본 (문서 → 단어)</text>
 
-역방향 (미리 뒤집어 둔 것)
-  고양이 → [문서1]
-  사료   → [문서1, 문서2]
-  강아지 → [문서2]`,
+    <rect x="16" y="32" width="66" height="28" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
+    <text x="49" y="50" text-anchor="middle">문서1</text>
+    <text x="98" y="50" font-size="10.5" fill-opacity="0.72">고양이 · 사료 · 추천</text>
+
+    <rect x="16" y="72" width="66" height="28" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
+    <text x="49" y="90" text-anchor="middle">문서2</text>
+    <text x="98" y="90" font-size="10.5" fill-opacity="0.72">강아지 · 사료</text>
+
+    <text x="16" y="128" font-size="10.5" fill-opacity="0.5">"사료"를 찾으려면?</text>
+    <text x="16" y="146" font-size="10" fill-opacity="0.45">문서를 하나씩 다 열어서 안을 훑어야 합니다.</text>
+    <text x="16" y="164" font-size="10" fill-opacity="0.45">문서가 100만 개면 100만 번.</text>
+
+    <line x1="322" y1="24" x2="322" y2="196" stroke="currentColor" stroke-opacity="0.15"/>
+    <text x="322" y="112" text-anchor="middle" font-size="15" fill-opacity="0.45">↻</text>
+
+    <text x="360" y="20" font-size="11.5" fill-opacity="0.62">역색인 (단어 → 문서)</text>
+
+    <rect x="360" y="32" width="76" height="28" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
+    <text x="398" y="50" text-anchor="middle">고양이</text>
+    <text x="452" y="50" font-size="10.5" fill-opacity="0.72">문서1</text>
+
+    <rect x="360" y="72" width="76" height="28" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.7"/>
+    <text x="398" y="90" text-anchor="middle">사료</text>
+    <text x="452" y="90" font-size="10.5" fill-opacity="0.85">문서1 · 문서2</text>
+
+    <rect x="360" y="112" width="76" height="28" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
+    <text x="398" y="130" text-anchor="middle">강아지</text>
+    <text x="452" y="130" font-size="10.5" fill-opacity="0.72">문서2</text>
+
+    <text x="360" y="164" font-size="10.5" fill-opacity="0.5">"사료"를 찾으려면?</text>
+    <text x="360" y="182" font-size="10" fill-opacity="0.45">해당 줄 하나만 보면 끝. 문서 수와 무관합니다.</text>
+
+    <text x="16" y="216" font-size="10" fill-opacity="0.5">대신 이 표를 미리 만들어둬야 하고, 문서가 바뀌면 표도 같이 고쳐야 합니다.</text>
+    <text x="16" y="230" font-size="10" fill-opacity="0.45">검색할 때 치를 비용을, 저장할 때로 옮긴 셈입니다.</text>
+  </g>
+</svg>`,
   },
   {
     t: "p",

@@ -159,6 +159,58 @@ interface IERC20 {
         md: "**왜 이렇게 번거롭게 할까요?** 프로그램이 내 지갑에서 마음대로 돈을 빼갈 수 없게 막아뒀기 때문입니다 — 반드시 명시적인 허가가 먼저 있어야 합니다. 문제는 두 가지입니다. 거래를 두 번 해야 해서 번거롭고, 많은 서비스가 편의상 \"금액 제한 없이\" 허가를 요청하는데 나중에 그 서비스가 해킹당하면 **허가해준 만큼(사실상 전 재산까지) 털릴 수 있습니다.**",
       },
       {
+        t: "figure",
+        caption: "허가는 한 번 해두면 계속 남아 있습니다. 그래서 오래된 허가를 정리하는 일이 필요합니다.",
+        svg: `<svg viewBox="0 0 640 254" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="허가 후 실행 두 단계와 무제한 허가의 위험">
+  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="currentColor">
+    <rect x="20" y="34" width="104" height="40" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+    <text x="72" y="52" text-anchor="middle">내 지갑</text>
+    <text x="72" y="67" text-anchor="middle" font-size="9.5" fill-opacity="0.55">토큰 100개</text>
+
+    <rect x="268" y="34" width="120" height="40" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+    <text x="328" y="52" text-anchor="middle">교환 프로그램</text>
+    <text x="328" y="67" text-anchor="middle" font-size="9.5" fill-opacity="0.55">스마트 컨트랙트</text>
+
+    <text x="20" y="20" font-size="11.5" fill-opacity="0.62">1단계 — 허가</text>
+    <line x1="124" y1="54" x2="262" y2="54" stroke="currentColor" stroke-opacity="0.45"/>
+    <polygon points="262,54 254,50 254,58" fill="currentColor" fill-opacity="0.45"/>
+    <text x="193" y="46" text-anchor="middle" font-size="10" fill-opacity="0.6">"10개까지 가져가도 좋다"</text>
+    <text x="193" y="90" text-anchor="middle" font-size="9.5" fill-opacity="0.45">거래 1회 · 수수료 발생</text>
+
+    <text x="20" y="126" font-size="11.5" fill-opacity="0.62">2단계 — 실행</text>
+    <rect x="20" y="140" width="104" height="40" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+    <text x="72" y="158" text-anchor="middle">내 지갑</text>
+    <text x="72" y="173" text-anchor="middle" font-size="9.5" fill-opacity="0.55">토큰 90개</text>
+
+    <rect x="268" y="140" width="120" height="40" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.45"/>
+    <text x="328" y="158" text-anchor="middle">교환 프로그램</text>
+    <text x="328" y="173" text-anchor="middle" font-size="9.5" fill-opacity="0.55">허가받은 10개 가져감</text>
+
+    <line x1="262" y1="160" x2="128" y2="160" stroke="currentColor" stroke-opacity="0.45"/>
+    <polygon points="128,160 136,156 136,164" fill="currentColor" fill-opacity="0.45"/>
+    <text x="193" y="152" text-anchor="middle" font-size="10" fill-opacity="0.6">실제로 가져감</text>
+    <text x="193" y="196" text-anchor="middle" font-size="9.5" fill-opacity="0.45">거래 2회째 · 수수료 또 발생</text>
+
+    <line x1="418" y1="24" x2="418" y2="212" stroke="currentColor" stroke-opacity="0.15"/>
+
+    <text x="438" y="20" font-size="11.5" fill-opacity="0.62">⚠ 무제한으로 허가하면</text>
+    <rect x="438" y="34" width="182" height="40" rx="7" fill="none" stroke="currentColor" stroke-opacity="0.65"/>
+    <text x="529" y="52" text-anchor="middle" font-size="10.5">"얼마든지 가져가도 좋다"</text>
+    <text x="529" y="67" text-anchor="middle" font-size="9.5" fill-opacity="0.55">한도 없음</text>
+
+    <text x="438" y="98" font-size="10" fill-opacity="0.6">편합니다 — 다시 허가할 일이 없으니까요.</text>
+
+    <text x="438" y="128" font-size="10" fill-opacity="0.6">그런데 이 허가는 계속 살아 있습니다.</text>
+    <text x="438" y="146" font-size="10" fill-opacity="0.6">몇 달 뒤 그 프로그램이 해킹당하면,</text>
+    <text x="438" y="164" font-size="10" fill-opacity="0.72">공격자가 그 허가를 그대로 씁니다.</text>
+
+    <text x="438" y="194" font-size="10" fill-opacity="0.5">그래서 오래된 허가는 정리해야 합니다.</text>
+
+    <text x="20" y="240" font-size="10" fill-opacity="0.45">이 번거로움을 줄이려고 서명 한 번으로 허가를 대신하거나, 두 단계를 한 번에 묶는 방식이 나왔습니다.</text>
+  </g>
+</svg>`,
+      },
+      {
         t: "p",
         md: "**2026년의 개선책:** 서명 한 번으로 허가를 대신하는 방식(ERC-2612), 여러 동작을 한 번에 묶는 방식(ERC-5792), 일반 지갑이 이런 기능을 빌려 쓰는 방식([4장](/web3/wallet)에서 본 2025년부터의 변화) 세 가지가 이 문제를 줄이고 있습니다. 그리고 오래전에 내준 무제한 허가는 revoke.cash 같은 도구로 주기적으로 정리하는 게 좋습니다.",
       },

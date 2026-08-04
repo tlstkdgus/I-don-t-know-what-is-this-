@@ -26,6 +26,48 @@ const blocks: Block[] = [
     ],
   },
   {
+    t: "figure",
+    caption: "시드구문 하나가 지갑 주소 여러 개를 만들어냅니다. 그래서 시드구문은 개인키보다도 더 중요합니다.",
+    svg: `<svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="시드구문에서 여러 개인키와 주소가 파생되는 구조">
+  <g font-family="ui-sans-serif, system-ui" font-size="11" fill="currentColor">
+    <rect x="176" y="16" width="288" height="46" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.7"/>
+    <text x="320" y="36" text-anchor="middle" font-size="12">시드구문 (영어 단어 12~24개)</text>
+    <text x="320" y="53" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9.5" fill-opacity="0.6">apple ocean tiger ... forest</text>
+
+    <line x1="320" y1="62" x2="320" y2="82" stroke="currentColor" stroke-opacity="0.4"/>
+    <line x1="130" y1="82" x2="510" y2="82" stroke="currentColor" stroke-opacity="0.4"/>
+    <line x1="130" y1="82" x2="130" y2="100" stroke="currentColor" stroke-opacity="0.4"/>
+    <line x1="320" y1="82" x2="320" y2="100" stroke="currentColor" stroke-opacity="0.4"/>
+    <line x1="510" y1="82" x2="510" y2="100" stroke="currentColor" stroke-opacity="0.4"/>
+
+    <rect x="66" y="100" width="128" height="30" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
+    <text x="130" y="119" text-anchor="middle" font-size="10.5">개인키 1</text>
+    <rect x="256" y="100" width="128" height="30" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
+    <text x="320" y="119" text-anchor="middle" font-size="10.5">개인키 2</text>
+    <rect x="446" y="100" width="128" height="30" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.4"/>
+    <text x="510" y="119" text-anchor="middle" font-size="10.5">개인키 3 …</text>
+
+    <line x1="130" y1="130" x2="130" y2="152" stroke="currentColor" stroke-opacity="0.3"/>
+    <polygon points="130,156 126,148 134,148" fill="currentColor" fill-opacity="0.3"/>
+    <line x1="320" y1="130" x2="320" y2="152" stroke="currentColor" stroke-opacity="0.3"/>
+    <polygon points="320,156 316,148 324,148" fill="currentColor" fill-opacity="0.3"/>
+    <line x1="510" y1="130" x2="510" y2="152" stroke="currentColor" stroke-opacity="0.3"/>
+    <polygon points="510,156 506,148 514,148" fill="currentColor" fill-opacity="0.3"/>
+
+    <rect x="66" y="158" width="128" height="30" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
+    <text x="130" y="177" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9.5">0x71C7…976F</text>
+    <rect x="256" y="158" width="128" height="30" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
+    <text x="320" y="177" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9.5">0x3A9b…21Ec</text>
+    <rect x="446" y="158" width="128" height="30" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.28"/>
+    <text x="510" y="177" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9.5">0xF04d…8B12</text>
+
+    <text x="320" y="206" text-anchor="middle" font-size="10" fill-opacity="0.5">각각 남에게 알려줘도 되는 주소 (계좌번호)</text>
+
+    <text x="320" y="236" text-anchor="middle" font-size="10.5" fill-opacity="0.62">시드구문을 잃으면 전부 잃고, 시드구문이 새면 전부 털립니다.</text>
+  </g>
+</svg>`,
+  },
+  {
     t: "callout",
     tone: "warn",
     title: "여기서 대부분의 사고가 납니다",
