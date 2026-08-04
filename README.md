@@ -11,7 +11,7 @@
 | 주제 | 상태 |
 | --- | --- |
 | `web3` | 13장 작성 완료 |
-| `data` 데이터·지식 표현 | 10장 작성 완료 (파트 4 「운영과 신뢰」는 미작성) |
+| `data` 데이터·지식 표현 | 13장 작성 완료 |
 | `backend` 백엔드·인프라 | 목차만 |
 | `cs` CS 기초 | 목차만 |
 | `ai` AI·ML | 목차만 |
@@ -141,6 +141,16 @@ data 주제도 2026년 7월 기준입니다. 각 장의 `legend` 블록에 출�
 - [Cormack et al., *Reciprocal Rank Fusion…*, SIGIR '09](https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf) (10장)
 
 3장의 테이블 포맷 현황은 변화가 빨라 재확인이 필요합니다.
+
+파트 4(11~13장)는 2026년 8월 기준입니다.
+
+- [OpenLineage 공식 문서](https://openlineage.io/docs/) · [LF AI & Data](https://lfaidata.foundation/projects/openlineage/) (11장)
+- [Open Data Contract Standard](https://bitol-io.github.io/open-data-contract-standard/) · [Bitol](https://bitol.io/) (12장)
+- 개인정보 보호법 제16조 — [국가법령정보센터](https://www.law.go.kr/) (13장)
+- 개인정보보호위원회 「가명정보 처리 가이드라인」 전면 개정(2026.3) — [정책브리핑](https://www.korea.kr/briefing/pressReleaseView.do?newsId=156751967) (13장)
+
+**13장은 법률 자문이 아닙니다.** 개인정보 관련 법령·지침은 개정이 잦으므로,
+인용하거나 실무에 적용하기 전에 반드시 원문과 최신 공지를 직접 확인하세요.
 
 ## 이미지 출처
 
